@@ -1,42 +1,33 @@
-import { ChakraProps,chakra, Heading, HeadingProps } from "@chakra-ui/react"
-import React, {  ReactNode } from "react"
+import { ChakraProps, chakra, Heading, HeadingProps } from '@chakra-ui/react'
+import React, { ReactNode } from 'react'
 
 export type SectionProps = ChakraProps & {
-    title?: string | ReactNode,
-    children: ReactNode | ReactNode[] 
+  title?: string | ReactNode
+  children: ReactNode | ReactNode[]
 }
 
 export type SectionTitleProps = HeadingProps & {
-    children: string | ReactNode
+  children: string | ReactNode
 }
 
-const SectionTitle: React.FunctionComponent<SectionTitleProps> = ({ children, ...props }: SectionTitleProps): React.ReactElement => {
-    return (
-        <Heading
-            fontWeight="bold"
-            fontSize={{base:'xl',md:'3xl'}}
-            {...props}>
-            {children}
-        </Heading>
-    )
-}
+const SectionTitle: React.FunctionComponent<SectionTitleProps> = ({
+  children,
+  ...props
+}: SectionTitleProps): React.ReactElement => (
+  <Heading fontWeight='bold' fontSize={{ base: 'xl', md: '3xl' }} {...props}>
+    {children}
+  </Heading>
+)
 
-
-const Section: React.FunctionComponent<SectionProps> = ({ title, children, ...props }: SectionProps): React.ReactElement => {
-    
-    
-    return (
-        <chakra.section
-            display="flex"
-            flexDir="column"
-            {...props}    
-        >
-            <SectionTitle mb={{base:"4",md:"4"}}>
-                {title}
-            </SectionTitle>
-            {children}
-        </chakra.section>
-    )
-}
+const Section: React.FunctionComponent<SectionProps> = ({
+  title,
+  children,
+  ...props
+}: SectionProps): React.ReactElement => (
+  <chakra.section display='flex' flexDir='column' {...props}>
+    <SectionTitle mb={{ base: '4', md: '4' }}>{title}</SectionTitle>
+    {children}
+  </chakra.section>
+)
 
 export { Section }

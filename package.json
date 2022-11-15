@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.7",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mapbox/rehype-prism": "^0.8.0",
@@ -36,6 +38,7 @@
     "lint-staged": "^13.0.3",
     "next": "13.0.2",
     "next-mdx-remote": "^4.2.0",
+    "pretty-quick": "^3.1.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
@@ -46,7 +49,6 @@
     "rehype-slug": "^5.1.0",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1",
-    "remark-mdx-images": "^2.0.0",
     "remark-parse-frontmatter": "^1.0.3",
     "superjson": "^1.11.0",
     "typescript": "4.8.4",
@@ -56,11 +58,22 @@
   "devDependencies": {
     "@chakra-ui/cli": "^2.1.8",
     "@types/js-yaml": "^4.0.5",
+    "@typescript-eslint/parser": "^5.43.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.2",
     "prettier": "^2.7.1"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": "eslint --cache --fix",
     "src/**/*.{js,jsx,ts,tsx,css,scss,md}": "prettier --write --ignore-unknown"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }
