@@ -1,0 +1,25 @@
+code[class*='language-'],
+pre[class*='language-'] {
+    color: white;
+
+}
+.rehype-code-title{
+    font-family: SFMono-Regular,Menlo,Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    background: var(--chakra-colors-gray-600);
+    font-weight: bolder;
+    color: var(--chakra-colors-white);
+    font-size: var(--chakra-fontSizes-sm);
+    padding-inline: var(--chakra-space-4);
+    padding-block: var(--chakra-space-2);;
+    border-top-left-radius: var(--chakra-radii-md) !important;
+    border-top-right-radius: var(--chakra-radii-md) !important;
+}
+
+.rehype-code-title + pre{
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+img.mdx-image{
+    border-radius: var(--chakra-radii-md);
+}
