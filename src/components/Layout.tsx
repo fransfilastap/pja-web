@@ -48,8 +48,7 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
     css={{ position: 'sticky', top: 0 }}
     bgColor={useColorModeValue('rgba(255, 255, 255, 0.7)', 'rgba(0, 0, 0, 0.5)')}
     backdropFilter='blur(8px)'
-    borderBottomWidth='1px'
-    borderBottomColor={useColorModeValue('gray.100', 'blackAlpha.50')}
+    boxShadow={'sm'}
     zIndex={1}
     w='full'
     h='16'
@@ -58,21 +57,17 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
   >
     <Container maxW='container.md'>
       <chakra.nav w='full' display='flex' flexDir='row' justifyContent='space-between' alignItems='center'>
-        <HStack gap={1.5}>
+        <HStack gap={3}>
           <MainNavLink to='/'>
-            {/* <Icon as={FiHome} /> */}
             <chakra.span>Home</chakra.span>
           </MainNavLink>
           <MainNavLink to='/blog'>
-            {/* <Icon as={FiFeather} /> */}
             <chakra.span>Blog</chakra.span>
           </MainNavLink>
           <MainNavLink to='/works'>
-            {/* <Icon as={FiBriefcase} /> */}
             <chakra.span>Works</chakra.span>
           </MainNavLink>
           <MainNavLink to='/about'>
-            {/* <Icon as={FiBriefcase} /> */}
             <chakra.span>About</chakra.span>
           </MainNavLink>
         </HStack>

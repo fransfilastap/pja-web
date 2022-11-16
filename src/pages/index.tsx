@@ -15,11 +15,11 @@ import {
 } from '@chakra-ui/react'
 import { FiArrowRight } from 'react-icons/fi'
 import { Layout } from '@/components/Layout'
-import HashTag from '@/components/atoms/HashTag'
-import { Section } from '@/components/molecules/Section'
+import HashTag from '@/components/HashTag'
+import { Section } from '@/components/Section'
 import { ChakraNextImage } from '@/components/ChakraNextImage'
 import { PostContent } from '@/lib/posts'
-import BlogPostCard from '@/components/molecules/BlogPostCard'
+import BlogPostCard from '@/components/BlogPostCard'
 import { MatterParsedResult } from '@/lib/types'
 import { getPostLists } from '@/lib/mdx'
 
@@ -85,7 +85,7 @@ function FeaturedPosts({ posts }: InferGetStaticPropsType<typeof getStaticProps>
     <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }} gridAutoRows='1fr' gap={3}>
       {posts.map((e: PostContent) => (
         <GridItem w='full' key={e.slug}>
-          <BlogPostCard title={e.title} views={100} slug={e.slug} key={e.slug} readingTime={e.readingTime} />
+          <BlogPostCard title={e.title} slug={e.slug} key={e.slug} readingTime={e.readingTime} />
         </GridItem>
       ))}
     </Grid>

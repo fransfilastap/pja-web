@@ -1,8 +1,9 @@
 import Image, { ImageProps } from 'next/image'
 import Link from 'next/link'
-import { Box, Link as ChakraLink, Table, TableProps, useColorModeValue } from '@chakra-ui/react'
+import { Box, chakra, Link as ChakraLink, Table, TableProps, useColorModeValue } from '@chakra-ui/react'
 import { shimmer, toBase64 } from '@/components/ChakraNextImage'
 import { MDXComponents } from 'mdx/types'
+
 function CustomLink(props: any) {
   const { href } = props
   const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
@@ -26,12 +27,13 @@ function MDXImage(props: ImageProps) {
 
   return (
     <Image
+      {...props}
       className='mdx-image'
       placeholder='blur'
       blurDataURL={`data:image/svg+xml;base64,${toBase64(
         shimmer((props.width ?? defaultWidth) as number, (props.height ?? defaultHeight) as number)
       )}`}
-      {...props}
+      alt={props.alt}
     />
   )
 }
@@ -51,10 +53,20 @@ function CustomTable(props: TableProps) {
   )
 }
 
+function TableOfContents(props: any) {
+  return (
+    <chakra.nav bgColor={useColorModeValue('gray.100', 'gray.800')} px={4} py={6} borderRadius={'md'}>
+      <chakra.h2>Table of Contents</chakra.h2>
+      {props.children}
+    </chakra.nav>
+  )
+}
+
 const components = {
   img: MDXImage,
-  a: CustomLink,
-  table: CustomTable
+  nav: TableOfContents,
+  table: CustomTable,
+  a: CustomLink
 } as MDXComponents
 
 export default components

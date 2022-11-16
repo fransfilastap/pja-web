@@ -12,7 +12,7 @@ const theme = extendTheme(
       Table
     },
     config: {
-      initialColorMode: 'system',
+      initialColorMode: 'light',
       useSystemColorMode: true
     },
     styles: {

@@ -1,3 +1,12 @@
+code::-webkit-scrollbar, pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre,code{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 code[class*='language-'],
 pre[class*='language-'] {
   color: white;
@@ -21,4 +30,33 @@ pre[class*='language-'] {
 
 img.mdx-image {
   border-radius: var(--chakra-radii-md);
+}
+
+
+h2,h3,h4,h5,h6{
+  position: relative;
+  display: block;
+}
+
+h2:hover::after, h3:hover::after,h4:hover::after,h5:hover::after,h6:hover::after{
+  opacity: 1;
+}
+
+a::after{
+  content: '#';
+  color: var(--chakra-colors-gray-500);
+  position: absolute;
+  left: -1.3rem;
+  top: 75px;
+  opacity: 0;
+}
+
+a.anchor{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
 }

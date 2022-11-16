@@ -36,7 +36,8 @@ export function parseMatter(source: string): MatterParsedResult {
   const matterResult = matter(source, {
     engines: {
       yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object
-    }
+    },
+    excerpt: true
   })
   return matterResult.data as MatterParsedResult
 }
@@ -47,7 +48,14 @@ export async function parseMdx(source: string) {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
         rehypeSlug,
-        rehypeAutolinkHeadings,
+        [
+          rehypeAutolinkHeadings,
+          {
+            properties: {
+              className: ['anchor']
+            }
+          }
+        ],
         rehypeCodeTitles,
         rehypePrism,
         [rehypeImageSize, { dir: 'public' }]
@@ -70,7 +78,8 @@ export function fetchPostContents(): MatterParsedResult[] {
       const matterResult = matter(fileContents, {
         engines: {
           yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object
-        }
+        },
+        excerpt: true
       })
 
       const matterData = matterResult.data as MatterParsedResult

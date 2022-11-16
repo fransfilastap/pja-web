@@ -13,7 +13,7 @@ const shimmer = (w: number, h: number) => `
       <stop stop-color="#222" offset="50%" />
       <stop stop-color="#333" offset="70%" />
     </linearGradient>
-        <filter id="f1" x="0" y="0">
+    <filter id="f1" x="0" y="0">
       <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
     </filter>
   </defs>  
@@ -51,7 +51,7 @@ function ChakraNextImage(props: ChakraNextImageProps) {
         placeholder='blur'
         fill
         style={{
-          objectFit: imageFit ?? 'contain',
+          objectFit: imageFit ?? 'cover',
           objectPosition: imageFitPosition ?? 'center'
         }}
         blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
