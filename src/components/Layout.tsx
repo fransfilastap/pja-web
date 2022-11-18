@@ -29,8 +29,8 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }: LayoutProps)
     <OpenGraphMeta />
     <Flex direction='column' justifyContent='flex-start' w='full'>
       <Nav />
-      <chakra.main flex='1' p={{ base: '4', md: 2 }} minH='100vh'>
-        <Container maxW='container.md'>{children}</Container>
+      <chakra.main flex='1' p={0} minH='100vh'>
+        {children}
       </chakra.main>
       <Footer />
     </Flex>
@@ -92,6 +92,7 @@ const MainNavLink: React.FunctionComponent<MainNavLinkProps> = ({
   return (
     <NavLink
       to={to}
+      w={'full'}
       fontSize='md'
       fontWeight='medium'
       display={{ base: 'none', md: 'flex' }}
@@ -117,13 +118,19 @@ function MobileMenuToggle(): ReactElement {
             <MenuButton as={IconButton} icon={isOpen ? <FiX /> : <FiMenu />} />
             <MenuList>
               <MenuItem>
-                <NavLink to='/'>Home</NavLink>
+                <NavLink w='full' _hover={{ textDecor: 'none' }} to='/'>
+                  Home
+                </NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink to='/blog'>Blog</NavLink>
+                <NavLink w='full' _hover={{ textDecor: 'none' }} to='/blog'>
+                  Blog
+                </NavLink>
               </MenuItem>
               <MenuItem>
-                <NavLink to='/works'>Works</NavLink>
+                <NavLink w='full' _hover={{ textDecor: 'none' }} to='/works'>
+                  Works
+                </NavLink>
               </MenuItem>
             </MenuList>
           </>

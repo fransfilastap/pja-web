@@ -5,7 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import * as ga from '@/lib/ga'
 import theme from '@/components/theme/theme'
 import 'prismjs/themes/prism-okaidia.css'
-import '@/mdx.styles.css'
+import '@/styles.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()

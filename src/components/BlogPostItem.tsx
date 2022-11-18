@@ -1,20 +1,26 @@
 import React, { FunctionComponent } from 'react'
-import { chakra, Flex, Heading, Spinner, Text } from '@chakra-ui/react'
+import { Flex, Heading, Text } from '@chakra-ui/react'
 import { PostMetadata, PostViewResponse } from '@/lib/types'
+import { MotionProps } from 'framer-motion'
 import Link from 'next/link'
 import useSWR from 'swr'
 import fetcher from '@/lib/fetcher'
+import PostAttribute from './PostAttribute'
+import { FiEye } from 'react-icons/fi'
+import MotionDiv from './Motion'
 
-export type BlogPostItemProps = PostMetadata
+export type BlogPostItemProps = PostMetadata & {
+  motionProps?: Omit<MotionProps, 'transition'>
+}
 
 const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
-  const { title, slug, description } = props
+  const { title, slug, description, motionProps } = props
   const { data } = useSWR<PostViewResponse>(`/api/views/${slug}`, fetcher)
   const views = Number(data?.total)
 
   return (
     <Link href={`/blog/${slug}`} style={{ width: '100%' }}>
-      <chakra.article
+      <MotionDiv
         display={'flex'}
         flexDir={'column'}
         gap={2}
@@ -22,15 +28,18 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
         w={'full'}
         minH={'max-content'}
         py={2}
+        {...motionProps}
       >
         <Flex flexDir={{ base: 'column', md: 'row' }} justifyContent={'space-between'}>
-          <Heading fontWeight={'medium'} size={{ base: 'sm', md: 'md' }}>
+          <Heading fontWeight={'bold'} size={{ base: 'sm', md: 'md' }}>
             {title}
           </Heading>
-          <chakra.span>{views ? Number(views).toLocaleString() : <Spinner />}</chakra.span>
+          <PostAttribute icon={FiEye}>{views} views</PostAttribute>
         </Flex>
-        <Text>{description}</Text>
-      </chakra.article>
+        <Text fontStyle={'italic'} fontSize={'sm'}>
+          {description}
+        </Text>
+      </MotionDiv>
     </Link>
   )
 }

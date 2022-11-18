@@ -6,12 +6,11 @@ import {
   Heading,
   chakra,
   Flex,
-  Grid,
-  GridItem,
   Link as ChakraLink,
   Icon,
   useColorModeValue,
-  VStack
+  VStack,
+  Container
 } from '@chakra-ui/react'
 import { FiArrowRight } from 'react-icons/fi'
 import { Layout } from '@/components/Layout'
@@ -22,19 +21,23 @@ import { PostContent } from '@/lib/posts'
 import BlogPostCard from '@/components/BlogPostCard'
 import { MatterParsedResult } from '@/lib/types'
 import { getPostLists } from '@/lib/mdx'
+import MotionDiv from '@/components/Motion'
+import { Variants } from 'framer-motion'
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
-      <Masthead />
-      <Section mt={{ base: 6, md: 6 }} title='Featured Posts'>
-        <Suspense fallback={null}>
-          <VStack justifyContent='flex-start' alignItems='start' gap={4}>
-            <FeaturedPosts posts={posts} />
-            <ReadAllPosts />
-          </VStack>
-        </Suspense>
-      </Section>
+      <Container maxW='container.md'>
+        <Masthead />
+        <Section mt={{ base: 6, md: 6 }} title='Featured Posts'>
+          <Suspense fallback={null}>
+            <VStack justifyContent='flex-start' alignItems='start' gap={4}>
+              <FeaturedPosts posts={posts} />
+              <ReadAllPosts />
+            </VStack>
+          </Suspense>
+        </Section>
+      </Container>
     </Layout>
   )
 }
@@ -80,15 +83,43 @@ function Masthead(): ReactElement {
   )
 }
 
+const container: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const item: Variants = {
+  hidden: { y: 10, opacity: 0 },
+  show: { y: 0, opacity: 1 }
+}
+
 function FeaturedPosts({ posts }: InferGetStaticPropsType<typeof getStaticProps>): React.ReactElement {
   return (
-    <Grid templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }} gridAutoRows='1fr' gap={3}>
+    <MotionDiv
+      initial={'hidden'}
+      animate={'show'}
+      variants={container}
+      display={'grid'}
+      gridTemplateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
+      gridAutoRows='max-content'
+      gap={3}
+    >
       {posts.map((e: PostContent) => (
-        <GridItem w='full' key={e.slug}>
-          <BlogPostCard title={e.title} slug={e.slug} key={e.slug} readingTime={e.readingTime} />
-        </GridItem>
+        <BlogPostCard
+          motionProps={{ variants: item }}
+          title={e.title}
+          slug={e.slug}
+          key={e.slug}
+          readingTime={e.readingTime}
+        />
       ))}
-    </Grid>
+    </MotionDiv>
   )
 }
 
