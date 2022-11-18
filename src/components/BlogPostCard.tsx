@@ -1,12 +1,12 @@
-import { chakra, HStack, Icon, shouldForwardProp } from '@chakra-ui/react'
+import { chakra, HStack, shouldForwardProp } from '@chakra-ui/react'
 import Link from 'next/link'
-import ReadingTime from '@/components/ReadingTime'
 import React from 'react'
-import { FiEye } from 'react-icons/fi'
+import { FiClock } from 'react-icons/fi'
 import fetcher from '@/lib/fetcher'
 import useSWR from 'swr'
 import { PostViewResponse } from '@/lib/types'
 import { motion, MotionProps } from 'framer-motion'
+import PostAttribute from '@/components/PostAttribute'
 
 interface BlogPostCardProps {
   title: string
@@ -40,8 +40,7 @@ const BlogPostCard: React.FunctionComponent<BlogPostCardProps> = ({
         justifyContent='space-between'
         minH={{ base: '100%', md: '30vh' }}
         minW={{ base: '15vh', md: '25vh' }}
-        border='4px'
-        borderColor='violet.30'
+        border='2px'
         cursor='pointer'
         _hover={{ borderColor: 'violet.50' }}
         borderRadius='xl'
@@ -53,11 +52,8 @@ const BlogPostCard: React.FunctionComponent<BlogPostCardProps> = ({
           {title}
         </chakra.h1>
         <HStack>
-          <HStack gap={1}>
-            <Icon as={FiEye} />
-            <chakra.span>{views ? Number(views).toLocaleString() : '----'}</chakra.span>
-          </HStack>
-          <ReadingTime>{readingTime}</ReadingTime>
+          <PostAttribute icon={FiClock}>{views}</PostAttribute>
+          <PostAttribute icon={FiClock}>{readingTime}</PostAttribute>
         </HStack>
       </MotionDiv>
     </Link>

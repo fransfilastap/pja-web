@@ -3,12 +3,11 @@ import BasicMeta from '@/components/meta/BasicMeta'
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta'
 import config from '@/lib/config'
 import React from 'react'
-import { Container, Text, chakra } from '@chakra-ui/react'
+import { Container, chakra, Heading } from '@chakra-ui/react'
 import BlogPostList from '@/components/BlogPostList'
 import { GetStaticProps, NextPage } from 'next'
 import { MatterParsedResult } from '@/lib/types'
 import { fetchPostContents } from '@/lib/mdx'
-import { VideoLazyLoad } from '@/components/LazyLoad'
 
 type BlogPageProps = {
   posts: MatterParsedResult[]
@@ -23,7 +22,7 @@ const BlogPage: NextPage<BlogPageProps> = (props) => {
       <BasicMeta title={blogTitle} description={blogTitle} url={`${config.site_url}/blog`} />
       <OpenGraphMeta title={blogTitle} />
       <BlogPageMasthead />
-      <Container my={'20'} maxW={'container.md'}>
+      <Container mt={5} maxW={'container.md'}>
         <BlogPostList posts={posts} />
       </Container>
     </Layout>
@@ -40,26 +39,27 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 const BlogPageMasthead = () => {
   return (
-    <chakra.section
-      overflow={'hidden'}
-      position={'relative'}
-      m={0}
-      p={0}
-      display={'flex'}
-      flexDir={'column'}
-      justifyContent={'center'}
-      alignItems={'center'}
-      w={'full'}
-      h={{ base: '30vh', md: '35vh' }}
-      bgColor={'gray.900'}
-    >
-      <Container maxW={'container.md'} zIndex={1}>
-        <Text fontSize={'2xl'} fontWeight={'bold'} fontStyle={'italic'} color={'white'}>
-          Thoughts. Log.
-        </Text>
-      </Container>
-      <VideoLazyLoad src={'./coding.mp4'} />
-    </chakra.section>
+    <Container maxW={'container.md'}>
+      <chakra.section
+        overflow={'hidden'}
+        position={'relative'}
+        p={0}
+        display={'flex'}
+        flexDir={'column'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        borderRadius={'lg'}
+        w={'full'}
+        mt={4}
+        h={{ base: '20vh', md: '23vh' }}
+        bgGradient={'linear(from-tl to-br, violet.50, purple.400, pink.200)'}
+      >
+        <Container maxW={'container.md'} zIndex={1}>
+          <Heading fontWeight={'bold'}>Blog.</Heading>
+          <Heading size={'md'}>Just some writings.</Heading>
+        </Container>
+      </chakra.section>
+    </Container>
   )
 }
 

@@ -18,6 +18,7 @@ import NavLink, { NavLinkProps } from '@/components/NavLink'
 import ColorToggleButton from '@/components/ColorToggleButton'
 import BasicMeta from '@/components/meta/BasicMeta'
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta'
+import Brand from '@/components/Brand'
 
 export type LayoutProps = {
   children: React.ReactNode
@@ -49,7 +50,7 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
     bgColor={useColorModeValue('rgba(255, 255, 255, 0.7)', 'rgba(0, 0, 0, 0.5)')}
     backdropFilter='blur(8px)'
     boxShadow={'sm'}
-    zIndex={1}
+    zIndex={20}
     w='full'
     h='16'
     p={{ base: 4, md: 0 }}
@@ -58,14 +59,12 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
     <Container maxW='container.md'>
       <chakra.nav w='full' display='flex' flexDir='row' justifyContent='space-between' alignItems='center'>
         <HStack gap={3}>
+          <Brand />
           <MainNavLink to='/'>
             <chakra.span>Home</chakra.span>
           </MainNavLink>
           <MainNavLink to='/blog'>
             <chakra.span>Blog</chakra.span>
-          </MainNavLink>
-          <MainNavLink to='/works'>
-            <chakra.span>Works</chakra.span>
           </MainNavLink>
           <MainNavLink to='/about'>
             <chakra.span>About</chakra.span>
@@ -94,14 +93,13 @@ const MainNavLink: React.FunctionComponent<MainNavLinkProps> = ({
       to={to}
       w={'full'}
       fontSize='md'
-      fontWeight='medium'
+      fontWeight='bold'
       display={{ base: 'none', md: 'flex' }}
       flexDir='row'
       justifyContent='space-around'
       gap='1'
       alignItems='center'
       activeProps={{ color: activeColor, fontWeight: 'bold' }}
-      borderRadius='lg'
       _hover={{ color: hoverColor }}
     >
       {children}

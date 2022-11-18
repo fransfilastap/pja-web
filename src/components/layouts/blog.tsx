@@ -1,16 +1,5 @@
 import { PropsWithChildren, Suspense } from 'react'
-import {
-  Box,
-  SkeletonText,
-  chakra,
-  Flex,
-  Heading,
-  HStack,
-  Text,
-  useColorModeValue,
-  Container,
-  VStack
-} from '@chakra-ui/react'
+import { chakra, Flex, Heading, HStack, Text, useColorModeValue, Container, VStack } from '@chakra-ui/react'
 import config from '@/lib/config'
 import { format, parseISO } from 'date-fns'
 import { Prose } from '@nikolovlazar/chakra-ui-prose'
@@ -35,7 +24,7 @@ export default function BlogLayout({ children, post }: PropsWithChildren<{ post:
       />
       <OpenGraphMeta description={post.description} title={post.title} url={blogTitle} />
       <Container maxW={'container.md'}>
-        <Suspense fallback={<BlogPostSkeleton />}>
+        <Suspense fallback={null}>
           <chakra.section my={{ base: '4', md: '8' }}>
             <Heading as={'h1'} size={{ base: 'xl', md: '2xl' }} mb={4} fontWeight='bold'>
               {post.title}
@@ -74,15 +63,5 @@ export default function BlogLayout({ children, post }: PropsWithChildren<{ post:
         </Suspense>
       </Container>
     </Layout>
-  )
-}
-
-const BlogPostSkeleton = () => {
-  return (
-    <Box padding='6' boxShadow='lg' bg='white'>
-      <SkeletonText mt='4' noOfLines={4} spacing='4' />
-      <SkeletonText mt='4' noOfLines={4} spacing='4' />
-      <SkeletonText mt='4' noOfLines={4} spacing='4' />
-    </Box>
   )
 }
