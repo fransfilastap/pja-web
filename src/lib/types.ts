@@ -8,7 +8,8 @@ export type PostMetadata = {
   description: string
   tags: string[]
   date: string
-  images: string[]
+  cover: string
+  images?: string[]
   viewsCount: number
   readingTime: string
 }

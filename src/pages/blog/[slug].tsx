@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import BlogLayout from '@/components/layouts/blog'
 import { Post } from '@/lib/types'
 import { fetchPostContents, getFileBySlug } from '@/lib/mdx'
-import { Suspense } from 'react'
+import React, { Suspense } from 'react'
 import MDXComponents from '@/components/MDXComponents'
 
 function PostPage({ post }: { post: Post }): React.ReactElement {
@@ -44,7 +44,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         date: post.matter.date,
         slug: post.matter.slug,
         content: post.html,
-        images: post.matter.images
+        images: post.matter.images,
+        cover: post.matter.cover
       }
     }
   }
