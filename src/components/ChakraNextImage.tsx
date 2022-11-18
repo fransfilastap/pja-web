@@ -6,7 +6,7 @@ const myLoader = (resolverProps: ImageLoaderProps): string =>
   `${resolverProps.src}?w=${resolverProps.width}&q=${resolverProps.quality}`
 
 const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="${w}" height="${h}"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <linearGradient id="g">
       <stop stop-color="#333" offset="20%" />
@@ -43,7 +43,6 @@ function ChakraNextImage(props: ChakraNextImageProps) {
       flexDir='column'
       overflow='hidden'
       p={0}
-      my='1'
     >
       <Image
         loader={myLoader}

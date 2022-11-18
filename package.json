@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint . --fix --max-warnings=0",
     "format": "prettier . --write",
-    "gen:theme-typings": "chakra-cli tokens ./src/components/theme/theme.ts",
+    "gen:theme-typings": "chakra-cli tokens src/components/theme/theme.ts",
     "postinstall": "npm run gen:theme-typings"
   },
   "dependencies": {

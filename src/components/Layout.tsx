@@ -16,8 +16,8 @@ import {
 import { FiMenu, FiX } from 'react-icons/fi'
 import NavLink, { NavLinkProps } from '@/components/NavLink'
 import ColorToggleButton from '@/components/ColorToggleButton'
-import BasicMeta from './meta/BasicMeta'
-import OpenGraphMeta from './meta/OpenGraphMeta'
+import BasicMeta from '@/components/meta/BasicMeta'
+import OpenGraphMeta from '@/components/meta/OpenGraphMeta'
 
 export type LayoutProps = {
   children: React.ReactNode

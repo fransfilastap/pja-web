@@ -5,9 +5,9 @@ import { MotionProps } from 'framer-motion'
 import Link from 'next/link'
 import useSWR from 'swr'
 import fetcher from '@/lib/fetcher'
-import PostAttribute from './PostAttribute'
+import PostAttribute from '@/components/PostAttribute'
 import { FiEye } from 'react-icons/fi'
-import MotionDiv from './Motion'
+import MotionDiv from '@/components/Motion'
 
 export type BlogPostItemProps = PostMetadata & {
   motionProps?: Omit<MotionProps, 'transition'>

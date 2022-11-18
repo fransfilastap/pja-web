@@ -1,6 +1,6 @@
 import { chakra, HStack, Icon, shouldForwardProp } from '@chakra-ui/react'
 import Link from 'next/link'
-import ReadingTime from 'src/components/ReadingTime'
+import ReadingTime from '@/components/ReadingTime'
 import React from 'react'
 import { FiEye } from 'react-icons/fi'
 import fetcher from '@/lib/fetcher'

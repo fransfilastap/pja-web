@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import { MatterParsedResult } from '@/lib/types'
 import { EmptyState } from '@/components/empty/EmptyState'
 import BlogPostItem from '@/components/BlogPostItem'
-import MotionDiv from './Motion'
+import MotionDiv from '@/components/Motion'
 import { Variants } from 'framer-motion'
 
 export type BlogPostListProps = {
@@ -42,7 +42,7 @@ const BlogPostList: FunctionComponent<BlogPostListProps> = ({ posts }) => {
           tags={post.tags}
           viewsCount={post.viewsCount}
           date={post.date}
-          images={[]}
+          cover={post.cover}
           motionProps={{ variants: item }}
         />
       ))}
