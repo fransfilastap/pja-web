@@ -22,7 +22,7 @@ import BlogPostCard from '@/components/BlogPostCard'
 import { MatterParsedResult } from '@/lib/types'
 import { getPostLists } from '@/lib/mdx'
 import MotionDiv from '@/components/Motion'
-import { Variants } from 'framer-motion'
+import { childAnimationProps, staggerAnimationProps } from '@/lib/constants/animation'
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -83,28 +83,10 @@ function Masthead(): ReactElement {
   )
 }
 
-const container: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.2,
-      staggerChildren: 0.1
-    }
-  }
-}
-
-const item: Variants = {
-  hidden: { y: 10, opacity: 0 },
-  show: { y: 0, opacity: 1 }
-}
-
 function FeaturedPosts({ posts }: InferGetStaticPropsType<typeof getStaticProps>): React.ReactElement {
   return (
     <MotionDiv
-      initial={'hidden'}
-      animate={'show'}
-      variants={container}
+      {...staggerAnimationProps}
       display={'grid'}
       gridTemplateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
       gridAutoRows='max-content'
@@ -112,7 +94,7 @@ function FeaturedPosts({ posts }: InferGetStaticPropsType<typeof getStaticProps>
     >
       {posts.map((e: PostContent) => (
         <BlogPostCard
-          motionProps={{ variants: item }}
+          motionProps={childAnimationProps}
           title={e.title}
           slug={e.slug}
           key={e.slug}
