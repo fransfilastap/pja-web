@@ -1,7 +1,7 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { ReadTimeResults } from 'reading-time'
 
-export type PostMetadata = {
+export type ContentMetadata = {
   title: string
   slug: string
   excerpt?: string
@@ -10,30 +10,26 @@ export type PostMetadata = {
   date: string
   cover: string
   images?: string[]
-  viewsCount: number
-  readingTime: string
+  author: string
+  lastmod?: Date
 }
 
-export type Post = PostMetadata & {
-  content: MDXRemoteSerializeResult
-}
+export type Post = ParsedPostContent
 
 export interface Hash {
   [key: string]: any
 }
 
-export type MatterParsedResult = PostMetadata & {
-  fullpath?: string
-  slug: string
-  author: string
-  lastmod?: Date
+export type PostList = PostMetadata[]
+
+export type PostMetadata = ContentMetadata & {
+  fullPath: string
+  readingTime: ReadTimeResults
 }
 
-export type MDXParsedResult = {
+export type ParsedPostContent = {
   html: MDXRemoteSerializeResult
-  matter: MatterParsedResult
-  estimatedReadingTime: ReadTimeResults
-  wordCount: number
+  matter: PostMetadata
 }
 
 export type ErrorResponse = {

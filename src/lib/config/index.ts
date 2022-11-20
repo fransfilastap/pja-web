@@ -1,6 +1,6 @@
-import config from '../../config.json'
+import config from 'config.json'
 
-type Config = {
+type Index = {
   readonly site_url: string
   readonly site_title: string
   readonly site_description: string
@@ -11,4 +11,4 @@ type Config = {
   readonly site_keywords: { keyword: string }[]
 }
 
-export default config as Config
+export default config as Index
