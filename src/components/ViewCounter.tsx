@@ -1,15 +1,16 @@
-import { chakra, HStack, Icon } from '@chakra-ui/react'
+import { chakra, ChakraProps, HStack, Icon } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import useSWR from 'swr'
 import { FiEye } from 'react-icons/fi'
 import fetcher from '@/lib/fetcher'
 import { PostViewResponse } from '@/lib/types'
 
-interface ViewsCountProps {
+interface ViewsCountProps extends ChakraProps {
   slug: string
 }
 
-const ViewCounter: React.FunctionComponent<ViewsCountProps> = ({ slug }: ViewsCountProps): React.ReactElement => {
+const ViewCounter: React.FunctionComponent<ViewsCountProps> = (props): React.ReactElement => {
+  const { slug, color, ...rest } = props
   const { data } = useSWR<PostViewResponse>(`/api/views/${slug}`, fetcher)
   const views = Number(data?.total)
 
@@ -22,24 +23,10 @@ const ViewCounter: React.FunctionComponent<ViewsCountProps> = ({ slug }: ViewsCo
 
   return (
     <HStack gap={1}>
-      <Icon as={FiEye} />
-      <chakra.span fontSize={'sm'}>{`${views > 0 ? views.toLocaleString() : '0'}`}</chakra.span>
+      <Icon color={color} as={FiEye} />
+      <chakra.span {...rest} color={color} fontSize={'sm'}>{`${views > 0 ? views.toLocaleString() : '0'}`}</chakra.span>
     </HStack>
   )
 }
-
-/*interface ErrorComponentProps{
-    title:string
-    description:string
-}
-const ErrorComponent = (props:ErrorComponentProps)=>{
-    return (
-        <Alert status='error'>
-            <AlertIcon />
-            <AlertTitle>{props.title}</AlertTitle>
-            <AlertDescription>{props.description}</AlertDescription>
-        </Alert>
-    )
-}*/
 
 export default ViewCounter

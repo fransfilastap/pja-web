@@ -21,7 +21,7 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
     <Link href={`/blog/${slug}`} style={{ width: '100%' }}>
       <MotionDiv display={'flex'} flexDir={'row'} justifyContent={'space-between'} p={2} {...motionProps}>
         <Flex flexDir={'column'} justifyContent={'space-between'}>
-          <Heading fontWeight={'bold'} size={{ base: 'sm', md: 'md' }}>
+          <Heading fontWeight={'bold'} size={{ base: 'md', md: 'md' }}>
             {title}
           </Heading>
           <Text color={useColorModeValue('gray.600', 'gray.500')}>{description}</Text>

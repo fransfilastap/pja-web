@@ -13,12 +13,11 @@ import {
   MenuList,
   MenuItem
 } from '@chakra-ui/react'
-import { FiMenu, FiX } from 'react-icons/fi'
+import { FiMenu } from 'react-icons/fi'
 import NavLink, { NavLinkProps } from '@/components/NavLink'
 import ColorToggleButton from '@/components/ColorToggleButton'
 import BasicMeta from '@/components/meta/BasicMeta'
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta'
-import Brand from '@/components/Brand'
 
 export type LayoutProps = {
   children: React.ReactNode
@@ -53,26 +52,18 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
     zIndex={20}
     w='full'
     h='16'
-    p={{ base: 4, md: 0 }}
     {...rest}
   >
     <Container maxW='container.md'>
       <chakra.nav w='full' display='flex' flexDir='row' justifyContent='space-between' alignItems='center'>
-        <HStack gap={3}>
-          <Brand />
-          <MainNavLink to='/'>
-            <chakra.span>Home</chakra.span>
-          </MainNavLink>
-          <MainNavLink to='/blog'>
-            <chakra.span>Blog</chakra.span>
-          </MainNavLink>
-          <MainNavLink to='/about'>
-            <chakra.span>About</chakra.span>
-          </MainNavLink>
-        </HStack>
+        <MobileMenuToggle />
+        <Box display={{ base: 'none', md: 'flex' }} flexDir={'row'} gap={3}>
+          <MainNavLink to='/'>Home</MainNavLink>
+          <MainNavLink to='/blog'>Blog</MainNavLink>
+          <MainNavLink to='/about'>About</MainNavLink>
+        </Box>
         <HStack>
           <ColorToggleButton />
-          <MobileMenuToggle />
         </HStack>
       </chakra.nav>
     </Container>
@@ -94,7 +85,6 @@ const MainNavLink: React.FunctionComponent<MainNavLinkProps> = ({
       w={'full'}
       fontSize='md'
       fontWeight='bold'
-      display={{ base: 'none', md: 'flex' }}
       flexDir='row'
       justifyContent='space-around'
       gap='1'
@@ -111,28 +101,24 @@ function MobileMenuToggle(): ReactElement {
   return (
     <chakra.div display={{ base: 'block', md: 'none' }}>
       <Menu>
-        {({ isOpen }) => (
-          <>
-            <MenuButton as={IconButton} icon={isOpen ? <FiX /> : <FiMenu />} />
-            <MenuList>
-              <MenuItem>
-                <NavLink w='full' _hover={{ textDecor: 'none' }} to='/'>
-                  Home
-                </NavLink>
-              </MenuItem>
-              <MenuItem>
-                <NavLink w='full' _hover={{ textDecor: 'none' }} to='/blog'>
-                  Blog
-                </NavLink>
-              </MenuItem>
-              <MenuItem>
-                <NavLink w='full' _hover={{ textDecor: 'none' }} to='/works'>
-                  Works
-                </NavLink>
-              </MenuItem>
-            </MenuList>
-          </>
-        )}
+        <MenuButton as={IconButton} icon={<FiMenu />} />
+        <MenuList>
+          <MenuItem>
+            <MainNavLink w='full' _hover={{ textDecor: 'none' }} to='/'>
+              Home
+            </MainNavLink>
+          </MenuItem>
+          <MenuItem>
+            <MainNavLink w='full' _hover={{ textDecor: 'none' }} to='/blog'>
+              Blog
+            </MainNavLink>
+          </MenuItem>
+          <MenuItem>
+            <MainNavLink w='full' _hover={{ textDecor: 'none' }} to='/about'>
+              About
+            </MainNavLink>
+          </MenuItem>
+        </MenuList>
       </Menu>
     </chakra.div>
   )

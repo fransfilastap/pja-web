@@ -14,6 +14,8 @@ import PostAttribute from '@/components/PostAttribute'
 
 export default function BlogLayout({ children, post }: PropsWithChildren<{ post: Post }>) {
   const blogTitle = `${config.site_url}/blog/${post.title}`
+  const color = useColorModeValue('gray.700', 'gray.500')
+
   return (
     <Layout>
       <BasicMeta
@@ -39,14 +41,17 @@ export default function BlogLayout({ children, post }: PropsWithChildren<{ post:
                     alt={'Author Photo'}
                     src='https://avatars.githubusercontent.com/u/10008396?v=4'
                   />
-                  <Text fontSize={{ base: 'sm', md: 'sm' }} color={useColorModeValue('gray.700', 'gray.500')}>
+                  <Text fontSize={{ base: 'sm', md: 'sm' }} color={color}>
                     <span>Frans Filasta Pratama</span>
                     <span> / {format(parseISO(post.date), 'MMMM dd, yyyy')}</span>
                   </Text>
                 </HStack>
               </VStack>
               <HStack>
-                <ViewCounter slug={post.slug} />-<PostAttribute icon={FiClock}>{post.readingTime}</PostAttribute>
+                <ViewCounter color={color} slug={post.slug} />-
+                <PostAttribute color={color} icon={FiClock}>
+                  {post.readingTime}
+                </PostAttribute>
               </HStack>
             </Flex>
             {post.images && (

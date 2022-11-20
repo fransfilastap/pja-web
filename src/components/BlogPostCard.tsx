@@ -33,8 +33,6 @@ const BlogPostCard: React.FunctionComponent<BlogPostCardProps> = ({
   return (
     <Link href={`/blog/${slug}`}>
       <MotionDiv
-        initial={{ y: 10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
         display='flex'
         flexDir='column'
         justifyContent='space-between'
