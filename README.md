@@ -12,9 +12,16 @@
 
 - [x] **Rehype Code Title**
 - [x] **Rehype Prism** for code tag styling
-- [ ] Fix cover image size doesn't match with image loader
+- [x] Fix cover image size doesn't match with image loader
 - [ ] Table of contents
-- [ ] Views count with prisma and planet scale
+- [x] Views count with prisma and planet scale
+- [ ] Umami Analytics
+- [ ] Portfolio Page
+- [ ] Now Page
+- [ ] About page
+- [ ] Disqus Comment
+- [ ] Social Share
+- [ ] Next.js 13 `app` directory
 
 ## Running locally
 
