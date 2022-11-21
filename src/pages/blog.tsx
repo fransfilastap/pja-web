@@ -3,14 +3,15 @@ import BasicMeta from '@/components/meta/BasicMeta'
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta'
 import config from '@/lib/config'
 import React from 'react'
-import { Container, chakra, Heading } from '@chakra-ui/react'
+import { chakra, Container, Heading } from '@chakra-ui/react'
 import BlogPostList from '@/components/BlogPostList'
 import { GetStaticProps, NextPage } from 'next'
-import { MatterParsedResult } from '@/lib/types'
-import { fetchPostContents } from '@/lib/mdx'
+import { PostMetadata } from '@/lib/types'
+import { getPostLists } from '@/lib/content-parser'
+import { POST_PER_PAGE } from '@/lib/constants/pagination'
 
 type BlogPageProps = {
-  posts: MatterParsedResult[]
+  posts: PostMetadata[]
 }
 
 const BlogPage: NextPage<BlogPageProps> = (props) => {
@@ -30,7 +31,7 @@ const BlogPage: NextPage<BlogPageProps> = (props) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = fetchPostContents()
+  const posts = await getPostLists(1, POST_PER_PAGE)
   return {
     props: {
       posts

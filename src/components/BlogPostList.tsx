@@ -1,12 +1,12 @@
 import { FunctionComponent } from 'react'
-import { MatterParsedResult } from '@/lib/types'
+import { PostMetadata } from '@/lib/types'
 import { EmptyState } from '@/components/empty/EmptyState'
 import BlogPostItem from '@/components/BlogPostItem'
 import MotionDiv from '@/components/Motion'
 import { childAnimationProps, staggerAnimationProps } from '@/lib/constants/animation'
 
 export type BlogPostListProps = {
-  posts: MatterParsedResult[]
+  posts: PostMetadata[]
 }
 
 const BlogPostList: FunctionComponent<BlogPostListProps> = ({ posts }) => {
@@ -22,12 +22,11 @@ const BlogPostList: FunctionComponent<BlogPostListProps> = ({ posts }) => {
           key={index}
           title={post.title}
           slug={post.slug}
-          readingTime={post.readingTime}
           tags={post.tags}
-          viewsCount={post.viewsCount}
           date={post.date}
           cover={post.cover}
           motionProps={childAnimationProps}
+          author={post.author}
         />
       ))}
     </MotionDiv>

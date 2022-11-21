@@ -2,27 +2,27 @@ import React, { ReactElement, Suspense } from 'react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
 import {
-  Text,
-  Heading,
   chakra,
+  Container,
   Flex,
-  Link as ChakraLink,
+  Heading,
   Icon,
+  Link as ChakraLink,
+  Text,
   useColorModeValue,
-  VStack,
-  Container
+  VStack
 } from '@chakra-ui/react'
 import { FiArrowRight } from 'react-icons/fi'
 import { Layout } from '@/components/Layout'
 import HashTag from '@/components/HashTag'
 import { Section } from '@/components/Section'
 import { ChakraNextImage } from '@/components/ChakraNextImage'
-import { PostContent } from '@/lib/posts'
 import BlogPostCard from '@/components/BlogPostCard'
-import { MatterParsedResult } from '@/lib/types'
-import { getPostLists } from '@/lib/mdx'
 import MotionDiv from '@/components/Motion'
 import { childAnimationProps, staggerAnimationProps } from '@/lib/constants/animation'
+import { getPostLists } from '@/lib/content-parser'
+import { PostMetadata } from '@/lib/types'
+import { POST_PER_PAGE } from '@/lib/constants/pagination'
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -92,13 +92,13 @@ function FeaturedPosts({ posts }: InferGetStaticPropsType<typeof getStaticProps>
       gridAutoRows='max-content'
       gap={3}
     >
-      {posts.map((e: PostContent) => (
+      {posts.map((e: PostMetadata) => (
         <BlogPostCard
           motionProps={childAnimationProps}
           title={e.title}
           slug={e.slug}
           key={e.slug}
-          readingTime={e.readingTime}
+          readingTime={e.readingTime.text}
         />
       ))}
     </MotionDiv>
@@ -127,9 +127,8 @@ function ReadAllPosts(): ReactElement {
   )
 }
 
-const POST_PER_PAGE = 3
 export const getStaticProps: GetStaticProps = async () => {
-  const posts: MatterParsedResult[] = getPostLists(1, POST_PER_PAGE)
+  const posts = await getPostLists(1, POST_PER_PAGE)
   return {
     props: {
       posts

@@ -1,15 +1,14 @@
 import React, { FunctionComponent } from 'react'
 import { Flex, Heading, Text, useColorModeValue } from '@chakra-ui/react'
-import { PostMetadata, PostViewResponse } from '@/lib/types'
+import { ContentMetadata, PostViewResponse } from '@/lib/types'
 import { MotionProps } from 'framer-motion'
 import Link from 'next/link'
 import useSWR from 'swr'
 import fetcher from '@/lib/fetcher'
 import MotionDiv from '@/components/Motion'
 import PostAttribute from '@/components/PostAttribute'
-import { FiEye } from 'react-icons/fi'
 
-export type BlogPostItemProps = PostMetadata & {
+export type BlogPostItemProps = ContentMetadata & {
   motionProps?: Omit<MotionProps, 'transition'>
 }
 
@@ -24,9 +23,10 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
           <Heading fontWeight={'bold'} size={{ base: 'md', md: 'md' }}>
             {title}
           </Heading>
+          <PostAttribute display={{ base: 'block', md: 'none' }}>{data?.total}</PostAttribute>
           <Text color={useColorModeValue('gray.600', 'gray.500')}>{description}</Text>
         </Flex>
-        <PostAttribute icon={FiEye}>{data?.total}</PostAttribute>
+        <PostAttribute display={{ base: 'none', md: 'block' }}>{data?.total} views</PostAttribute>
       </MotionDiv>
     </Link>
   )
