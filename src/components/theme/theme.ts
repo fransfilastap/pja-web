@@ -1,11 +1,12 @@
 import type { StyleFunctionProps } from '@chakra-ui/styled-system'
 import { mode } from '@chakra-ui/theme-tools'
-import { Inter } from '@next/font/google'
-import { extendTheme } from '@chakra-ui/react'
-import { Button, Link, Table } from '@/components/theme/components'
-import { withProse } from '@nikolovlazar/chakra-ui-prose'
 
-const inter = Inter({ subsets: ['latin'] })
+import { extendTheme } from '@chakra-ui/react'
+import { withProse } from '@nikolovlazar/chakra-ui-prose'
+import { Button, Link, Table } from '@/components/theme/components'
+import config from '@/components/theme/config'
+import fonts from '@/components/theme/fonts'
+import styles from '@/components/theme/styles'
 
 const theme = extendTheme(
   {
@@ -14,25 +15,9 @@ const theme = extendTheme(
       Link,
       Table
     },
-    fonts: {
-      heading: `${inter.style.fontFamily}`,
-      body: `${inter.style.fontFamily}`
-    },
-    config: {
-      initialColorMode: 'light',
-      useSystemColorMode: true
-    },
-    styles: {
-      global: (props: StyleFunctionProps) => ({
-        _selection: {
-          bg: 'purple.400',
-          color: 'white'
-        },
-        body: {
-          bg: mode('white', 'black')(props)
-        }
-      })
-    },
+    fonts,
+    config,
+    styles,
     colors: {
       brand: {
         border: '#2D8540',

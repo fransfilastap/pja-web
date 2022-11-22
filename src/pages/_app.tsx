@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, localStorageManager } from '@chakra-ui/react'
 import * as ga from '@/lib/ga'
 import theme from '@/components/theme/theme'
 import 'prismjs/themes/prism-okaidia.css'
@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.events])
 
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider colorModeManager={localStorageManager} theme={theme}>
       <Component {...pageProps} />
     </ChakraProvider>
   )
