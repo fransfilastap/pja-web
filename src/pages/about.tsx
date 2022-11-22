@@ -6,8 +6,7 @@ import React, { FunctionComponent } from 'react'
 import { GetStaticProps } from 'next'
 import { parseContent } from '@/lib/content-parser'
 import { Content } from '@/lib/types'
-import { Container } from '@chakra-ui/react'
-import ContentParser from '@/components/ContentParser'
+import { Container, MarkdownContent } from '@/components/ContentComponent'
 
 interface AboutPageProps {
   about: Content
@@ -26,8 +25,8 @@ const AboutPage: FunctionComponent<AboutPageProps> = ({ about }: AboutPageProps)
         url={`${config.site_url}/blog/${about.matter.slug}`}
       />
       <OpenGraphMeta title={pageTitle} />
-      <Container p={{ base: 6, md: 0 }} maxW={'container.md'}>
-        <ContentParser content={about} />
+      <Container maxW={'container.md'}>
+        <MarkdownContent content={about} />
       </Container>
     </Layout>
   )

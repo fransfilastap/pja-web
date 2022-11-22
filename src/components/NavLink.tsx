@@ -23,7 +23,7 @@ const NavLink: React.FunctionComponent<NavLinkProps> = ({
   if (isActive) {
     return (
       <NextLink href={to} legacyBehavior passHref>
-        <ChakraLink fontFamily={'body'} color={color} _hover={_hover} {...props} {...activeProps}>
+        <ChakraLink color={color} _hover={_hover} {...props} {...activeProps}>
           {children}
         </ChakraLink>
       </NextLink>

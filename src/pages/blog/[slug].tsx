@@ -1,20 +1,14 @@
-import { MDXRemote } from 'next-mdx-remote'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import BlogLayout from '@/components/layouts/blog'
 import { Post } from '@/lib/types'
 import React from 'react'
-import MDXComponents from '@/components/MDXComponents'
 import { getAllPostMeta, parsePostContent } from '@/lib/content-parser'
+import { MarkdownContent } from '@/components/ContentComponent'
 
 function PostPage({ post }: { post: Post }): React.ReactElement {
   return (
     <BlogLayout post={post}>
-      <MDXRemote
-        {...post.html}
-        components={{
-          ...MDXComponents
-        }}
-      />
+      <MarkdownContent content={post} />
     </BlogLayout>
   )
 }

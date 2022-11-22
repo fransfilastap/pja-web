@@ -3,12 +3,13 @@ import BasicMeta from '@/components/meta/BasicMeta'
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta'
 import config from '@/lib/config'
 import React from 'react'
-import { chakra, Container, Heading } from '@chakra-ui/react'
+import { Flex, Heading } from '@chakra-ui/react'
 import BlogPostList from '@/components/BlogPostList'
 import { GetStaticProps, NextPage } from 'next'
 import { PostMetadata } from '@/lib/types'
 import { getPostLists } from '@/lib/content-parser'
 import { POST_PER_PAGE } from '@/lib/constants/pagination'
+import { Container } from '@/components/ContentComponent'
 
 type BlogPageProps = {
   posts: PostMetadata[]
@@ -41,26 +42,11 @@ export const getStaticProps: GetStaticProps = async () => {
 
 const BlogPageMasthead = () => {
   return (
-    <Container maxW={'container.md'}>
-      <chakra.section
-        overflow={'hidden'}
-        position={'relative'}
-        p={0}
-        display={'flex'}
-        flexDir={'column'}
-        justifyContent={'center'}
-        alignItems={'center'}
-        borderRadius={'lg'}
-        w={'full'}
-        mt={4}
-        h={{ base: '20vh', md: '23vh' }}
-        bgGradient={'linear(from-tl to-br, violet.50, purple.400, pink.200)'}
-      >
-        <Container maxW={'container.md'} zIndex={1}>
-          <Heading fontWeight={'bold'}>Blog.</Heading>
-          <Heading size={'md'}>Just some writings.</Heading>
-        </Container>
-      </chakra.section>
+    <Container h={{ base: '20vh', md: '23vh' }} maxW={'container.md'}>
+      <Flex flexDir={'column'} h={'full'} alignItems={'flex-start'} justifyContent={'center'}>
+        <Heading fontWeight={'bold'}>Blog.</Heading>
+        <Heading size={'md'}>Just some writings.</Heading>
+      </Flex>
     </Container>
   )
 }
