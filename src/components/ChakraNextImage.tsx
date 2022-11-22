@@ -1,6 +1,6 @@
 import { Box, BoxProps } from '@chakra-ui/react'
 
-import Image, { ImageProps, ImageLoaderProps } from 'next/image'
+import Image, { ImageLoaderProps, ImageProps } from 'next/image'
 
 const myLoader = (resolverProps: ImageLoaderProps): string =>
   `${resolverProps.src}?w=${resolverProps.width}&q=${resolverProps.quality}`
@@ -49,6 +49,7 @@ function ChakraNextImage(props: ChakraNextImageProps) {
         quality={quality}
         placeholder='blur'
         fill
+        sizes={'100%'}
         style={{
           objectFit: imageFit ?? 'cover',
           objectPosition: imageFitPosition ?? 'center'

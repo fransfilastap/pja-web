@@ -18,7 +18,7 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
 
   return (
     <Link href={`/blog/${slug}`} style={{ width: '100%' }}>
-      <MotionDiv display={'flex'} flexDir={'row'} justifyContent={'space-between'} p={2} {...motionProps}>
+      <MotionDiv display={'flex'} flexDir={'row'} justifyContent={'space-between'} {...motionProps}>
         <Flex flexDir={'column'} justifyContent={'space-between'}>
           <Heading fontWeight={'bold'} size={{ base: 'md', md: 'md' }}>
             {title}

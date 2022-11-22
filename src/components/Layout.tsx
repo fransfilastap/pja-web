@@ -3,7 +3,6 @@ import {
   Box,
   chakra,
   ChakraProps,
-  Container,
   Flex,
   HStack,
   IconButton,
@@ -18,6 +17,7 @@ import NavLink, { NavLinkProps } from '@/components/NavLink'
 import ColorToggleButton from '@/components/ColorToggleButton'
 import BasicMeta from '@/components/meta/BasicMeta'
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta'
+import { Container } from '@/components/ContentComponent'
 
 export type LayoutProps = {
   children: React.ReactNode
@@ -56,7 +56,7 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
     <Container maxW='container.md'>
       <chakra.nav w='full' display='flex' flexDir='row' justifyContent='space-between' alignItems='center'>
         <MobileMenuToggle />
-        <Box display={{ base: 'none', md: 'flex' }} flexDir={'row'} gap={{ base: 4, md: 6 }}>
+        <Box display={{ base: 'none', md: 'flex' }} flexDir={'row'} gap={{ base: 4, md: 2 }}>
           <MainNavLink to='/'>Home</MainNavLink>
           <MainNavLink to='/blog'>Blog</MainNavLink>
           <MainNavLink to='/about'>About</MainNavLink>
@@ -86,10 +86,13 @@ const MainNavLink: React.FunctionComponent<MainNavLinkProps> = ({
       fontWeight='medium'
       flexDir='row'
       justifyContent='space-around'
-      gap='1'
+      gap={0}
+      borderRadius={'lg'}
+      px={2}
+      py={1}
       alignItems='center'
       activeProps={{ color: activeColor, fontWeight: 'bold' }}
-      _hover={{ color: hoverColor }}
+      _hover={{ color: hoverColor, bgColor: useColorModeValue('gray.100', 'gray.800') }}
     >
       {children}
     </NavLink>

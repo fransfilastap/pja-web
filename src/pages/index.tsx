@@ -1,17 +1,7 @@
-import React, { ReactElement, Suspense } from 'react'
+import React, { ReactElement } from 'react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
-import {
-  chakra,
-  Container,
-  Flex,
-  Heading,
-  Icon,
-  Link as ChakraLink,
-  Text,
-  useColorModeValue,
-  VStack
-} from '@chakra-ui/react'
+import { chakra, Flex, Heading, Icon, Link as ChakraLink, Text, useColorModeValue, VStack } from '@chakra-ui/react'
 import { FiArrowRight } from 'react-icons/fi'
 import { Layout } from '@/components/Layout'
 import HashTag from '@/components/HashTag'
@@ -23,6 +13,8 @@ import { childAnimationProps, staggerAnimationProps } from '@/lib/constants/anim
 import { getPostLists } from '@/lib/content-parser'
 import { PostMetadata } from '@/lib/types'
 import { POST_PER_PAGE } from '@/lib/constants/pagination'
+import avatar from '~/avatar.png'
+import { Container } from '@/components/ContentComponent'
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -30,12 +22,10 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
       <Container maxW='container.md'>
         <Masthead />
         <Section mt={{ base: 6, md: 6 }} title='Featured Posts'>
-          <Suspense fallback={null}>
-            <VStack justifyContent='flex-start' alignItems='start' gap={4}>
-              <FeaturedPosts posts={posts} />
-              <ReadAllPosts />
-            </VStack>
-          </Suspense>
+          <VStack justifyContent='flex-start' alignItems='start' gap={4}>
+            <FeaturedPosts posts={posts} />
+            <ReadAllPosts />
+          </VStack>
         </Section>
       </Container>
     </Layout>
@@ -66,17 +56,17 @@ function Masthead(): ReactElement {
           </Heading>
           <Text fontSize={{ base: 'md', md: 'xl' }}>Full-stack developer.</Text>
           <Text mt={{ base: 4, md: 6 }}>
-            <HashTag>Java</HashTag> <HashTag>PHP</HashTag> <HashTag>Javascript</HashTag> <HashTag>SpringBoot</HashTag>{' '}
-            <HashTag>Laravel</HashTag> <HashTag>React</HashTag>
+            <HashTag>Java</HashTag> <HashTag>PHP</HashTag> <HashTag>Javascript</HashTag>
+            <HashTag>SpringBoot</HashTag> <HashTag>Laravel</HashTag> <HashTag>React</HashTag>
           </Text>
         </chakra.div>
         <ChakraNextImage
           my={2}
           borderRadius='full'
-          width={120}
-          height={120}
-          src='https://avatars.githubusercontent.com/u/10008396?v=4'
-          alt='Frans Filasta Pratama Profile Picture'
+          width={{ base: 70, md: 120 }}
+          height={{ base: 70, md: 120 }}
+          src={avatar}
+          alt='Frans Filasta Pratama Avatar'
         />
       </Flex>
     </chakra.section>
