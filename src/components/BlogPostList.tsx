@@ -15,7 +15,7 @@ const BlogPostList: FunctionComponent<BlogPostListProps> = ({ posts }) => {
   }
 
   return (
-    <MotionDiv display={'flex'} flexDir={'column'} gap={3} {...staggerAnimationProps}>
+    <MotionDiv display={'flex'} flexDir={'column'} gap={8} {...staggerAnimationProps}>
       {posts.map((post, index) => (
         <BlogPostItem
           description={post.description}

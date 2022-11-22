@@ -24,7 +24,9 @@ const ViewCounter: React.FunctionComponent<ViewsCountProps> = (props): React.Rea
   return (
     <HStack gap={1}>
       <Icon color={color} as={FiEye} />
-      <chakra.span {...rest} color={color} fontSize={'sm'}>{`${views > 0 ? views.toLocaleString() : '0'}`}</chakra.span>
+      <chakra.span {...rest} color={color} fontSize={'small'}>{`${
+        views > 0 ? views.toLocaleString() : '0'
+      }`}</chakra.span>
     </HStack>
   )
 }

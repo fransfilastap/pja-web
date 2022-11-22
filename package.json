@@ -16,6 +16,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mapbox/rehype-prism": "^0.8.0",
+    "@next/bundle-analyzer": "^13.0.4",
     "@next/font": "^13.0.4",
     "@nikolovlazar/chakra-ui-prose": "^1.2.1",
     "@prisma/client": "^4.6.1",

@@ -8,7 +8,6 @@ import OpenGraphMeta from '@/components/meta/OpenGraphMeta'
 import { ChakraNextImage } from '@/components/ChakraNextImage'
 import { ParsedContent, PostMetadata } from '@/lib/types'
 import ViewCounter from '@/components/ViewCounter'
-import { FiClock } from 'react-icons/fi'
 import PostAttribute from '@/components/PostAttribute'
 import avatar from '~/avatar.png'
 import { Container, MarkdownContent } from '@/components/ContentComponent'
@@ -43,10 +42,8 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
               </HStack>
             </VStack>
             <HStack>
-              <ViewCounter color={color} slug={post.matter.slug} />-
-              <PostAttribute color={color} icon={FiClock}>
-                {post.matter.readingTime.text}
-              </PostAttribute>
+              <ViewCounter color={color} slug={post.matter.slug} />
+              <PostAttribute color={color}>{`- ${post.matter.readingTime.text}`}</PostAttribute>
             </HStack>
           </Flex>
           {post.matter.cover && (

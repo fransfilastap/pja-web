@@ -1,12 +1,11 @@
 import React, { ReactElement } from 'react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Link from 'next/link'
-import { chakra, Flex, Heading, Icon, Link as ChakraLink, Text, useColorModeValue, VStack } from '@chakra-ui/react'
+import { Box, chakra, Flex, Heading, Icon, Link as ChakraLink, Text, useColorModeValue, VStack } from '@chakra-ui/react'
 import { FiArrowRight } from 'react-icons/fi'
 import { Layout } from '@/components/Layout'
 import HashTag from '@/components/HashTag'
 import { Section } from '@/components/Section'
-import { ChakraNextImage } from '@/components/ChakraNextImage'
 import BlogPostCard from '@/components/BlogPostCard'
 import MotionDiv from '@/components/Motion'
 import { childAnimationProps, staggerAnimationProps } from '@/lib/constants/animation'
@@ -15,6 +14,7 @@ import { PostMetadata } from '@/lib/types'
 import { POST_PER_PAGE } from '@/lib/constants/pagination'
 import avatar from '~/avatar.png'
 import { Container } from '@/components/ContentComponent'
+import Image from 'next/image'
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -60,14 +60,22 @@ function Masthead(): ReactElement {
             <HashTag>SpringBoot</HashTag> <HashTag>Laravel</HashTag> <HashTag>React</HashTag>
           </Text>
         </chakra.div>
-        <ChakraNextImage
+        <Box
           my={2}
-          borderRadius='full'
-          width={{ base: 70, md: 120 }}
-          height={{ base: 70, md: 120 }}
-          src={avatar}
-          alt='Frans Filasta Pratama Avatar'
-        />
+          as={'div'}
+          display={'block'}
+          position={'relative'}
+          height={{ base: '5rem', md: '8rem' }}
+          width={{ base: '5rem', md: '8rem' }}
+        >
+          <Image
+            src={avatar}
+            width={100}
+            height={100}
+            style={{ borderRadius: '100%', position: 'absolute' }}
+            alt={'avatar'}
+          />
+        </Box>
       </Flex>
     </chakra.section>
   )
