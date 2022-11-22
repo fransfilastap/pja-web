@@ -4,7 +4,7 @@ import BlogLayout from '@/components/layouts/blog'
 import { Post } from '@/lib/types'
 import React from 'react'
 import MDXComponents from '@/components/MDXComponents'
-import { getAllPostMeta, parseContent } from '@/lib/content-parser'
+import { getAllPostMeta, parsePostContent } from '@/lib/content-parser'
 
 function PostPage({ post }: { post: Post }): React.ReactElement {
   return (
@@ -32,11 +32,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug: string = params?.slug as string
-  const post = await parseContent(slug)
+  const post = await parsePostContent(slug)
 
   return {
     props: {
-      post
+      post: JSON.parse(JSON.stringify(post))
     }
   }
 }

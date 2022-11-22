@@ -6,13 +6,17 @@ export type PostAttributeProps = {
   icon?: IconType
 } & ChakraProps
 
-const PostAttribute: React.FunctionComponent<PropsWithChildren<PostAttributeProps>> = (props): React.ReactElement => (
-  <HStack justifyContent='flex-start' gap={0}>
-    {props.icon && <Icon as={props.icon} color={props.color} size='sm' />}
-    <chakra.span {...props} fontSize={{ base: 'sm', md: 'sm' }}>
-      {props.children}
-    </chakra.span>
-  </HStack>
-)
+const PostAttribute: React.FunctionComponent<PropsWithChildren<PostAttributeProps>> = (props): React.ReactElement => {
+  const { icon, color, children, ...rest } = props
+
+  return (
+    <HStack justifyContent='flex-start' gap={0}>
+      {props.icon && <Icon as={icon} color={color} size='sm' />}
+      <chakra.span {...rest} fontSize={'sm'}>
+        {children}
+      </chakra.span>
+    </HStack>
+  )
+}
 
 export default PostAttribute

@@ -93,13 +93,7 @@ function FeaturedPosts({ posts }: InferGetStaticPropsType<typeof getStaticProps>
       gap={3}
     >
       {posts.map((e: PostMetadata) => (
-        <BlogPostCard
-          motionProps={childAnimationProps}
-          title={e.title}
-          slug={e.slug}
-          key={e.slug}
-          readingTime={e.readingTime.text}
-        />
+        <BlogPostCard {...childAnimationProps} title={e.title} slug={e.slug} key={e.slug} />
       ))}
     </MotionDiv>
   )

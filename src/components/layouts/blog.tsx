@@ -7,16 +7,14 @@ import { Layout } from '@/components/Layout'
 import BasicMeta from '@/components/meta/BasicMeta'
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta'
 import { ChakraNextImage } from '@/components/ChakraNextImage'
-import { ParsedPostContent } from '@/lib/types'
+import { ParsedContent, PostMetadata } from '@/lib/types'
 import ViewCounter from '@/components/ViewCounter'
 import { FiClock } from 'react-icons/fi'
 import PostAttribute from '@/components/PostAttribute'
 
-export default function BlogLayout({ children, post }: PropsWithChildren<{ post: ParsedPostContent }>) {
+export default function BlogLayout({ children, post }: PropsWithChildren<{ post: ParsedContent<PostMetadata> }>) {
   const blogTitle = `${config.site_url}/blog/${post.matter.title}`
   const color = useColorModeValue('gray.700', 'gray.500')
-
-  console.log(post)
 
   return (
     <Layout>
@@ -25,9 +23,10 @@ export default function BlogLayout({ children, post }: PropsWithChildren<{ post:
         description={post.matter.description}
         author={config.site_url}
         url={`${config.site_url}/blog/${post.matter.slug}`}
+        keywords={post.matter.keywords}
       />
       <OpenGraphMeta description={post.matter.description} title={post.matter.title} url={blogTitle} />
-      <Container maxW={'container.md'}>
+      <Container p={{ base: 6, md: 0 }} maxW={'container.md'}>
         <Suspense fallback={null}>
           <chakra.section my={{ base: '4', md: '8' }}>
             <Heading as={'h1'} size={{ base: 'xl', md: '2xl' }} mb={4} fontWeight='bold'>

@@ -1,8 +1,11 @@
 import type { StyleFunctionProps } from '@chakra-ui/styled-system'
 import { mode } from '@chakra-ui/theme-tools'
+import { Inter } from '@next/font/google'
 import { extendTheme } from '@chakra-ui/react'
 import { Button, Link, Table } from '@/components/theme/components'
 import { withProse } from '@nikolovlazar/chakra-ui-prose'
+
+const inter = Inter({ subsets: ['latin'] })
 
 const theme = extendTheme(
   {
@@ -10,6 +13,10 @@ const theme = extendTheme(
       Button,
       Link,
       Table
+    },
+    fonts: {
+      heading: `${inter.style.fontFamily}`,
+      body: `${inter.style.fontFamily}`
     },
     config: {
       initialColorMode: 'light',

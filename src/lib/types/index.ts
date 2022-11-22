@@ -6,6 +6,7 @@ export type ContentMetadata = {
   slug: string
   excerpt?: string
   description: string
+  keywords?: string
   tags: string[]
   date: string
   cover: string
@@ -14,7 +15,8 @@ export type ContentMetadata = {
   lastmod?: Date
 }
 
-export type Post = ParsedPostContent
+export type Post = ParsedContent<PostMetadata>
+export type Content = ParsedContent<ContentMetadata>
 
 export interface Hash {
   [key: string]: any
@@ -27,9 +29,9 @@ export type PostMetadata = ContentMetadata & {
   readingTime: ReadTimeResults
 }
 
-export type ParsedPostContent = {
+export type ParsedContent<T extends ContentMetadata> = {
   html: MDXRemoteSerializeResult
-  matter: PostMetadata
+  matter: T
 }
 
 export type ErrorResponse = {

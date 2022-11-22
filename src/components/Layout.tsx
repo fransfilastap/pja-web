@@ -1,17 +1,17 @@
 import React, { ReactElement } from 'react'
 import {
-  chakra,
   Box,
+  chakra,
+  ChakraProps,
+  Container,
   Flex,
   HStack,
-  ChakraProps,
-  useColorModeValue,
-  Container,
   IconButton,
   Menu,
   MenuButton,
+  MenuItem,
   MenuList,
-  MenuItem
+  useColorModeValue
 } from '@chakra-ui/react'
 import { FiMenu } from 'react-icons/fi'
 import NavLink, { NavLinkProps } from '@/components/NavLink'
@@ -48,7 +48,6 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
     css={{ position: 'sticky', top: 0 }}
     bgColor={useColorModeValue('rgba(255, 255, 255, 0.7)', 'rgba(0, 0, 0, 0.5)')}
     backdropFilter='blur(8px)'
-    boxShadow={'sm'}
     zIndex={20}
     w='full'
     h='16'
@@ -57,7 +56,7 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
     <Container maxW='container.md'>
       <chakra.nav w='full' display='flex' flexDir='row' justifyContent='space-between' alignItems='center'>
         <MobileMenuToggle />
-        <Box display={{ base: 'none', md: 'flex' }} flexDir={'row'} gap={3}>
+        <Box display={{ base: 'none', md: 'flex' }} flexDir={'row'} gap={{ base: 4, md: 6 }}>
           <MainNavLink to='/'>Home</MainNavLink>
           <MainNavLink to='/blog'>Blog</MainNavLink>
           <MainNavLink to='/about'>About</MainNavLink>
@@ -84,7 +83,7 @@ const MainNavLink: React.FunctionComponent<MainNavLinkProps> = ({
       to={to}
       w={'full'}
       fontSize='md'
-      fontWeight='bold'
+      fontWeight='medium'
       flexDir='row'
       justifyContent='space-around'
       gap='1'
@@ -131,9 +130,6 @@ const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps)
   return (
     <chakra.footer
       h='14'
-      p='2'
-      borderTop='1px'
-      borderColor={useColorModeValue('gray.100', 'gray.700')}
       mt='2'
       display='flex'
       flexDir='column'
@@ -144,7 +140,7 @@ const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps)
     >
       <Container maxW='container.md'>
         <Flex h='full' w='full' direction='row' justifyContent='flex-start' alignContent='center' alignItems='center'>
-          <chakra.span fontSize='sm'>
+          <chakra.span color={useColorModeValue('gray.700', 'gray.500')} fontSize='sm'>
             &copy; {`${date.getFullYear()} Frans Filasta Pratama. All rights reserved`}
           </chakra.span>
         </Flex>

@@ -1,57 +1,54 @@
-import { chakra, HStack, shouldForwardProp } from '@chakra-ui/react'
+import { Heading, HStack, useColorMode, useColorModeValue } from '@chakra-ui/react'
 import Link from 'next/link'
 import React from 'react'
-import { FiClock } from 'react-icons/fi'
 import fetcher from '@/lib/fetcher'
 import useSWR from 'swr'
 import { PostViewResponse } from '@/lib/types'
-import { motion, MotionProps } from 'framer-motion'
 import PostAttribute from '@/components/PostAttribute'
+import MotionDiv from '@/components/Motion'
+import { MotionProps } from 'framer-motion'
+import { FiEye } from 'react-icons/fi'
 
-interface BlogPostCardProps {
+interface BlogPostCardProps extends MotionProps {
   title: string
-  readingTime: string
   slug: string
-  motionProps?: MotionProps
 }
-
-const MotionDiv = chakra(motion.div, {
-  shouldForwardProp(prop) {
-    return shouldForwardProp(prop) || prop === 'transition'
-  }
-})
 
 const BlogPostCard: React.FunctionComponent<BlogPostCardProps> = ({
   title,
-  readingTime,
   slug,
-  motionProps
+  ...rest
 }: BlogPostCardProps): React.ReactElement => {
   const { data } = useSWR<PostViewResponse>(`/api/views/${slug}`, fetcher)
   const views = data?.total
+  const { colorMode } = useColorMode()
 
   return (
     <Link href={`/blog/${slug}`}>
       <MotionDiv
+        bgColor={colorMode}
         display='flex'
         flexDir='column'
         justifyContent='space-between'
-        minH={{ base: '100%', md: '30vh' }}
-        minW={{ base: '15vh', md: '25vh' }}
-        border='2px'
+        minH={{ base: '15vh', md: '30vh' }}
         cursor='pointer'
-        _hover={{ borderColor: 'violet.50' }}
+        _hover={{
+          bgColor: useColorModeValue('gray.50', 'gray.900'),
+          boxShadow: 'lg'
+        }}
+        border={'1px'}
+        borderColor={useColorModeValue('gray.100', 'gray.800')}
         borderRadius='xl'
+        boxShadow={'sm'}
         transition='ease-in-out 0.1s'
-        p={3}
-        {...motionProps}
+        p={{ base: 6, md: 6 }}
+        {...rest}
       >
-        <chakra.h1 fontWeight='semibold' fontSize='lg'>
+        <Heading fontWeight='semibold' fontSize='xl'>
           {title}
-        </chakra.h1>
+        </Heading>
         <HStack>
-          <PostAttribute icon={FiClock}>{views}</PostAttribute>
-          <PostAttribute icon={FiClock}>{readingTime}</PostAttribute>
+          <PostAttribute icon={FiEye}>{views}</PostAttribute>
         </HStack>
       </MotionDiv>
     </Link>

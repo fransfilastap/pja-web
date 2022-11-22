@@ -23,7 +23,7 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
           <Heading fontWeight={'bold'} size={{ base: 'md', md: 'md' }}>
             {title}
           </Heading>
-          <PostAttribute display={{ base: 'block', md: 'none' }}>{data?.total}</PostAttribute>
+          <PostAttribute display={{ base: 'block', md: 'none' }}>{data?.total} views</PostAttribute>
           <Text color={useColorModeValue('gray.600', 'gray.500')}>{description}</Text>
         </Flex>
         <PostAttribute display={{ base: 'none', md: 'block' }}>{data?.total} views</PostAttribute>

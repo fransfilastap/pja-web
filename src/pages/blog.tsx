@@ -38,6 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }
 }
+
 const BlogPageMasthead = () => {
   return (
     <Container maxW={'container.md'}>

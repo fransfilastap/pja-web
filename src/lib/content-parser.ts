@@ -1,4 +1,4 @@
-import { ContentMetadata, PostMetadata, ParsedPostContent, PostList, Hash } from '@/lib/types'
+import { ContentMetadata, Hash, ParsedContent, PostList, PostMetadata } from '@/lib/types'
 import path from 'path'
 import { serialize } from 'next-mdx-remote/serialize'
 import remarkGfm from 'remark-gfm'
@@ -11,6 +11,7 @@ import readingTime from 'reading-time'
 import matter from 'gray-matter'
 import yaml from 'js-yaml'
 import fs from 'fs/promises'
+import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 const rootDir = path.join(process.cwd(), 'content')
 const postsDir = path.join(rootDir, 'posts')
@@ -81,16 +82,48 @@ export async function getContentMetadata(fileContent: string): Promise<ContentMe
 }
 
 /**
- * Parse a markdown content
+ * Parse a markdown post content
  *
  * @param slug
- * @return {Promise<ParsedPostContent>} async ParsedContent
+ * @return {Promise<ParsedContent>} async ParsedContent
  */
-export async function parseContent(slug: string): Promise<ParsedPostContent> {
+export async function parsePostContent(slug: string): Promise<ParsedContent<PostMetadata>> {
   const hash = slugToPostMetaData(await getAllPostMeta())
-  console.log('hash')
   const fileContent = await fs.readFile(hash[slug].fullPath, 'utf8')
-  const result = await serialize(fileContent, {
+  const parsedMarkdown = await parseMarkdown(fileContent)
+
+  const parsedFrontMatter = await getPostContentMeta(fileContent)
+
+  return {
+    html: parsedMarkdown,
+    matter: parsedFrontMatter
+  } as ParsedContent<PostMetadata>
+}
+
+export async function parseContent(slug: string, directory?: string): Promise<ParsedContent<ContentMetadata>> {
+  const fileContent = await fs.readFile(
+    `${path.join(directory ? path.join(rootDir, directory) : rootDir, slug)}.mdx`,
+    'utf8'
+  )
+  const result = await parseMarkdown(fileContent)
+  const matterData = await getContentMetadata(fileContent)
+
+  console.log(result)
+
+  return {
+    html: result,
+    matter: matterData
+  } as ParsedContent<ContentMetadata>
+}
+
+/**
+ * Parse MDX
+ *
+ * @param fileContent
+ * @return {Promise<MDXRemoteSerializeResult>} parsed mdx
+ */
+export async function parseMarkdown(fileContent: string): Promise<MDXRemoteSerializeResult> {
+  return await serialize(fileContent, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [
@@ -111,13 +144,6 @@ export async function parseContent(slug: string): Promise<ParsedPostContent> {
     },
     parseFrontmatter: true
   })
-
-  const parsedFrontMatter = await getPostContentMeta(fileContent)
-
-  return {
-    html: result,
-    matter: parsedFrontMatter
-  } as ParsedPostContent
 }
 
 /**
