@@ -1,4 +1,4 @@
-import { Heading, HStack, useColorModeValue } from '@chakra-ui/react'
+import { Heading, useColorModeValue } from '@chakra-ui/react'
 import Link from 'next/link'
 import React from 'react'
 import fetcher from '@/lib/fetcher'
@@ -28,14 +28,14 @@ const BlogPostCard: React.FunctionComponent<BlogPostCardProps> = ({
         display='flex'
         flexDir='column'
         justifyContent='space-between'
-        minH={{ base: '15vh', md: '30vh' }}
+        minH={{ base: '20vh', md: '30vh' }}
         cursor='pointer'
         _hover={{
           bgColor: useColorModeValue('gray.50', 'gray.900'),
           boxShadow: 'lg'
         }}
         border={'2px'}
-        borderColor={useColorModeValue('gray.50', 'gray.800')}
+        borderColor={useColorModeValue('violet.30', 'gray.800')}
         borderRadius='xl'
         boxShadow={'sm'}
         transition='ease-in-out 0.1s'
@@ -45,9 +45,7 @@ const BlogPostCard: React.FunctionComponent<BlogPostCardProps> = ({
         <Heading color={useColorModeValue('gray.700', 'gray.100')} fontWeight='semibold' fontSize='lg'>
           {title}
         </Heading>
-        <HStack>
-          <PostAttribute icon={FiEye}>{views}</PostAttribute>
-        </HStack>
+        <PostAttribute icon={FiEye}>{views}</PostAttribute>
       </MotionDiv>
     </Link>
   )

@@ -40,7 +40,8 @@ function Masthead(): ReactElement {
       alignItems='center'
       justifyContent='center'
       w='full'
-      h={{ base: 'max-content', md: '40vh' }}
+      h={{ base: '40vh', md: '40vh' }}
+      mb={{ base: 10, md: 20 }}
     >
       <Flex
         w='full'
@@ -51,7 +52,7 @@ function Masthead(): ReactElement {
       >
         <chakra.div>
           <Heading mb='0.5' size={{ base: 'lg', md: 'xl' }} fontWeight='bold'>
-            Frans Filasta Pratama.
+            Frans Filasta P.
           </Heading>
           <Text fontSize={{ base: 'md', md: 'xl' }}>Full-stack developer.</Text>
           <Text mt={{ base: 4, md: 6 }}>
