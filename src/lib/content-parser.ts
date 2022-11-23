@@ -16,6 +16,14 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 const rootDir = path.join(process.cwd(), 'content')
 const postsDir = path.join(rootDir, 'posts')
 
+/**
+ * Get post lists
+ *
+ * @param page
+ * @param limit
+ * @param tag
+ * @return {Promise<PostList>}
+ */
 export async function getPostLists(page: number, limit: number, tag?: string): Promise<PostList> {
   const posts = await getAllPostMeta()
   return posts
@@ -107,8 +115,6 @@ export async function parseContent(slug: string, directory?: string): Promise<Pa
   )
   const result = await parseMarkdown(fileContent)
   const matterData = await getContentMetadata(fileContent)
-
-  console.log(result)
 
   return {
     html: result,
