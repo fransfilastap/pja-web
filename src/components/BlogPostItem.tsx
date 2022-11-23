@@ -20,7 +20,7 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
     <Link href={`/blog/${slug}`} style={{ width: '100%' }}>
       <MotionDiv display={'flex'} flexDir={'row'} justifyContent={'space-between'} {...motionProps}>
         <Flex flexDir={'column'} justifyContent={'space-between'}>
-          <Heading fontWeight={'bold'} size={{ base: 'md', md: 'md' }}>
+          <Heading fontWeight={'bold'} color={useColorModeValue('gray.700', 'gray.100')} size={'md'}>
             {title}
           </Heading>
           <PostAttribute display={{ base: 'block', md: 'none' }}>{data?.total} views</PostAttribute>

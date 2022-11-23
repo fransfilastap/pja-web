@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Box, chakra, Flex, Heading, Icon, Link as ChakraLink, Text, useColorModeValue, VStack } from '@chakra-ui/react'
-import { FiArrowRight } from 'react-icons/fi'
+import { Box, chakra, Flex, Heading, Link as ChakraLink, Text, useColorModeValue, VStack } from '@chakra-ui/react'
 import { Layout } from '@/components/Layout'
 import HashTag from '@/components/HashTag'
 import { Section } from '@/components/Section'
@@ -14,16 +14,15 @@ import { PostMetadata } from '@/lib/types'
 import { POST_PER_PAGE } from '@/lib/constants/pagination'
 import avatar from '~/avatar.png'
 import { Container } from '@/components/ContentComponent'
-import Image from 'next/image'
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Layout>
       <Container maxW='container.md'>
         <Masthead />
-        <Section mt={{ base: 6, md: 6 }} title='Featured Posts'>
+        <Section mt={{ base: 6, md: 6 }} title='Recent Posts'>
           <VStack justifyContent='flex-start' alignItems='start' gap={4}>
-            <FeaturedPosts posts={posts} />
+            <RecentPosts posts={posts} />
             <ReadAllPosts />
           </VStack>
         </Section>
@@ -41,7 +40,7 @@ function Masthead(): ReactElement {
       alignItems='center'
       justifyContent='center'
       w='full'
-      h={{ base: 'max-content', md: '30vh' }}
+      h={{ base: 'max-content', md: '40vh' }}
     >
       <Flex
         w='full'
@@ -51,8 +50,8 @@ function Masthead(): ReactElement {
         alignItems='start'
       >
         <chakra.div>
-          <Heading mb='0.5' size={{ base: 'lg', md: '2xl' }} fontWeight='extrabold'>
-            Frans Filasta P.
+          <Heading mb='0.5' size={{ base: 'lg', md: 'xl' }} fontWeight='bold'>
+            Frans Filasta Pratama.
           </Heading>
           <Text fontSize={{ base: 'md', md: 'xl' }}>Full-stack developer.</Text>
           <Text mt={{ base: 4, md: 6 }}>
@@ -81,7 +80,7 @@ function Masthead(): ReactElement {
   )
 }
 
-function FeaturedPosts({ posts }: InferGetStaticPropsType<typeof getStaticProps>): React.ReactElement {
+function RecentPosts({ posts }: InferGetStaticPropsType<typeof getStaticProps>): React.ReactElement {
   return (
     <MotionDiv
       {...staggerAnimationProps}
@@ -112,8 +111,18 @@ function ReadAllPosts(): ReactElement {
         _hover={{ textDecoration: 'none', color: hoverColor }}
         alignItems='center'
       >
-        <span>Read all posts</span>
-        <Icon as={FiArrowRight} />
+        <span>Read all posts </span>
+        <chakra.svg
+          w={8}
+          h={8}
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          strokeWidth={1.5}
+          stroke='currentColor'
+        >
+          <path strokeLinecap='round' strokeLinejoin='round' d='M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3' />
+        </chakra.svg>
       </ChakraLink>
     </Link>
   )

@@ -1,4 +1,4 @@
-import { ChakraProps, chakra, Heading, HeadingProps } from '@chakra-ui/react'
+import { chakra, ChakraProps, Heading, HeadingProps } from '@chakra-ui/react'
 import React, { ReactNode } from 'react'
 
 export type SectionProps = ChakraProps & {
@@ -14,7 +14,7 @@ const SectionTitle: React.FunctionComponent<SectionTitleProps> = ({
   children,
   ...props
 }: SectionTitleProps): React.ReactElement => (
-  <Heading fontWeight='bold' fontSize={{ base: 'xl', md: '4xl' }} {...props}>
+  <Heading fontWeight='semibold' fontSize={{ base: 'xl', md: '2xl' }} {...props}>
     {children}
   </Heading>
 )

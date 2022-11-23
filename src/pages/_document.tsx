@@ -1,6 +1,7 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document'
 import { ColorModeScript } from '@chakra-ui/react'
 import theme from '@/components/theme/theme'
+import Favicon from '@/components/Favicon'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -23,14 +24,6 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
-          <link href='/static/favicons/favicon.ico' rel='shortcut icon' />
-          <link href='/static/favicons/site.webmanifest' rel='manifest' />
-          <link href='/static/favicons/apple-touch-icon.png' rel='apple-touch-icon' sizes='180x180' />
-          <link href='/static/favicons/favicon-32x32.png' rel='icon' sizes='32x32' type='image/png' />
-          <link href='/static/favicons/favicon-16x16.png' rel='icon' sizes='16x16' type='image/png' />
-          <link color='#4a9885' href='/static/favicons/safari-pinned-tab.svg' rel='mask-icon' />
-          <meta content='#ffffff' name='theme-color' />
-          <meta content='#ffffff' name='msapplication-TileColor' />
           {/* <meta
                     content="/static/favicons/browserconfig.xml"
                     name="msapplication-config" /> */}
@@ -57,6 +50,7 @@ class MyDocument extends Document {
             }}
           />
         </Head>
+        <Favicon />
         <body>
           <ColorModeScript initialColorMode={theme.config?.initialColorMode} />
           <Main />

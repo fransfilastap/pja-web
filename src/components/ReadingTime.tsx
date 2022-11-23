@@ -1,5 +1,6 @@
 import { chakra, HStack, Icon } from '@chakra-ui/react'
 import { FiClock } from 'react-icons/fi'
+import React from 'react'
 
 interface ReadingTimeProps {
   children: string
