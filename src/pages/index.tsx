@@ -11,7 +11,6 @@ import MotionDiv from '@/components/Motion'
 import { childAnimationProps, staggerAnimationProps } from '@/lib/constants/animation'
 import { getPostLists } from '@/lib/content-parser'
 import { PostMetadata } from '@/lib/types'
-import { POST_PER_PAGE } from '@/lib/constants/pagination'
 import avatar from '~/avatar.png'
 import { Container } from '@/components/ContentComponent'
 
@@ -130,7 +129,7 @@ function ReadAllPosts(): ReactElement {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getPostLists(1, POST_PER_PAGE)
+  const posts = await getPostLists(1, 3)
   return {
     props: {
       posts
