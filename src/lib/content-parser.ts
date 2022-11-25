@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeCodeTitles from 'rehype-code-titles'
+import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePrism from '@mapbox/rehype-prism'
 import rehypeImageSize from 'rehype-img-size'
 import readingTime from 'reading-time'
@@ -144,6 +145,7 @@ export async function parseMarkdown(fileContent: string): Promise<MDXRemoteSeria
         ],
         rehypeCodeTitles,
         rehypePrism,
+        rehypePrismPlus,
         [rehypeImageSize, { dir: 'public' }]
       ],
       format: 'mdx'

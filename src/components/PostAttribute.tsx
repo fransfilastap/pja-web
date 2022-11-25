@@ -10,7 +10,7 @@ const PostAttribute: React.FunctionComponent<PropsWithChildren<PostAttributeProp
   const { icon, color, children, ...rest } = props
 
   return (
-    <HStack justifyContent='flex-start' gap={0}>
+    <HStack justifyContent='flex-start' gap={0} w={'max-content'}>
       {props.icon && <Icon as={icon} color={color} />}
       <chakra.span color={color} {...rest} fontSize={'sm'}>
         {children}

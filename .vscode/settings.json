@@ -1,47 +1,4 @@
 {
-  "frontMatter.taxonomy.contentTypes": [
-    {
-      "name": "default",
-      "pageBundle": false,
-      "fields": [
-        {
-          "title": "title",
-          "name": "title",
-          "type": "string"
-        },
-        {
-          "title": "date",
-          "name": "date",
-          "type": "datetime"
-        },
-        {
-          "title": "author",
-          "name": "author",
-          "type": "string"
-        },
-        {
-          "title": "description",
-          "name": "description",
-          "type": "string"
-        },
-        {
-          "title": "tags",
-          "name": "tags",
-          "type": "tags"
-        },
-        {
-          "title": "keywords",
-          "name": "keywords",
-          "type": "choice",
-          "choices": ["laravel", "SSO", "SAML"]
-        },
-        {
-          "title": "lastmod",
-          "name": "lastmod",
-          "type": "datetime"
-        }
-      ]
-    }
-  ],
-  "[markdown]": {}
+  "[markdown]": {},
+  "frontMatter.content.autoUpdateDate": true
 }

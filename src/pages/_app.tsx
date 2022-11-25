@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import { ChakraProvider, localStorageManager } from '@chakra-ui/react'
 import * as ga from '@/lib/ga'
 import theme from '@/components/theme/theme'
-import 'prismjs/themes/prism-okaidia.css'
 import '@/styles.css'
+import 'prismjs/themes/prism-okaidia.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
