@@ -18,7 +18,7 @@
 - [ ] Umami Analytics
 - [ ] Portfolio Page
 - [ ] Now Page
-- [ ] About page
+- [x] About page
 - [ ] Disqus Comment
 - [ ] Social Share
 - [ ] Next.js 13 `app` directory
