@@ -14,7 +14,7 @@ const SectionTitle: React.FunctionComponent<SectionTitleProps> = ({
 	children,
 	...props
 }: SectionTitleProps): React.ReactElement => (
-	<Heading fontWeight='semibold' fontSize={{ base: 'xl', md: '2xl' }} {...props}>
+	<Heading fontWeight='bold' fontSize={{ base: 'xl', md: '2xl' }} {...props}>
 		{children}
 	</Heading>
 );

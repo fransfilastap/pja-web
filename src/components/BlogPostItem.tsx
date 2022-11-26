@@ -23,7 +23,7 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
 					<Heading
 						fontWeight={'semibold'}
 						color={useColorModeValue('gray.700', 'gray.100')}
-						size={{ md: 'md', base: 'lg' }}>
+						fontSize={{ md: 'xl', base: 'larger' }}>
 						{title}
 					</Heading>
 					<PostAttribute display={{ base: 'block', md: 'none' }}>{data?.total} views</PostAttribute>
