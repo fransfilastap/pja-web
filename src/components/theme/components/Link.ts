@@ -1,9 +1,9 @@
-import { ComponentStyleConfig } from '@chakra-ui/react'
+import { ComponentStyleConfig } from '@chakra-ui/react';
 
 const Link: ComponentStyleConfig = {
-  baseStyle: {
-    color: 'violet.50'
-  }
-}
+	baseStyle: {
+		color: 'violet.50'
+	}
+};
 
-export { Link }
+export { Link };

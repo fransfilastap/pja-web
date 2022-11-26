@@ -1,14 +1,14 @@
-import { Heading, Text } from '@chakra-ui/react'
+import { Heading, Text } from '@chakra-ui/react';
 
 interface EmptyStateProps {
-  title: string
-  narrate: string
+	title: string;
+	narrate: string;
 }
 export function EmptyState({ title, narrate }: EmptyStateProps) {
-  return (
-    <div>
-      <Heading>{title}</Heading>
-      <Text>{narrate}</Text>
-    </div>
-  )
+	return (
+		<div>
+			<Heading>{title}</Heading>
+			<Text>{narrate}</Text>
+		</div>
+	);
 }
