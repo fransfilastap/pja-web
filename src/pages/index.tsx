@@ -2,16 +2,13 @@ import React, { ReactElement } from 'react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Box, chakra, Flex, Heading, Link as ChakraLink, Text, useColorModeValue, VStack } from '@chakra-ui/react';
+import { chakra, Flex, Heading, Link as ChakraLink, Text, VStack } from '@chakra-ui/react';
 import { Layout } from '@/components/Layout';
 import { Section } from '@/components/Section';
-import BlogPostCard from '@/components/BlogPostCard';
-import MotionDiv from '@/components/Motion';
-import { childAnimationProps, staggerAnimationProps } from '@/lib/constants/animation';
 import { getPostLists } from '@/lib/content-parser';
-import { PostMetadata } from '@/lib/types';
 import avatar from '~/avatar.png';
 import { Container } from '@/components/ContentComponent';
+import BlogPostList from '@/components/BlogPostList';
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
@@ -20,7 +17,7 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
 				<Masthead />
 				<Section mt={{ base: 6, md: 6 }} title='Recent Posts'>
 					<VStack justifyContent='flex-start' alignItems='start' gap={4}>
-						<RecentPosts posts={posts} />
+						<BlogPostList posts={posts} />
 						<ReadAllPosts />
 					</VStack>
 				</Section>
@@ -52,59 +49,29 @@ function Masthead(): ReactElement {
 					</Heading>
 					<Text fontSize={{ base: 'md', md: 'xl' }}>Full-stack developer.</Text>
 					<Text color={'gray.500'} mt={{ base: 4, md: 6 }}>
-						I am passionate to get help in digital transformation process of Indonesia Government Organization. Love to
-						learn bleeding edge software development technology.
+						I am passionate to help digital transformation process of Indonesia Government Organization. I Love to learn
+						bleeding edge software development technology.
 					</Text>
 				</chakra.div>
-				<Box
-					my={2}
-					as={'div'}
-					display={'block'}
-					position={'relative'}
-					height={{ base: '5rem', md: '8rem' }}
-					width={{ base: '5rem', md: '8rem' }}>
-					<Image
-						src={avatar}
-						width={100}
-						height={100}
-						style={{ borderRadius: '100%', position: 'absolute' }}
-						alt={'avatar'}
-					/>
-				</Box>
+				<div>
+					<chakra.div
+						overflow={'hidden'}
+						borderRadius={'full'}
+						bgClip={'border-box'}
+						width={{ base: '28', md: '40' }}
+						height={{ base: '28', md: '40' }}>
+						<Image src={avatar} placeholder={'blur'} alt={'avatar'} style={{ objectFit: 'contain' }} />
+					</chakra.div>
+				</div>
 			</Flex>
 		</chakra.section>
 	);
 }
 
-function RecentPosts({ posts }: InferGetStaticPropsType<typeof getStaticProps>): React.ReactElement {
-	return (
-		<MotionDiv
-			{...staggerAnimationProps}
-			display={'grid'}
-			gridTemplateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
-			gridAutoRows='max-content'
-			gap={3}>
-			{posts.map((e: PostMetadata) => (
-				<BlogPostCard {...childAnimationProps} title={e.title} slug={e.slug} key={e.slug} />
-			))}
-		</MotionDiv>
-	);
-}
-
 function ReadAllPosts(): ReactElement {
-	const color = useColorModeValue('gray.600', 'gray.500');
-	const hoverColor = useColorModeValue('gray.700', 'white');
-
 	return (
 		<Link href='/blog' passHref legacyBehavior>
-			<ChakraLink
-				display='flex'
-				color={color}
-				fontWeight='semibold'
-				flexDir='row'
-				justifyContent='space-between'
-				_hover={{ textDecoration: 'none', color: hoverColor }}
-				alignItems='center'>
+			<ChakraLink display='flex' fontWeight='semibold' flexDir='row' justifyContent='space-between' alignItems='center'>
 				<span>Read all posts </span>
 				<chakra.svg
 					w={8}
