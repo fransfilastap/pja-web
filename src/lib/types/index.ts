@@ -12,7 +12,7 @@ export type ContentMetadata = {
 	cover: string;
 	images?: string[];
 	author: string;
-	lastmod?: Date;
+	lastmod?: string;
 };
 
 export type Post = ParsedContent<PostMetadata>;

@@ -34,6 +34,7 @@
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^6.1.1",
 		"rehype-code-titles": "^1.1.0",
+		"rehype-figure": "^1.0.1",
 		"rehype-img-size": "ksoichiro/rehype-img-size",
 		"rehype-prism-plus": "^1.5.0",
 		"rehype-slug": "^5.1.0",

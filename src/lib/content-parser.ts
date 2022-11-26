@@ -8,6 +8,7 @@ import rehypeCodeTitles from 'rehype-code-titles';
 import rehypePrismPlus from 'rehype-prism-plus';
 import rehypePrism from '@mapbox/rehype-prism';
 import rehypeImageSize from 'rehype-img-size';
+import rehypeFigure from 'rehype-figure';
 import readingTime from 'reading-time';
 import matter from 'gray-matter';
 import yaml from 'js-yaml';
@@ -146,7 +147,8 @@ export async function parseMarkdown(fileContent: string): Promise<MDXRemoteSeria
 				rehypeCodeTitles,
 				rehypePrism,
 				rehypePrismPlus,
-				[rehypeImageSize, { dir: 'public' }]
+				[rehypeImageSize, { dir: 'public' }],
+				[rehypeFigure, { className: ['figure'] }]
 			],
 			format: 'mdx'
 		},

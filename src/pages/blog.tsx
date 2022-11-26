@@ -36,7 +36,7 @@ const BlogPage: NextPage<BlogPageProps> = (props) => {
 			<OpenGraphMeta title={blogTitle} />
 			<Container display={'flex'} flexDir={'column'} gap={'4'} mt={5} maxW={'container.md'}>
 				<BlogPageMasthead />
-				<Input onChange={debounceChange} type={'text'} variant={'filled'} placeholder={'Search articles'} />
+				<Input mb={10} onChange={debounceChange} type={'text'} variant={'filled'} placeholder={'Search articles'} />
 				<BlogPostList posts={filteredPosts} />
 			</Container>
 		</Layout>

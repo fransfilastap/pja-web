@@ -47,15 +47,26 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 						</HStack>
 					</Flex>
 					{post.matter.cover && (
-						<ChakraNextImage
-							width='full'
-							height={{ base: '30vh', md: '60vh' }}
-							borderRadius='xl'
-							src={post.matter.cover}
-							alt={post.matter.title}
-						/>
+						<figure className={'figure'}>
+							<ChakraNextImage
+								width='full'
+								height={{ base: '30vh', md: '60vh' }}
+								borderRadius='xl'
+								src={post.matter.cover}
+								alt={post.matter.title}
+							/>
+							<figcaption></figcaption>
+						</figure>
 					)}
 					<MarkdownContent content={post} />
+					{post.matter.lastmod ? (
+						<Text mt={8} fontSize={{ base: 'sm', md: 'sm' }} color={'gray.500'}>{`Last edited at ${format(
+							parseISO(post.matter.lastmod),
+							'MMMM dd, yyyy'
+						)}`}</Text>
+					) : (
+						''
+					)}
 				</chakra.section>
 			</Container>
 		</Layout>

@@ -6306,6 +6306,14 @@ rehype-code-titles@^1.1.0:
   dependencies:
     unist-util-visit "~4.1.0"
 
+rehype-figure@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rehype-figure/-/rehype-figure-1.0.1.tgz#6fac89f0ec6042ce8b99163b4cc796a934267be0"
+  integrity sha512-g7DJuK8R8xHIaPI3QJ6/OoWiKepn92RF2CV3z4dO7lRO6ZHo48Tu9X3KgnZUKK035srFHqWQx93AybBy12XqmQ==
+  dependencies:
+    hastscript "^6.0.0"
+    unist-util-visit "^2.0.3"
+
 rehype-img-size@ksoichiro/rehype-img-size:
   version "1.0.1"
   resolved "https://codeload.github.com/ksoichiro/rehype-img-size/tar.gz/ffd967d32545bdadceaeed5f89603329991b13b7"
