@@ -73,8 +73,15 @@ function MobileMenuToggle(): ReactElement {
 	return (
 		<chakra.div display={{ base: 'block', md: 'none' }}>
 			<Menu>
-				<MenuButton as={IconButton} icon={<FiMenu />} />
-				<MenuList>
+				<MenuButton
+					bgColor={'transparent'}
+					as={IconButton}
+					_hover={{ bgColor: 'transparent' }}
+					icon={<FiMenu color={useColorModeValue('black', 'white')} />}
+				/>
+				<MenuList
+					bgColor={useColorModeValue('rgba(255, 255, 255, 0.7)', 'rgba(0, 0, 0, 0.5)')}
+					backdropFilter='blur(8px)'>
 					<MenuItem>
 						<MainNavLink w='full' _hover={{ textDecor: 'none' }} to='/'>
 							Home
