@@ -3,7 +3,8 @@ import BasicMeta from '@/components/meta/BasicMeta';
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
 import config from '@/lib/config';
 import React, { ChangeEvent, useMemo, useState } from 'react';
-import { Flex, Heading, Input } from '@chakra-ui/react';
+import { Flex, Heading, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { FiSearch } from 'react-icons/fi';
 import BlogPostList from '@/components/BlogPostList';
 import { GetStaticProps, NextPage } from 'next';
 import { PostMetadata } from '@/lib/types';
@@ -36,7 +37,12 @@ const BlogPage: NextPage<BlogPageProps> = (props) => {
 			<OpenGraphMeta title={blogTitle} />
 			<Container display={'flex'} flexDir={'column'} gap={'4'} mt={5} maxW={'container.md'}>
 				<BlogPageMasthead />
-				<Input mb={10} onChange={debounceChange} type={'text'} variant={'filled'} placeholder={'Search articles'} />
+				<InputGroup mb={10}>
+					<InputLeftElement pointerEvents='none'>
+						<FiSearch color='gray.300' />
+					</InputLeftElement>
+					<Input onChange={debounceChange} type={'text'} variant={'filled'} placeholder={'Search articles'} />
+				</InputGroup>
 				<BlogPostList posts={filteredPosts} />
 			</Container>
 		</Layout>

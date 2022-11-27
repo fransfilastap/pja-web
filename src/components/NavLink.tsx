@@ -6,6 +6,7 @@ import NextLink from 'next/link';
 export type NavLinkProps = LinkProps & {
 	to: string;
 	children?: string | React.ReactNode;
+	hasActiveState: boolean;
 	activeProps?: LinkProps;
 	_hover?: LinkProps;
 };
@@ -13,6 +14,7 @@ const NavLink: React.FunctionComponent<NavLinkProps> = ({
 	to,
 	children,
 	activeProps,
+	hasActiveState = true,
 	_hover,
 	...props
 }: NavLinkProps): React.ReactElement => {
@@ -20,7 +22,7 @@ const NavLink: React.FunctionComponent<NavLinkProps> = ({
 	const isActive = router.asPath === to;
 	const color = useColorModeValue('gray.600', 'gray.400');
 
-	if (isActive) {
+	if (isActive && hasActiveState) {
 		return (
 			<NextLink href={to} legacyBehavior passHref>
 				<ChakraLink color={color} _hover={_hover} {...props} {...activeProps}>

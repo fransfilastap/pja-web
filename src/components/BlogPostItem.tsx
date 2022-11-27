@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import { ContentMetadata, PostViewResponse } from '@/lib/types';
-import { motion, MotionProps } from 'framer-motion';
+import { MotionProps } from 'framer-motion';
 import Link from 'next/link';
 import useSWR from 'swr';
 import fetcher from '@/lib/fetcher';
@@ -28,14 +28,14 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
 				justifyContent={'space-between'}
 				{...motionProps}>
 				<Heading
-					as={motion.h2}
-					whileHover={{ color: 'var(--chakra-colors-gray.900)' }}
 					fontWeight={'semibold'}
 					color={useColorModeValue('gray.700', 'gray.100')}
 					fontSize={{ md: 'xl', base: 'larger' }}>
 					{title}
 				</Heading>
-				<PostAttribute>{data?.total} views</PostAttribute>
+				<PostAttribute color={'gray.500'} fontSize={'sm'}>
+					{data?.total} views
+				</PostAttribute>
 				<Text color={useColorModeValue('gray.600', 'gray.500')}>{description}</Text>{' '}
 			</MotionDiv>
 		</Link>

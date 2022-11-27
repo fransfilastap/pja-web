@@ -4,11 +4,12 @@ import React from 'react';
 
 function ColorToggleButton() {
 	const { toggleColorMode, colorMode } = useColorMode();
-	const bgColor = useColorModeValue('violet.10', 'gray.600');
+	const bgColor = useColorModeValue('whiteAlpha', 'blackAlpha');
 	const color = useColorModeValue('violet.50', 'yellow.500');
 
 	return (
 		<IconButton
+			borderRadius={'xl'}
 			size='md'
 			icon={colorMode === 'dark' ? <FiSun size={16} /> : <FiMoon size={16} />}
 			bgColor={bgColor}
