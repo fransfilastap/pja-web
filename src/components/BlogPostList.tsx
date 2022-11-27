@@ -4,6 +4,7 @@ import { EmptyState } from '@/components/empty/EmptyState';
 import BlogPostItem from '@/components/BlogPostItem';
 import MotionDiv from '@/components/Motion';
 import { childAnimationProps, staggerAnimationProps } from '@/lib/constants/animation';
+import { Text } from '@chakra-ui/react';
 
 export type BlogPostListProps = {
 	posts: PostMetadata[];
@@ -11,11 +12,15 @@ export type BlogPostListProps = {
 
 const BlogPostList: FunctionComponent<BlogPostListProps> = ({ posts }) => {
 	if (posts.length <= 0) {
-		return <EmptyState title={'Blog Post'} narrate={'No blog post right now. 🙏🏻'} />;
+		return (
+			<EmptyState>
+				<Text>No article for that query.</Text>
+			</EmptyState>
+		);
 	}
 
 	return (
-		<MotionDiv display={'flex'} flexDir={'column'} gap={8} {...staggerAnimationProps}>
+		<MotionDiv display={'flex'} flexDir={'column'} gap={4} {...staggerAnimationProps}>
 			{posts.map((post, index) => (
 				<BlogPostItem
 					description={post.description}

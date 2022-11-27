@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import { Flex, Heading, Text, useColorModeValue } from '@chakra-ui/react';
+import { Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import { ContentMetadata, PostViewResponse } from '@/lib/types';
-import { MotionProps } from 'framer-motion';
+import { motion, MotionProps } from 'framer-motion';
 import Link from 'next/link';
 import useSWR from 'swr';
 import fetcher from '@/lib/fetcher';
@@ -18,18 +18,25 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
 
 	return (
 		<Link href={`/blog/${slug}`} style={{ width: '100%' }}>
-			<MotionDiv display={'flex'} flexDir={'row'} justifyContent={'space-between'} {...motionProps}>
-				<Flex flexDir={'column'} justifyContent={'space-between'}>
-					<Heading
-						fontWeight={'semibold'}
-						color={useColorModeValue('gray.700', 'gray.100')}
-						fontSize={{ md: 'xl', base: 'larger' }}>
-						{title}
-					</Heading>
-					<PostAttribute display={{ base: 'block', md: 'none' }}>{data?.total} views</PostAttribute>
-					<Text color={useColorModeValue('gray.600', 'gray.500')}>{description}</Text>
-				</Flex>
-				<PostAttribute display={{ base: 'none', md: 'block' }}>{data?.total} views</PostAttribute>
+			<MotionDiv
+				role={'group'}
+				p={{ base: '0.5rem', md: '1rem' }}
+				borderRadius={'lg'}
+				display={'flex'}
+				gap={1}
+				flexDir={'column'}
+				justifyContent={'space-between'}
+				{...motionProps}>
+				<Heading
+					as={motion.h2}
+					whileHover={{ color: 'var(--chakra-colors-gray.900)' }}
+					fontWeight={'semibold'}
+					color={useColorModeValue('gray.700', 'gray.100')}
+					fontSize={{ md: 'xl', base: 'larger' }}>
+					{title}
+				</Heading>
+				<PostAttribute>{data?.total} views</PostAttribute>
+				<Text color={useColorModeValue('gray.600', 'gray.500')}>{description}</Text>{' '}
 			</MotionDiv>
 		</Link>
 	);

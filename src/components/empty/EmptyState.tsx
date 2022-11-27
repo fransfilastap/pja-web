@@ -1,14 +1,16 @@
-import { Heading, Text } from '@chakra-ui/react';
+import { PropsWithChildren } from 'react';
+import MotionDiv from '@/components/Motion';
 
-interface EmptyStateProps {
-	title: string;
-	narrate: string;
-}
-export function EmptyState({ title, narrate }: EmptyStateProps) {
+export function EmptyState({ children }: PropsWithChildren) {
 	return (
-		<div>
-			<Heading>{title}</Heading>
-			<Text>{narrate}</Text>
-		</div>
+		<MotionDiv
+			width={'full'}
+			justifyContent={'center'}
+			alignItems={'center'}
+			height={{ base: '20vh', md: '50vh' }}
+			display={'flex'}
+			flexDir={'column'}>
+			{children}
+		</MotionDiv>
 	);
 }
