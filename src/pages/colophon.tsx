@@ -1,14 +1,14 @@
-import React from 'react';
 import { GetStaticProps, NextPage } from 'next';
-import { parseContent } from '@/lib/content-parser';
 import PageLayout, { PageProps } from '@/components/layouts/page';
+import { parseContent } from '@/lib/content-parser';
+import React from 'react';
 
-const AboutPage: NextPage<PageProps> = (props) => <PageLayout content={props.content} />;
+const ColophonPage: NextPage<PageProps> = (props) => <PageLayout content={props.content} />;
 
-export default AboutPage;
+export default ColophonPage;
 
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
-	const about = await parseContent('about', 'pages');
+	const about = await parseContent('colophon', 'pages');
 	return {
 		props: {
 			content: JSON.parse(JSON.stringify(about))

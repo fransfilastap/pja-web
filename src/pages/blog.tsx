@@ -3,7 +3,7 @@ import BasicMeta from '@/components/meta/BasicMeta';
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
 import config from '@/lib/config';
 import React, { ChangeEvent, useMemo, useState } from 'react';
-import { Flex, Heading, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { FiSearch } from 'react-icons/fi';
 import BlogPostList from '@/components/BlogPostList';
 import { GetStaticProps, NextPage } from 'next';
@@ -12,6 +12,7 @@ import { getPostLists } from '@/lib/content-parser';
 import { POST_PER_PAGE } from '@/lib/constants/pagination';
 import { Container } from '@/components/ContentComponent';
 import debounce from 'lodash.debounce';
+import Masthead from '@/components/Masthead';
 
 type BlogPageProps = {
 	posts: PostMetadata[];
@@ -36,7 +37,7 @@ const BlogPage: NextPage<BlogPageProps> = (props) => {
 			<BasicMeta title={blogTitle} description={blogTitle} url={`${config.site_url}/blog`} />
 			<OpenGraphMeta title={blogTitle} />
 			<Container display={'flex'} flexDir={'column'} gap={'4'} mt={5} maxW={'container.md'}>
-				<BlogPageMasthead />
+				<Masthead title={'Blog'} subTitle={'Just some writings.'} />
 				<InputGroup mb={10}>
 					<InputLeftElement pointerEvents='none'>
 						<FiSearch color='gray.300' />
@@ -56,19 +57,6 @@ export const getStaticProps: GetStaticProps = async () => {
 			posts
 		}
 	};
-};
-
-const BlogPageMasthead = () => {
-	return (
-		<Flex flexDir={'column'} h={'full'} alignItems={'flex-start'} justifyContent={'center'}>
-			<Heading fontSize={'5xl'} fontWeight={'extrabold'}>
-				Blog.
-			</Heading>
-			<Heading fontSize={'lg'} fontWeight={'medium'}>
-				Just some writings.
-			</Heading>
-		</Flex>
-	);
 };
 
 export default BlogPage;
