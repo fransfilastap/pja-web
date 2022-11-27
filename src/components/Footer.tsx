@@ -30,10 +30,18 @@ const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps)
 						<FooterLink to={'/'}>Home</FooterLink>
 						<FooterLink to={'/blog'}>Blog</FooterLink>
 						<FooterLink to={'/about'}>About</FooterLink>
+						<FooterLink to={'/colophon'}>Colophon</FooterLink>
 					</VStack>
 					<VStack flex={1} alignItems={'flex-start'}>
-						<FooterLink to={'https://github.com/fransfilastap'}>Github</FooterLink>
-						<FooterLink to={'https://linkedin.com/in/fransfilastapratama'}>LinkedIn</FooterLink>
+						<FooterLink isExternal={true} to={'https://github.com/fransfilastap'}>
+							Github
+						</FooterLink>
+						<FooterLink isExternal={true} to={'https://linkedin.com/in/fransfilastapratama'}>
+							LinkedIn
+						</FooterLink>
+						<FooterLink isExternal={true} to={'https://poly.me/fransfilasta_pra'}>
+							Polywork
+						</FooterLink>
 					</VStack>
 				</Flex>
 				<Flex
@@ -41,10 +49,10 @@ const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps)
 					w='full'
 					py={6}
 					direction='row'
-					justifyContent='space-between'
+					justifyContent={{ base: 'center', md: 'space-between' }}
 					alignContent='center'
 					alignItems='center'>
-					<chakra.span color={useColorModeValue('gray.600', 'gray.700')} fontSize='sm'>
+					<chakra.span color={useColorModeValue('gray.600', 'gray.500')} fontSize='sm'>
 						&copy; {`${date.getFullYear()} Frans Filasta Pratama. All rights reserved`}
 					</chakra.span>
 				</Flex>
@@ -53,19 +61,39 @@ const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps)
 	);
 };
 
-const FooterLink: FunctionComponent<PropsWithChildren<Omit<NavLinkProps, 'hasActiveState'>>> = (props) => {
+type FooterLinkProps = PropsWithChildren<Omit<NavLinkProps, 'hasActiveState'>> & {
+	isExternal?: boolean;
+};
+
+const FooterLink: FunctionComponent<FooterLinkProps> = ({ isExternal = false, ...props }: FooterLinkProps) => {
 	const { to, children, ...rest } = props;
 	return (
 		<NavLink
 			{...rest}
 			hasActiveState={false}
 			color={'gray.300'}
+			display={'flex'}
+			flexDir={'row'}
+			gap={1}
+			alignItems={'center'}
 			to={to}
 			w={'full'}
 			fontSize='md'
 			fontWeight='normal'
 			_hover={{ color: 'violet.50' }}>
 			{children}
+			{isExternal && (
+				<chakra.svg
+					xmlns='http://www.w3.org/2000/svg'
+					fill='none'
+					viewBox='0 0 24 24'
+					strokeWidth={1.5}
+					stroke='currentColor'
+					h={5}
+					w={5}>
+					<path strokeLinecap='round' strokeLinejoin='round' d='M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25' />
+				</chakra.svg>
+			)}
 		</NavLink>
 	);
 };

@@ -25,7 +25,7 @@ const MainNavLink: React.FunctionComponent<MainNavLinkProps> = ({
 			py={1}
 			alignItems='center'
 			activeProps={{ color: activeColor, fontWeight: 'bold' }}
-			_hover={{ color: hoverColor }}>
+			_hover={{ color: hoverColor, bgColor: useColorModeValue('gray.200', 'gray.900') }}>
 			{children}
 		</NavLink>
 	);

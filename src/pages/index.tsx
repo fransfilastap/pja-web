@@ -49,8 +49,7 @@ function Masthead(): ReactElement {
 					</Heading>
 					<Text fontSize={{ base: 'md', md: 'xl' }}>Full-stack developer.</Text>
 					<Text color={'gray.500'} mt={{ base: 4, md: 6 }}>
-						I am passionate to help digital transformation process of Indonesia Government Organization. I Love to learn
-						bleeding edge software development technology.
+						I am passionate to help digital transformation process of Indonesia Government Organization.
 					</Text>
 				</chakra.div>
 				<div>

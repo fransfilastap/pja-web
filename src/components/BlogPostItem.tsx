@@ -20,7 +20,9 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
 		<Link href={`/blog/${slug}`} style={{ width: '100%' }}>
 			<MotionDiv
 				role={'group'}
-				p={{ base: '0.5rem', md: '1rem' }}
+				whileHover={{
+					x: 10
+				}}
 				borderRadius={'lg'}
 				display={'flex'}
 				gap={1}
