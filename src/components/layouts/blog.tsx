@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react';
 import { chakra, Flex, Heading, HStack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
-import config from '@/lib/config';
+import config from '@/config';
 import { format, parseISO } from 'date-fns';
 import { Layout } from '@/components/Layout';
 import BasicMeta from '@/components/meta/BasicMeta';
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
 import { ChakraNextImage } from '@/components/ChakraNextImage';
-import { ParsedContent, PostMetadata } from '@/lib/types';
+import { ParsedContent, PostMetadata } from '@/types';
 import ViewCounter from '@/components/ViewCounter';
 import PostAttribute from '@/components/PostAttribute';
 import avatar from '~/avatar.png';

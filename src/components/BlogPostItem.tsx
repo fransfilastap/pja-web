@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Heading, Text, useColorModeValue } from '@chakra-ui/react';
-import { ContentMetadata, PostViewResponse } from '@/lib/types';
+import { ContentMetadata, PostViewResponse } from '@/types';
 import { MotionProps } from 'framer-motion';
 import Link from 'next/link';
 import useSWR from 'swr';

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import useSWR from 'swr';
 import { FiEye } from 'react-icons/fi';
 import fetcher from '@/lib/fetcher';
-import { PostViewResponse } from '@/lib/types';
+import { PostViewResponse } from '@/types';
 
 interface ViewsCountProps extends ChakraProps {
 	slug: string;

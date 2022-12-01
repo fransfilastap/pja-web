@@ -1,15 +1,15 @@
 import { Layout } from '@/components/Layout';
 import BasicMeta from '@/components/meta/BasicMeta';
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
-import config from '@/lib/config';
+import config from '@/config';
 import React, { ChangeEvent, useMemo, useState } from 'react';
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { FiSearch } from 'react-icons/fi';
 import BlogPostList from '@/components/BlogPostList';
 import { GetStaticProps, NextPage } from 'next';
-import { PostMetadata } from '@/lib/types';
+import { PostMetadata } from '@/types';
 import { getPostLists } from '@/lib/content-parser';
-import { POST_PER_PAGE } from '@/lib/constants/pagination';
+import { POST_PER_PAGE } from '@/constants/pagination';
 import { Container } from '@/components/ContentComponent';
 import debounce from 'lodash.debounce';
 import Masthead from '@/components/Masthead';

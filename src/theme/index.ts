@@ -3,39 +3,19 @@ import { mode } from '@chakra-ui/theme-tools';
 
 import { extendTheme } from '@chakra-ui/react';
 import { withProse } from '@nikolovlazar/chakra-ui-prose';
-import { Button, Link, Table } from '@/components/theme/components';
-import config from '@/components/theme/config';
-import fonts from '@/components/theme/fonts';
-import styles from '@/components/theme/styles';
+import { components } from '@/theme/components';
+import config from '@/theme/config';
+import fonts from '@/theme/fonts';
+import styles from '@/theme/styles';
+import { colors } from '@/theme/colors';
 
-const theme = extendTheme(
+const index = extendTheme(
 	{
-		components: {
-			Button,
-			Link,
-			Table
-		},
+		components,
 		fonts,
 		config,
 		styles,
-		colors: {
-			brand: {
-				border: '#2D8540',
-				focusColor: '#4BDF6B'
-			},
-			violet: {
-				5: '#F5F3FF',
-				10: '#EDE9FE',
-				20: '#DDD6FE',
-				30: '#C4B5FD',
-				40: '#A78BFA',
-				50: '#8B5CF6',
-				60: '#7C3AED',
-				70: '#6D28D9',
-				80: '#5B21B6',
-				90: '#4C1D95'
-			}
-		}
+		colors
 	},
 	withProse({
 		baseStyle: (props: StyleFunctionProps) => ({
@@ -60,4 +40,4 @@ const theme = extendTheme(
 	})
 );
 
-export default theme;
+export default index;

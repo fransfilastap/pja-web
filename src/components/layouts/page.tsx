@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { Layout } from '@/components/Layout';
 import BasicMeta from '@/components/meta/BasicMeta';
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
-import config from '@/lib/config';
-import { Content } from '@/lib/types';
+import config from '@/config';
+import { Content } from '@/types';
 import { Container, MarkdownContent } from '@/components/ContentComponent';
 
 export type PageProps = {

@@ -1,7 +1,7 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
 import { Prose } from '@nikolovlazar/chakra-ui-prose';
 import { MDXRemote } from 'next-mdx-remote';
-import { ContentMetadata, ParsedContent } from '@/lib/types';
+import { ContentMetadata, ParsedContent } from '@/types';
 import MDXComponents from '@/components/MDXComponents';
 import { Container as ChakraContainer, ContainerProps } from '@chakra-ui/react';
 

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/lib/prisma';
-import { ErrorResponse, PostViewResponse } from '@/lib/types';
+import { ErrorResponse, PostViewResponse } from '@/types';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<PostViewResponse | ErrorResponse>) {
 	try {

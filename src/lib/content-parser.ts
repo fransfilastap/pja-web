@@ -1,4 +1,4 @@
-import { ContentMetadata, Hash, ParsedContent, PostList, PostMetadata } from '@/lib/types';
+import { ContentMetadata, Hash, ParsedContent, PostList, PostMetadata } from '@/types';
 import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';

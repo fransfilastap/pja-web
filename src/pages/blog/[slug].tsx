@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import BlogLayout from '@/components/layouts/blog';
-import { Post } from '@/lib/types';
+import { Post } from '@/types';
 import React from 'react';
 import { getAllPostMeta, parsePostContent } from '@/lib/content-parser';
 import { MarkdownContent } from '@/components/ContentComponent';

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { PropsWithChildren, ReactElement } from 'react';
 import {
 	Box,
 	chakra,
@@ -20,11 +20,7 @@ import { Container } from '@/components/ContentComponent';
 import { MainNavLink } from '@/components/MainNavLink';
 import { Footer } from '@/components/Footer';
 
-export type LayoutProps = {
-	children: React.ReactNode;
-};
-
-const Layout: React.FunctionComponent<LayoutProps> = ({ children }: LayoutProps): ReactElement => (
+const Layout: React.FunctionComponent<PropsWithChildren> = ({ children }: PropsWithChildren): ReactElement => (
 	<Box as='div'>
 		<BasicMeta />
 		<OpenGraphMeta />
@@ -79,9 +75,7 @@ function MobileMenuToggle(): ReactElement {
 					_hover={{ bgColor: 'transparent' }}
 					icon={<FiMenu color={useColorModeValue('black', 'white')} />}
 				/>
-				<MenuList
-					bgColor={useColorModeValue('rgba(255, 255, 255, 0.7)', 'rgba(0, 0, 0, 0.5)')}
-					backdropFilter='blur(8px)'>
+				<MenuList>
 					<MenuItem>
 						<MainNavLink w='full' _hover={{ textDecor: 'none' }} to='/'>
 							Home

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import Config from '@/lib/config';
+import Config from '@/config';
 
 interface BasicMetaProps {
 	title?: string;
