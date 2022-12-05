@@ -1,5 +1,6 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ColorModeScript } from '@chakra-ui/react';
+import { UMAMI_ID } from '@/config/env';
 import theme from '@/theme';
 
 class MyDocument extends Document {
@@ -25,22 +26,7 @@ class MyDocument extends Document {
 					<meta name='msapplication-TileColor' content='#000000' />
 					<meta name='msapplication-TileImage' content='/favicon/ms-icon-144x144.png' />
 					<meta name='theme-color' content='#000000' />
-					<script
-						async
-						src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-					/>
-					<script
-						dangerouslySetInnerHTML={{
-							__html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-                page_path: window.location.pathname,
-              });
-          `
-						}}
-					/>
+					<script async defer data-website-id={UMAMI_ID} src='https://analytics.fransfp.dev/umami.js'></script>
 				</Head>
 				<body>
 					<ColorModeScript initialColorMode={theme.config?.initialColorMode} />
