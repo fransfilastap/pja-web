@@ -20,12 +20,7 @@ const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps)
 				borderTop={'1px'}
 				borderTopColor={useColorModeValue('gray.100', 'gray.800')}
 				{...props}>
-				<Flex
-					w={'full'}
-					direction={{ base: 'column', md: 'row' }}
-					gap={2}
-					py={8}
-					justifyContent={{ md: 'space-between', base: 'flex-start' }}>
+				<Flex w={'full'} direction={'row'} gap={2} py={8} justifyContent={{ md: 'space-between', base: 'flex-start' }}>
 					<VStack flex={1} alignItems={'flex-start'}>
 						<FooterLink to={'/'}>Home</FooterLink>
 						<FooterLink to={'/blog'}>Blog</FooterLink>

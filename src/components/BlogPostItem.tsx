@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import { Heading, Text, useColorModeValue } from '@chakra-ui/react';
+import React, { FunctionComponent, Suspense } from 'react';
+import { Heading, Spinner, Text, useColorModeValue } from '@chakra-ui/react';
 import { ContentMetadata, PostViewResponse } from '@/types';
 import { MotionProps } from 'framer-motion';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ export type BlogPostItemProps = ContentMetadata & {
 
 const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
 	const { title, slug, description, motionProps } = props;
-	const { data } = useSWR<PostViewResponse>(`/api/views/${slug}`, fetcher);
+	const { data } = useSWR<PostViewResponse>(`http://localhost:3000/api/views/${slug}`, fetcher, { suspense: true });
 
 	return (
 		<Link href={`/blog/${slug}`} style={{ width: '100%' }}>
@@ -35,9 +35,9 @@ const BlogPostItem: FunctionComponent<BlogPostItemProps> = (props) => {
 					fontSize={{ md: 'xl', base: 'larger' }}>
 					{title}
 				</Heading>
-				<PostAttribute color={'gray.500'} fontSize={'sm'}>
-					{data?.total} views
-				</PostAttribute>
+				<Suspense fallback={<Spinner />}>
+					<PostAttribute>{data?.total} views</PostAttribute>
+				</Suspense>
 				<Text color={useColorModeValue('gray.600', 'gray.500')}>{description}</Text>{' '}
 			</MotionDiv>
 		</Link>

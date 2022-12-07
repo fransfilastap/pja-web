@@ -29,7 +29,7 @@ class MyDocument extends Document {
 					<script async defer data-website-id={UMAMI_ID} src='https://analytics.fransfp.dev/umami.js'></script>
 				</Head>
 				<body>
-					<ColorModeScript initialColorMode={theme.config?.initialColorMode} />
+					<ColorModeScript initialColorMode={theme.config?.initialColorMode} storageKey={'chakra-ui-color-mode'} />
 					<Main />
 					<NextScript />
 				</body>

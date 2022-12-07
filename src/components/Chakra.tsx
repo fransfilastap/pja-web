@@ -1,11 +1,15 @@
-import { FunctionComponent, PropsWithChildren } from 'react';
+import { FunctionComponent, ReactNode } from 'react';
 import { ChakraProvider, localStorageManager } from '@chakra-ui/react';
-import index from '@/theme';
+import theme from '@/theme';
 
-const ChakraApp: FunctionComponent<PropsWithChildren> = (props) => {
+interface ChakraAppProps {
+	children: ReactNode;
+}
+
+const ChakraApp: FunctionComponent<ChakraAppProps> = ({ children }: ChakraAppProps) => {
 	return (
-		<ChakraProvider theme={index} colorModeManager={localStorageManager}>
-			{props.children}
+		<ChakraProvider theme={theme} colorModeManager={localStorageManager}>
+			{children}
 		</ChakraProvider>
 	);
 };
