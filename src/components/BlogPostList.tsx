@@ -3,7 +3,7 @@ import { PostMetadata } from '@/types';
 import { EmptyState } from '@/components/empty/EmptyState';
 import BlogPostItem from '@/components/BlogPostItem';
 import MotionDiv from '@/components/Motion';
-import { childAnimationProps, staggerAnimationProps } from '@/constants/animation';
+import { childAnimationProps, staggerAnimationProps } from '@/config/constants/animation';
 import { Text } from '@chakra-ui/react';
 
 export type BlogPostListProps = {

@@ -9,7 +9,7 @@ import BlogPostList from '@/components/BlogPostList';
 import { GetStaticProps, NextPage } from 'next';
 import { PostMetadata } from '@/types';
 import { getPostLists } from '@/lib/content-parser';
-import { POST_PER_PAGE } from '@/constants/pagination';
+import { POST_PER_PAGE } from '@/config/constants/pagination';
 import { Container } from '@/components/ContentComponent';
 import debounce from 'lodash.debounce';
 import Masthead from '@/components/Masthead';
