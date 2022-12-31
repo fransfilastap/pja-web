@@ -5,7 +5,7 @@ import { format, parseISO } from 'date-fns';
 import { Layout } from '@/components/Layout';
 import BasicMeta from '@/components/meta/BasicMeta';
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
-import { ChakraNextImage } from '@/components/ChakraNextImage';
+import { LazyLoadImage } from '@/components/Image/LazyLoadImage';
 import { ParsedContent, PostMetadata } from '@/types';
 import ViewCounter from '@/components/ViewCounter';
 import PostAttribute from '@/components/PostAttribute';
@@ -52,7 +52,7 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 					{post.matter.cover && (
 						<figure className={'figure'}>
 							<AspectRatio ratio={16 / 9} w={'full'} h={'full'} borderRadius='xl' overflow={'hidden'}>
-								<ChakraNextImage width='full' height={'full'} src={post.matter.cover} alt={post.matter.title} />
+								<LazyLoadImage width='full' height={'full'} src={post.matter.cover} alt={post.matter.title} />
 							</AspectRatio>
 							<figcaption></figcaption>
 						</figure>

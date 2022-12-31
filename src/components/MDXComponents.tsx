@@ -1,7 +1,7 @@
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 import { Box, chakra, Link as ChakraLink, Table, TableProps, useColorModeValue } from '@chakra-ui/react';
-import { shimmer, toBase64 } from '@/components/ChakraNextImage';
+import { shimmer, toBase64 } from '@/components/Image/LazyLoadImage';
 import { MDXComponents } from 'mdx/types';
 
 function CustomLink(props: any) {
