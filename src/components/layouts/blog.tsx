@@ -11,6 +11,7 @@ import ViewCounter from '@/components/ViewCounter';
 import PostAttribute from '@/components/PostAttribute';
 import avatar from '~/avatar.png';
 import { Container, MarkdownContent } from '@/components/ContentComponent';
+import Image from 'next/image';
 
 export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedContent<PostMetadata> }>) {
 	const blogTitle = `${config.site_url}/blog/${post.matter.title}`;
@@ -35,7 +36,7 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 						<VStack justifyContent={'flex-start'} alignItems={'start'} gap={0}>
 							<HStack>
 								<AspectRatio ratio={1 / 1} borderRadius='3xl' width={25} height={25} overflow={'hidden'}>
-									<ChakraNextImage alt={'Author Photo'} src={avatar} />
+									<Image alt={'Author Photo'} src={avatar} />
 								</AspectRatio>
 								<Text fontSize={{ base: 'sm', md: 'sm' }} color={color}>
 									<span>{config.author}</span>

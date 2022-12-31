@@ -1,9 +1,7 @@
 import { Box, BoxProps } from '@chakra-ui/react';
 
-import Image, { ImageLoaderProps, ImageProps } from 'next/image';
-
-const myLoader = (resolverProps: ImageLoaderProps): string =>
-	`${resolverProps.src}?w=${resolverProps.width}&q=${resolverProps.quality}`;
+import Image, { ImageProps } from 'next/image';
+import cloudinary from '@/lib/cloudinary';
 
 const shimmer = (w: number, h: number) => `
 <svg width="${w}" height="${h}"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -33,6 +31,16 @@ export type ChakraNextImageProps = Pick<ImageProps, 'alt' | 'src' | 'quality'> &
 
 function ChakraNextImage(props: ChakraNextImageProps) {
 	const { src, alt, quality, imageFit, imageFitPosition, ...rest } = props;
+	const { placeholder, original } = cloudinary(src as string);
+
+	/*	const base64Url = useMemo(async () => {
+		const response = await fetch(placeholder);
+		const buffer = await response.arrayBuffer();
+		const data = Buffer.from(buffer).toString('base64');
+		setLoading(false)
+		return `data:image/webp;base64,${data}`;
+	},[placeholder]);*/
+
 	return (
 		<Box
 			{...rest}
@@ -44,21 +52,20 @@ function ChakraNextImage(props: ChakraNextImageProps) {
 			overflow='hidden'
 			p={0}>
 			<Image
-				loader={myLoader}
 				quality={quality}
 				placeholder='blur'
 				fill
-				sizes={'100%'}
+				sizes={'60vw'}
 				style={{
 					objectFit: imageFit ?? 'cover',
 					objectPosition: imageFitPosition ?? 'center'
 				}}
-				blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-				src={src}
+				blurDataURL={placeholder}
+				src={original}
 				alt={alt}
 			/>
 		</Box>
 	);
 }
 
-export { myLoader, ChakraNextImage, shimmer, toBase64 };
+export { ChakraNextImage, shimmer, toBase64 };
