@@ -15,6 +15,7 @@ export type PageProps = {
 
 const PageLayout: FunctionComponent<PageProps> = ({ content }: PageProps): React.ReactElement => {
 	const pageTitle = content.matter.title;
+	const description = content.matter.description;
 
 	return (
 		<Layout>
@@ -27,7 +28,7 @@ const PageLayout: FunctionComponent<PageProps> = ({ content }: PageProps): React
 			/>
 			<OpenGraphMeta title={pageTitle} />
 			<Container maxW={'container.md'} mt={'3rem'}>
-				<Masthead title={'About me'} subTitle={'Who am I.'} />
+				<Masthead title={content.matter.title} subTitle={description} />
 				<MarkdownContent content={content} />
 				{content.matter.lastmod ? (
 					<Text mt={8} fontSize={{ base: 'sm', md: 'sm' }} color={'gray.500'}>{`Last edited at ${format(
