@@ -40,3 +40,11 @@ export type ErrorResponse = {
 export type PostViewResponse = {
 	total: string;
 };
+
+export type Bookmark = {
+	title: string;
+	cover: string;
+	link: string;
+	description: string;
+	tags: string[];
+};

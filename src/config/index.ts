@@ -1,6 +1,7 @@
 import config from 'config.json';
 
 type Index = {
+	readonly author: string;
 	readonly site_url: string;
 	readonly site_title: string;
 	readonly site_description: string;

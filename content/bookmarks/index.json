@@ -1,0 +1,16 @@
+[
+	{
+		"title": "Time management for makers",
+		"cover": "https://res.cloudinary.com/dyduzvx5b/image/upload/v1672474721/fransfp.dev/Github_Testing_Story__1__ao1lnl.webp",
+		"link": "https://github.com/readme/guides/time-management-software-engineers",
+		"description": "As makers, Software Engineers should adopt these seven essential habits.",
+		"tags": ["Management", "Development"]
+	},
+	{
+		"title": "Intentional creation",
+		"cover": "https://res.cloudinary.com/dyduzvx5b/image/upload/v1672477516/fransfp.dev/Community_II__1__mkwtdw.webp",
+		"link": "https://github.com/readme/guides/intentional-creation",
+		"description": "TAP INTO CREATIVITY WITH THE 4 CS: CONSUME, CRITIQUE, CURATE, CREATE.",
+		"tags": ["Management", "Productivity", "Article"]
+	}
+]

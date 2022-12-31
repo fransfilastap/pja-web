@@ -1,10 +1,10 @@
 import { FunctionComponent } from 'react';
 import { PostMetadata } from '@/types';
 import { EmptyState } from '@/components/empty/EmptyState';
-import BlogPostItem from '@/components/BlogPostItem';
+import BlogPostCard from '@/components/BlogPostCard';
 import MotionDiv from '@/components/Motion';
 import { childAnimationProps, staggerAnimationProps } from '@/config/constants/animation';
-import { Text } from '@chakra-ui/react';
+import { SimpleGrid, Text } from '@chakra-ui/react';
 
 export type BlogPostListProps = {
 	posts: PostMetadata[];
@@ -20,9 +20,15 @@ const BlogPostList: FunctionComponent<BlogPostListProps> = ({ posts }) => {
 	}
 
 	return (
-		<MotionDiv display={'flex'} flexDir={'column'} gap={4} {...staggerAnimationProps}>
+		<MotionDiv
+			as={SimpleGrid}
+			alignItems={'stretch'}
+			gap={6}
+			w={'full'}
+			columns={{ base: 1, sm: 2, md: 2 }}
+			{...staggerAnimationProps}>
 			{posts.map((post, index) => (
-				<BlogPostItem
+				<BlogPostCard
 					description={post.description}
 					key={index}
 					title={post.title}

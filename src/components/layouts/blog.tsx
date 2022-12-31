@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import { chakra, Flex, Heading, HStack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
+import { AspectRatio, chakra, Flex, Heading, HStack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import config from '@/config';
 import { format, parseISO } from 'date-fns';
 import { Layout } from '@/components/Layout';
@@ -34,9 +34,11 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 					<Flex flexDir={{ base: 'column', md: 'row' }} justifyContent='space-between' mb={{ base: 6, md: 4 }}>
 						<VStack justifyContent={'flex-start'} alignItems={'start'} gap={0}>
 							<HStack>
-								<ChakraNextImage borderRadius='3xl' width={25} height={25} alt={'Author Photo'} src={avatar} />
+								<AspectRatio ratio={1 / 1} borderRadius='3xl' width={25} height={25} overflow={'hidden'}>
+									<ChakraNextImage alt={'Author Photo'} src={avatar} />
+								</AspectRatio>
 								<Text fontSize={{ base: 'sm', md: 'sm' }} color={color}>
-									<span>Frans Filasta Pratama</span>
+									<span>{config.author}</span>
 									<span> / {format(parseISO(post.matter.date), 'MMMM dd, yyyy')}</span>
 								</Text>
 							</HStack>
@@ -48,13 +50,9 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 					</Flex>
 					{post.matter.cover && (
 						<figure className={'figure'}>
-							<ChakraNextImage
-								width='full'
-								height={{ base: '30vh', md: '60vh' }}
-								borderRadius='xl'
-								src={post.matter.cover}
-								alt={post.matter.title}
-							/>
+							<AspectRatio ratio={16 / 9} w={'full'} h={'full'} borderRadius='xl' overflow={'hidden'}>
+								<ChakraNextImage width='full' height={'full'} src={post.matter.cover} alt={post.matter.title} />
+							</AspectRatio>
 							<figcaption></figcaption>
 						</figure>
 					)}

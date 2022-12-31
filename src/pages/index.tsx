@@ -44,12 +44,12 @@ function Masthead(): ReactElement {
 				justifyContent='space-between'
 				alignItems='start'>
 				<chakra.div>
-					<Heading mb='0.5' size={{ base: 'lg', md: 'xl' }} fontWeight='bold'>
+					<Heading mb='0.5' size={{ base: 'lg', md: 'xl' }} fontWeight='500'>
 						Frans Filasta P.
 					</Heading>
 					<Text fontSize={{ base: 'md', md: 'xl' }}>Full-stack developer.</Text>
-					<Text color={'gray.500'} mt={{ base: 4, md: 6 }}>
-						I am passionate to help digital transformation process of Indonesia Government Organization.
+					<Text color={'gray.600'} mt={{ base: 4, md: 6 }}>
+						I am passionate to help digital transformation process in Indonesia Government Organization.
 					</Text>
 				</chakra.div>
 				<div>

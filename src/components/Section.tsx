@@ -14,7 +14,7 @@ const SectionTitle: React.FunctionComponent<SectionTitleProps> = ({
 	children,
 	...props
 }: SectionTitleProps): React.ReactElement => (
-	<Heading fontWeight='bold' fontSize={{ base: '2xl', md: '3xl' }} {...props}>
+	<Heading fontWeight='600' fontSize={{ base: '2xl', md: '2xl' }} {...props}>
 		{children}
 	</Heading>
 );
@@ -25,7 +25,9 @@ const Section: React.FunctionComponent<SectionProps> = ({
 	...props
 }: SectionProps): React.ReactElement => (
 	<chakra.section display='flex' flexDir='column' {...props}>
-		<SectionTitle mb={{ base: '4', md: '4' }}>{title}</SectionTitle>
+		<SectionTitle mb={{ base: '4', md: '4' }} color={'purple.500'}>
+			{title}
+		</SectionTitle>
 		{children}
 	</chakra.section>
 );

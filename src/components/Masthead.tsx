@@ -1,4 +1,4 @@
-import { Flex, Heading } from '@chakra-ui/react';
+import { Flex, Heading, Text } from '@chakra-ui/react';
 import React, { FunctionComponent, ReactElement } from 'react';
 
 interface MastheadProps {
@@ -9,12 +9,12 @@ interface MastheadProps {
 const Masthead: FunctionComponent<MastheadProps> = (props): ReactElement => {
 	return (
 		<Flex flexDir={'column'} h={'full'} alignItems={'flex-start'} justifyContent={'center'}>
-			<Heading fontSize={'5xl'} fontWeight={'extrabold'}>
+			<Heading fontSize={'3xl'} fontWeight={'600'}>
 				{`${props.title}.`}
 			</Heading>
-			<Heading fontSize={'lg'} fontWeight={'medium'}>
+			<Text fontWeight={'500'} color={'gray.400'}>
 				{`${props.subTitle}`}
-			</Heading>
+			</Text>
 		</Flex>
 	);
 };

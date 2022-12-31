@@ -4,7 +4,6 @@ import React from 'react';
 
 function ColorToggleButton() {
 	const { toggleColorMode, colorMode } = useColorMode();
-	const bgColor = useColorModeValue('whiteAlpha', 'blackAlpha');
 	const color = useColorModeValue('violet.50', 'yellow.500');
 
 	return (
@@ -12,9 +11,9 @@ function ColorToggleButton() {
 			borderRadius={'xl'}
 			size='md'
 			icon={colorMode === 'dark' ? <FiSun size={16} /> : <FiMoon size={16} />}
-			bgColor={bgColor}
 			color={color}
-			_hover={{ bgColor, color, border: '2px' }}
+			bgColor={'transparent'}
+			_hover={{ color, border: '2px' }}
 			onClick={toggleColorMode}
 			aria-label='color toggle'
 		/>

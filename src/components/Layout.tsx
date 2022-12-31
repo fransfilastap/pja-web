@@ -4,6 +4,7 @@ import {
 	chakra,
 	ChakraProps,
 	Flex,
+	Heading,
 	HStack,
 	IconButton,
 	Menu,
@@ -52,12 +53,23 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
 		<Container maxW='container.md'>
 			<chakra.nav w='full' display='flex' flexDir='row' justifyContent='space-between' alignItems='center'>
 				<MobileMenuToggle />
-				<Box display={{ base: 'none', md: 'flex' }} flexDir={'row'} gap={{ base: 4, md: 2 }}>
-					<MainNavLink to='/'>Home</MainNavLink>
-					<MainNavLink to='/blog'>Blog</MainNavLink>
-					<MainNavLink to='/about'>About</MainNavLink>
-				</Box>
+				<Heading size={'md'} fontWeight={{ base: '600', md: '500' }}>
+					fransfp.dev
+				</Heading>
 				<HStack>
+					<Box
+						display={{ base: 'none', md: 'flex' }}
+						px={4}
+						flexDir={'row'}
+						justifyContent={'space-between'}
+						gap={{ base: 4, md: 6 }}
+						borderRight='1px'
+						_light={{ borderRightColor: 'gray.200' }}
+						_dark={{ borderRightColor: 'gray.700' }}>
+						<MainNavLink to='/'>Home</MainNavLink>
+						<MainNavLink to='/blog'>Blog</MainNavLink>
+						<MainNavLink to='/about'>About</MainNavLink>
+					</Box>
 					<ColorToggleButton />
 				</HStack>
 			</chakra.nav>

@@ -37,7 +37,7 @@ const BlogPage: NextPage<BlogPageProps> = (props) => {
 			<BasicMeta title={blogTitle} description={blogTitle} url={`${config.site_url}/blog`} />
 			<OpenGraphMeta title={blogTitle} />
 			<Container display={'flex'} flexDir={'column'} gap={'4'} mt={5} maxW={'container.md'}>
-				<Masthead title={'Blog'} subTitle={'Just some writings.'} />
+				<Masthead title={'Blog'} subTitle={'Log. Thoughts.'} />
 				<InputGroup mb={10}>
 					<InputLeftElement pointerEvents='none'>
 						<FiSearch color='gray.300' />

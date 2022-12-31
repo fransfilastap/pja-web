@@ -24,6 +24,7 @@ const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps)
 					<VStack flex={1} alignItems={'flex-start'}>
 						<FooterLink to={'/'}>Home</FooterLink>
 						<FooterLink to={'/blog'}>Blog</FooterLink>
+						<FooterLink to={'/bookmarks'}>Bookmarks</FooterLink>
 						<FooterLink to={'/about'}>About</FooterLink>
 						<FooterLink to={'/colophon'}>Colophon</FooterLink>
 					</VStack>
