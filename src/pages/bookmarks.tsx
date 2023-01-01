@@ -7,9 +7,11 @@ import config from '@/config';
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
 import Masthead from '@/components/Masthead';
 import { Container } from '@/components/ContentComponent';
-import { Button, HStack, SimpleGrid, VStack } from '@chakra-ui/react';
+import { Button, HStack, VStack } from '@chakra-ui/react';
 import bm from '#/bookmarks/index.json';
 import BookmarkCard from '@/components/BookmarkCard';
+import MotionGrid from '@/components/motion/MotionGrid';
+import { childAnimationProps, staggerAnimationProps } from '@/config/constants/animation';
 
 interface BookmarkPageProps {
 	bookmarks: Bookmark[];
@@ -60,11 +62,17 @@ const BookmarkPage: NextPage<BookmarkPageProps> = ({ bookmarks, tags }) => {
 							</Button>
 						))}
 					</HStack>
-					<SimpleGrid as={'section'} alignItems={'stretch'} gap={10} w={'full'} columns={{ base: 1, sm: 2, md: 3 }}>
+					<MotionGrid
+						as={'section'}
+						alignItems={'stretch'}
+						gap={10}
+						w={'full'}
+						gridTemplateColumns={{ md: 'repeat(2, 1fr)' }}
+						{...staggerAnimationProps}>
 						{filteredBookmarks.map((bookmark, index) => (
-							<BookmarkCard key={index} bookmark={bookmark} />
+							<BookmarkCard key={index} bookmark={bookmark} {...childAnimationProps} />
 						))}
-					</SimpleGrid>
+					</MotionGrid>
 				</VStack>
 			</Container>
 		</Layout>

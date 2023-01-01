@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { chakra, Flex, Heading, Link as ChakraLink, Text, VStack } from '@chakra-ui/react';
+import { chakra, Flex, Heading, Link as ChakraLink, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import { Layout } from '@/components/Layout';
 import { Section } from '@/components/Section';
 import { getPostLists } from '@/lib/content-parser';
@@ -48,7 +48,7 @@ function Masthead(): ReactElement {
 						Frans Filasta P.
 					</Heading>
 					<Text fontSize={{ base: 'md', md: 'xl' }}>Full-stack developer.</Text>
-					<Text color={'gray.600'} mt={{ base: 4, md: 6 }}>
+					<Text color={useColorModeValue('gray.600', 'gray.400')} fontSize={'0.9em'} mt={{ base: 4, md: 6 }}>
 						I am passionate to help digital transformation process in Indonesia Government Organization.
 					</Text>
 				</chakra.div>
@@ -70,9 +70,20 @@ function Masthead(): ReactElement {
 function ReadAllPosts(): ReactElement {
 	return (
 		<Link href='/blog' passHref legacyBehavior>
-			<ChakraLink display='flex' fontWeight='semibold' flexDir='row' justifyContent='space-between' alignItems='center'>
+			<ChakraLink
+				role={'group'}
+				display='flex'
+				fontWeight='semibold'
+				_hover={{ textDecor: 'none' }}
+				flexDir='row'
+				justifyContent='space-between'
+				alignItems='center'>
 				<span>Read all posts </span>
 				<chakra.svg
+					transition={'all'}
+					transitionTimingFunction={'ease-in-out'}
+					transitionDuration={'150'}
+					_groupHover={{ translateX: '30px' }}
 					w={8}
 					h={8}
 					xmlns='http://www.w3.org/2000/svg'

@@ -24,11 +24,12 @@ const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps)
 					<VStack flex={1} alignItems={'flex-start'}>
 						<FooterLink to={'/'}>Home</FooterLink>
 						<FooterLink to={'/blog'}>Blog</FooterLink>
-						<FooterLink to={'/bookmarks'}>Bookmarks</FooterLink>
 						<FooterLink to={'/about'}>About</FooterLink>
-						<FooterLink to={'/colophon'}>Colophon</FooterLink>
 					</VStack>
 					<VStack flex={1} alignItems={'flex-start'}>
+						<FooterLink isExternal={true} to={'https://twitter.com/franspotter'}>
+							Twitter
+						</FooterLink>
 						<FooterLink isExternal={true} to={'https://github.com/fransfilastap'}>
 							Github
 						</FooterLink>
@@ -38,6 +39,10 @@ const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps)
 						<FooterLink isExternal={true} to={'https://poly.me/fransfilasta_pra'}>
 							Polywork
 						</FooterLink>
+					</VStack>
+					<VStack flex={1} alignItems={'flex-start'}>
+						<FooterLink to={'/colophon'}>Colophon</FooterLink>
+						<FooterLink to={'/bookmarks'}>Bookmarks</FooterLink>
 					</VStack>
 				</Flex>
 				<Flex

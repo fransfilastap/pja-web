@@ -1,4 +1,4 @@
-import { Flex, Heading, Text } from '@chakra-ui/react';
+import { Flex, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import React, { FunctionComponent, ReactElement } from 'react';
 
 interface MastheadProps {
@@ -12,7 +12,7 @@ const Masthead: FunctionComponent<MastheadProps> = (props): ReactElement => {
 			<Heading fontSize={'3xl'} fontWeight={'600'}>
 				{`${props.title}.`}
 			</Heading>
-			<Text fontWeight={'500'} color={'gray.400'}>
+			<Text fontWeight={'500'} color={useColorModeValue('gray.600', 'gray.100')}>
 				{`${props.subTitle}`}
 			</Text>
 		</Flex>

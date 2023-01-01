@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import MotionDiv from '@/components/Motion';
+import MotionDiv from '@/components/motion/MotionDiv';
 
 export function EmptyState({ children }: PropsWithChildren) {
 	return (

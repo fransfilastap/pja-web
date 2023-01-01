@@ -5,16 +5,14 @@ import { MotionProps } from 'framer-motion';
 import Link from 'next/link';
 import useSWR from 'swr';
 import fetcher from '@/lib/fetcher';
-import MotionDiv from '@/components/Motion';
+import MotionDiv from '@/components/motion/MotionDiv';
 import PostAttribute from '@/components/PostAttribute';
 import LazyLoadImage from '@/components/Image';
 
-export type BlogPostItemProps = ContentMetadata & {
-	motionProps?: Omit<MotionProps, 'transition'>;
-};
+export type BlogPostItemProps = ContentMetadata & Omit<MotionProps, 'transition'>;
 
 const BlogPostCard: FunctionComponent<BlogPostItemProps> = (props) => {
-	const { title, slug, description, motionProps, cover } = props;
+	const { title, slug, description, cover, ...rest } = props;
 	const { data } = useSWR<PostViewResponse>(`/api/views/${slug}`, fetcher, { suspense: false });
 
 	return (
@@ -29,9 +27,9 @@ const BlogPostCard: FunctionComponent<BlogPostItemProps> = (props) => {
 				flexDir={'column'}
 				justifyContent={'space-between'}
 				overflow={'hidden'}
-				{...motionProps}>
+				{...rest}>
 				<AspectRatio w={'full'} ratio={16 / 9} borderRadius={'lg'} overflow={'hidden'}>
-					<LazyLoadImage src={cover} alt={`Thumbnail of ${title}`} fill sizes={'100vw'} />
+					<LazyLoadImage src={cover} alt={`Thumbnail of ${title}`} fill sizes={'100vw'} asThumbnail />
 				</AspectRatio>
 				<VStack justifyContent={'start'} alignItems={'start'} mt={3}>
 					<Heading fontWeight={'500'} color={useColorModeValue('gray.700', 'gray.100')} fontSize={'1.3em'}>
@@ -45,4 +43,4 @@ const BlogPostCard: FunctionComponent<BlogPostItemProps> = (props) => {
 	);
 };
 
-export default BlogPostCard;
+export default React.memo(BlogPostCard);

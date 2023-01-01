@@ -20,6 +20,7 @@ import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
 import { Container } from '@/components/ContentComponent';
 import { MainNavLink } from '@/components/MainNavLink';
 import { Footer } from '@/components/Footer';
+import Link from 'next/link';
 
 const Layout: React.FunctionComponent<PropsWithChildren> = ({ children }: PropsWithChildren): ReactElement => (
 	<Box as='div'>
@@ -53,9 +54,11 @@ const Nav: React.FunctionComponent<NavProps> = ({ ...rest }): React.ReactElement
 		<Container maxW='container.md'>
 			<chakra.nav w='full' display='flex' flexDir='row' justifyContent='space-between' alignItems='center'>
 				<MobileMenuToggle />
-				<Heading size={'md'} fontWeight={{ base: '600', md: '500' }}>
-					fransfp.dev
-				</Heading>
+				<Link href={'/'}>
+					<Heading size={'1.2em'} fontWeight={{ base: '500', md: '500' }}>
+						fransfp.dev
+					</Heading>
+				</Link>
 				<HStack>
 					<Box
 						display={{ base: 'none', md: 'flex' }}
