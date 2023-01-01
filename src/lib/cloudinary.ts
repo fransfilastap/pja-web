@@ -11,7 +11,7 @@ export type CloudinaryImage = {
 
 export default function cloudinary(imageId: string): CloudinaryImage {
 	const placeholderUrl = `${cloudinaryBaseUrl}/w_auto/dpr_auto/e_blur:1000,q_auto,f_webp/${cloudinaryWebImageDir}${imageId}`;
-	const thumbnailUrl = `${cloudinaryBaseUrl}/w_300/q_auto,f_webp/${cloudinaryWebImageDir}${imageId}`;
+	const thumbnailUrl = `${cloudinaryBaseUrl}/w_500/q_auto,f_webp/${cloudinaryWebImageDir}${imageId}`;
 	const original = `${cloudinaryBaseUrl}/dpr_auto/w_auto/f_webp/${cloudinaryWebImageDir}${imageId}`;
 	return {
 		placeholder: placeholderUrl,

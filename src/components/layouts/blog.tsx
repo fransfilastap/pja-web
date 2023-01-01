@@ -5,13 +5,13 @@ import { format, parseISO } from 'date-fns';
 import { Layout } from '@/components/Layout';
 import BasicMeta from '@/components/meta/BasicMeta';
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
-import { LazyLoadImage } from '@/components/Image/LazyLoadImage';
 import { ParsedContent, PostMetadata } from '@/types';
 import ViewCounter from '@/components/ViewCounter';
 import PostAttribute from '@/components/PostAttribute';
 import avatar from '~/avatar.png';
 import { Container, MarkdownContent } from '@/components/ContentComponent';
 import Image from 'next/image';
+import LazyLoadImage from '@/components/Image';
 
 export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedContent<PostMetadata> }>) {
 	const blogTitle = `${config.site_url}/blog/${post.matter.title}`;
@@ -52,7 +52,7 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 					{post.matter.cover && (
 						<figure className={'figure'}>
 							<AspectRatio ratio={16 / 9} w={'full'} h={'full'} borderRadius='xl' overflow={'hidden'}>
-								<LazyLoadImage width='full' height={'full'} src={post.matter.cover} alt={post.matter.title} />
+								<LazyLoadImage src={post.matter.cover} alt={post.matter.title} fill sizes={'100vw'} />
 							</AspectRatio>
 							<figcaption></figcaption>
 						</figure>

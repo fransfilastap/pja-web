@@ -37,6 +37,7 @@ export type ParsedContent<T extends ContentMetadata> = {
 export type ErrorResponse = {
 	message: string;
 };
+
 export type PostViewResponse = {
 	total: string;
 };

@@ -7,7 +7,7 @@ import useSWR from 'swr';
 import fetcher from '@/lib/fetcher';
 import MotionDiv from '@/components/Motion';
 import PostAttribute from '@/components/PostAttribute';
-import { LazyLoadImage } from '@/components/Image/LazyLoadImage';
+import LazyLoadImage from '@/components/Image';
 
 export type BlogPostItemProps = ContentMetadata & {
 	motionProps?: Omit<MotionProps, 'transition'>;
@@ -31,7 +31,7 @@ const BlogPostCard: FunctionComponent<BlogPostItemProps> = (props) => {
 				overflow={'hidden'}
 				{...motionProps}>
 				<AspectRatio w={'full'} ratio={16 / 9} borderRadius={'lg'} overflow={'hidden'}>
-					<LazyLoadImage src={cover} alt={`Thumbnail of ${title}`} w={'full'} h={'full'} />
+					<LazyLoadImage src={cover} alt={`Thumbnail of ${title}`} fill sizes={'100vw'} />
 				</AspectRatio>
 				<VStack justifyContent={'start'} alignItems={'start'} mt={3}>
 					<Heading fontWeight={'500'} color={useColorModeValue('gray.700', 'gray.100')} fontSize={'1.3em'}>

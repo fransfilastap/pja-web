@@ -1,8 +1,8 @@
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 import { Box, chakra, Link as ChakraLink, Table, TableProps, useColorModeValue } from '@chakra-ui/react';
-import { shimmer, toBase64 } from '@/components/Image/LazyLoadImage';
 import { MDXComponents } from 'mdx/types';
+import { defaultPlaceholder } from '@/components/Image';
 
 function CustomLink(props: any) {
 	const { href } = props;
@@ -22,20 +22,7 @@ function CustomLink(props: any) {
 }
 
 function MDXImage(props: ImageProps) {
-	const defaultHeight = 300;
-	const defaultWidth = 200;
-
-	return (
-		<Image
-			{...props}
-			className='mdx-image'
-			placeholder='blur'
-			blurDataURL={`data:image/svg+xml;base64,${toBase64(
-				shimmer((props.width ?? defaultWidth) as number, (props.height ?? defaultHeight) as number)
-			)}`}
-			alt={props.alt}
-		/>
-	);
+	return <Image {...props} className='mdx-image' placeholder='blur' blurDataURL={defaultPlaceholder} alt={props.alt} />;
 }
 
 function CustomTable(props: TableProps) {
