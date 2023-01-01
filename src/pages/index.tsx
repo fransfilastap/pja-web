@@ -72,6 +72,7 @@ function ReadAllPosts(): ReactElement {
 		<Link href='/blog' passHref legacyBehavior>
 			<ChakraLink
 				role={'group'}
+				aria-label={'read all posts'}
 				display='flex'
 				fontWeight='semibold'
 				_hover={{ textDecor: 'none' }}

@@ -28,7 +28,14 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 			/>
 			<OpenGraphMeta description={post.matter.description} title={post.matter.title} url={blogTitle} />
 			<Container maxW={'container.md'}>
-				<chakra.section my={{ base: '4', md: '8' }}>
+				<chakra.article my={{ base: '4', md: '8' }}>
+					{post.matter.cover && (
+						<chakra.figure mb={10}>
+							<AspectRatio ratio={16 / 9} w={'full'} h={'40vh'} borderRadius='xl' boxShadow={'xl'} overflow={'hidden'}>
+								<LazyLoadImage src={post.matter.cover} alt={post.matter.title} fill sizes={'100vw'} />
+							</AspectRatio>
+						</chakra.figure>
+					)}
 					<Heading as={'h1'} size={{ base: 'xl', md: '2xl' }} mb={4} fontWeight='bold'>
 						{post.matter.title}
 					</Heading>
@@ -49,14 +56,6 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 							<PostAttribute color={color}>{`/ ${post.matter.readingTime.text}`}</PostAttribute>
 						</HStack>
 					</Flex>
-					{post.matter.cover && (
-						<figure className={'figure'}>
-							<AspectRatio ratio={16 / 9} w={'full'} h={'full'} borderRadius='xl' overflow={'hidden'}>
-								<LazyLoadImage src={post.matter.cover} alt={post.matter.title} fill sizes={'100vw'} />
-							</AspectRatio>
-							<figcaption></figcaption>
-						</figure>
-					)}
 					<MarkdownContent content={post} />
 					{post.matter.lastmod ? (
 						<Text mt={8} fontSize={{ base: 'sm', md: 'sm' }} color={'gray.500'}>{`Last edited at ${format(
@@ -66,7 +65,7 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 					) : (
 						''
 					)}
-				</chakra.section>
+				</chakra.article>
 			</Container>
 		</Layout>
 	);

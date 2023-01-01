@@ -15,7 +15,7 @@
 - [x] Fix cover image size doesn't match with image loader
 - [ ] Table of contents
 - [x] Views count with prisma and planet scale
-- [ ] Umami Analytics
+- [x] Umami Analytics
 - [ ] Portfolio Page
 - [ ] Now Page
 - [x] About page

@@ -87,6 +87,7 @@ function MobileMenuToggle(): ReactElement {
 				<MenuButton
 					bgColor={'transparent'}
 					as={IconButton}
+					aria-labelledby={'menu'}
 					_hover={{ bgColor: 'transparent' }}
 					icon={<FiMenu color={useColorModeValue('black', 'white')} />}
 				/>
