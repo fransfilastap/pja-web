@@ -14,6 +14,7 @@ import BlogPostList from '@/components/BlogPostList';
 import MotionDiv from '@/components/motion/MotionDiv';
 import { childAnimationProps, staggerAnimationProps } from '@/config/constants/animation';
 import Config from '@/config';
+import { CgArrowDown } from 'react-icons/cg';
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
@@ -34,48 +35,49 @@ export default function Home({ posts }: InferGetStaticPropsType<typeof getStatic
 function Masthead(): ReactElement {
 	return (
 		<chakra.section
-			borderRadius='3xl'
 			display='flex'
 			flexDir='column'
 			alignItems='center'
 			justifyContent='center'
 			w='full'
-			h={{ base: '40vh', md: '40vh' }}
+			h={'100vh'}
 			mb={{ base: 10, md: 20 }}>
 			<Flex
 				w='full'
-				direction={{ base: 'column-reverse', md: 'row' }}
+				h={{ base: '60vh', md: 'max-content' }}
+				direction={{ base: 'column-reverse', md: 'column-reverse' }}
 				gap={{ base: 0, md: 8 }}
-				justifyContent='space-between'
-				alignItems='start'>
-				<VStack justifyContent={'start'} alignItems={'start'} gap={'-2.5'}>
+				justifyContent={{ base: 'center', md: 'space-between' }}
+				alignItems={{ base: 'center', md: 'center' }}>
+				<VStack justifyContent={{ base: 'center', md: 'start' }} alignItems={{ base: 'center', md: 'center' }}>
 					<Heading size={{ base: 'lg', md: 'xl' }} fontWeight='500'>
 						Frans Filasta P.
 					</Heading>
-					<Text fontSize={'lg'}>Full-stack developer.</Text>
+					<Text fontSize={'lg'} fontWeight={'500'}>
+						I{"'"}m a Full-stack developer.
+					</Text>
 					<MotionDiv {...staggerAnimationProps} display={'flex'} flexDir={'row'} gap={'1'}>
-						<motion.a href={Config.github} {...childAnimationProps}>
+						<motion.a href={Config.github} {...childAnimationProps} aria-label={'github profile'}>
 							<Icon as={AiFillGithub} fontSize={'2xl'} />
 						</motion.a>
-						<motion.a href={Config.linkedin} {...childAnimationProps}>
+						<motion.a href={Config.linkedin} {...childAnimationProps} aria-label={'linkedin page'}>
 							<Icon as={AiFillLinkedin} fontSize={'2xl'} />
 						</motion.a>
-						<motion.a href={Config.twitter} {...childAnimationProps}>
+						<motion.a href={Config.twitter} {...childAnimationProps} aria-label={'twitter page'}>
 							<Icon as={AiFillTwitterCircle} fontSize={'2xl'} />
 						</motion.a>
 					</MotionDiv>
 				</VStack>
-				<div>
-					<chakra.div
-						overflow={'hidden'}
-						borderRadius={'full'}
-						bgClip={'border-box'}
-						width={{ base: '28', md: '40' }}
-						height={{ base: '28', md: '40' }}>
-						<Image src={avatar} placeholder={'blur'} alt={'avatar'} style={{ objectFit: 'contain' }} priority />
-					</chakra.div>
-				</div>
+				<chakra.div
+					overflow={'hidden'}
+					borderRadius={'full'}
+					bgClip={'border-box'}
+					width={{ base: '28', md: '40' }}
+					height={{ base: '28', md: '40' }}>
+					<Image src={avatar} placeholder={'blur'} alt={'avatar'} style={{ objectFit: 'contain' }} priority />
+				</chakra.div>
 			</Flex>
+			<Icon mt={10} as={CgArrowDown} className={'scroll-down'} />
 		</chakra.section>
 	);
 }

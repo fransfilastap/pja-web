@@ -94,3 +94,18 @@ a.anchor {
 figure.figure > figcaption{
 	text-align: center;
 }
+
+.scroll-down{
+	transition: all;
+	animation: bounce ease-in-out infinite 1s;
+}
+
+@keyframes bounce {
+	from {
+		transform: translateY(0);
+	}
+	to {
+		transform: translateY(10px);
+	}
+
+}

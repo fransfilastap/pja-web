@@ -29,6 +29,7 @@ const Layout: React.FunctionComponent<PropsWithChildren> = ({ children }: PropsW
 		<Flex direction='column' justifyContent='flex-start' w='full'>
 			<Nav />
 			<chakra.main flex='1' p={0} minH='100vh'>
+				<chakra.div className={'beams'} position={'absolute'} h={'40vh'} w={'100%'} zIndex={'-1'}></chakra.div>
 				{children}
 			</chakra.main>
 			<Footer />

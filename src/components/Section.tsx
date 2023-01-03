@@ -1,4 +1,4 @@
-import { chakra, ChakraProps, Heading, HeadingProps } from '@chakra-ui/react';
+import { chakra, ChakraProps, Heading, HeadingProps, useColorModeValue } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
 export type SectionProps = ChakraProps & {
@@ -25,7 +25,7 @@ const Section: React.FunctionComponent<SectionProps> = ({
 	...props
 }: SectionProps): React.ReactElement => (
 	<chakra.section display='flex' flexDir='column' {...props}>
-		<SectionTitle mb={{ base: '4', md: '4' }} color={'purple.500'}>
+		<SectionTitle mb={{ base: '4', md: '4' }} color={useColorModeValue('gray.800', 'white')}>
 			{title}
 		</SectionTitle>
 		{children}
