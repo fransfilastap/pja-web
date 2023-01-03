@@ -11,6 +11,7 @@ import ViewCounter from '@/components/ViewCounter';
 import PostAttribute from '@/components/PostAttribute';
 import avatar from '~/avatar.png';
 import { Container, MarkdownContent } from '@/components/ContentComponent';
+import SmoothTransitionImage from '@/components/Image';
 
 export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedContent<PostMetadata> }>) {
 	const blogTitle = `${config.site_url}/blog/${post.matter.title}`;
@@ -31,7 +32,7 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 					{post.matter.cover && (
 						<chakra.figure mb={10}>
 							<AspectRatio ratio={16 / 9} w={'full'} h={'40vh'} borderRadius='xl' boxShadow={'xl'} overflow={'hidden'}>
-								<Image
+								<SmoothTransitionImage
 									src={post.matter.cover.original.source}
 									alt={post.matter.title}
 									placeholder={'blur'}

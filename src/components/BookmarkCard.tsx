@@ -4,7 +4,7 @@ import Link from 'next/link';
 import MotionDiv from '@/components/motion/MotionDiv';
 import { AspectRatio, Heading, Text, VStack } from '@chakra-ui/react';
 import { MotionProps } from 'framer-motion';
-import Image from 'next/image';
+import SmoothTransitionImage from '@/components/Image';
 
 export type BookmarkCardProps = Omit<MotionProps, 'transition'> & {
 	bookmark: Bookmark;
@@ -16,7 +16,7 @@ const BookmarkCard: FunctionComponent<BookmarkCardProps> = (props) => {
 		<Link href={link}>
 			<MotionDiv overflow={'hidden'} {...motion}>
 				<AspectRatio w='full' ratio={16 / 9} borderRadius={'lg'} overflow={'hidden'}>
-					<Image
+					<SmoothTransitionImage
 						src={cover.original.source}
 						alt={`Thumbnail of ${title}`}
 						fill

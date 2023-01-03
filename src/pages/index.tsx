@@ -44,7 +44,6 @@ function Masthead(): ReactElement {
 			mb={{ base: 10, md: 20 }}>
 			<Flex
 				w='full'
-				h={{ base: '60vh', md: 'max-content' }}
 				direction={{ base: 'column-reverse', md: 'column-reverse' }}
 				gap={{ base: 0, md: 8 }}
 				justifyContent={{ base: 'center', md: 'space-between' }}
@@ -77,7 +76,7 @@ function Masthead(): ReactElement {
 					<Image src={avatar} placeholder={'blur'} alt={'avatar'} style={{ objectFit: 'contain' }} priority />
 				</chakra.div>
 			</Flex>
-			<Icon mt={10} as={CgArrowDown} className={'scroll-down'} />
+			<Icon mt={{ base: 0, md: 10 }} as={CgArrowDown} className={'scroll-down'} />
 		</chakra.section>
 	);
 }

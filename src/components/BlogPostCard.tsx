@@ -1,13 +1,13 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import { AspectRatio, Heading, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import { MotionProps } from 'framer-motion';
 import Link from 'next/link';
 import useSWR from 'swr';
-import Image from 'next/image';
 import { PostMetadata, PostViewResponse } from '@/types';
 import fetcher from '@/lib/fetcher';
 import MotionDiv from '@/components/motion/MotionDiv';
 import PostAttribute from '@/components/PostAttribute';
+import SmoothTransitionImage from '@/components/Image';
 
 export type BlogPostItemProps = PostMetadata &
 	Omit<MotionProps, 'transition'> & {
@@ -23,7 +23,6 @@ const BlogPostCard: FunctionComponent<BlogPostItemProps> = ({
 	...rest
 }) => {
 	const { data } = useSWR<PostViewResponse>(`/api/views/${slug}`, fetcher, { suspense: false });
-	const [imageLoading, setImageLoading] = useState<boolean>(true);
 	return (
 		<Link href={`/blog/${slug}`} style={{ width: '100%' }}>
 			<MotionDiv
@@ -38,7 +37,7 @@ const BlogPostCard: FunctionComponent<BlogPostItemProps> = ({
 				overflow={'hidden'}
 				{...rest}>
 				<AspectRatio w={'full'} ratio={16 / 9} borderRadius={'lg'} overflow={'hidden'}>
-					<Image
+					<SmoothTransitionImage
 						src={cover.original.source}
 						alt={`Thumbnail of ${title}`}
 						fill
@@ -46,10 +45,6 @@ const BlogPostCard: FunctionComponent<BlogPostItemProps> = ({
 						placeholder={'blur'}
 						blurDataURL={cover.original.placeholder}
 						priority={forcePriority}
-						className={imageLoading ? 'img-blur' : 'unblur'}
-						onLoadingComplete={() => {
-							setImageLoading(false);
-						}}
 					/>
 				</AspectRatio>
 				<VStack justifyContent={'start'} alignItems={'start'} mt={3}>

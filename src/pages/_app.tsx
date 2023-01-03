@@ -2,7 +2,6 @@ import type { AppProps } from 'next/app';
 import NextNProgress from 'nextjs-progressbar';
 import ChakraApplication from '@/components/Chakra';
 import '@/styles.css';
-import '@/image.css';
 import 'prismjs/themes/prism-okaidia.css';
 import { ColorMode, useColorMode } from '@chakra-ui/react';
 import { useMemo } from 'react';
