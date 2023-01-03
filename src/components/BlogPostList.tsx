@@ -28,6 +28,7 @@ const BlogPostList: FunctionComponent<BlogPostListProps> = ({ posts }) => {
 			{...staggerAnimationProps}>
 			{posts.map((post, index) => (
 				<BlogPostCard
+					fullPath={''}
 					description={post.description}
 					key={index}
 					title={post.title}
@@ -36,6 +37,7 @@ const BlogPostList: FunctionComponent<BlogPostListProps> = ({ posts }) => {
 					date={post.date}
 					cover={post.cover}
 					author={post.author}
+					readingTime={post.readingTime}
 					{...childAnimationProps}
 				/>
 			))}

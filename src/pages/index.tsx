@@ -1,14 +1,19 @@
 import React, { ReactElement } from 'react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { chakra, Flex, Heading, Link as ChakraLink, Text, useColorModeValue, VStack } from '@chakra-ui/react';
+import { chakra, Flex, Heading, Icon, Link as ChakraLink, Text, VStack } from '@chakra-ui/react';
+import { AiFillGithub, AiFillLinkedin, AiFillTwitterCircle } from 'react-icons/ai';
 import { Layout } from '@/components/Layout';
 import { Section } from '@/components/Section';
 import { getPostLists } from '@/lib/content-parser';
 import avatar from '~/avatar.png';
 import { Container } from '@/components/ContentComponent';
 import BlogPostList from '@/components/BlogPostList';
+import MotionDiv from '@/components/motion/MotionDiv';
+import { childAnimationProps, staggerAnimationProps } from '@/config/constants/animation';
+import Config from '@/config';
 
 export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
@@ -43,15 +48,23 @@ function Masthead(): ReactElement {
 				gap={{ base: 0, md: 8 }}
 				justifyContent='space-between'
 				alignItems='start'>
-				<chakra.div>
-					<Heading mb='0.5' size={{ base: 'lg', md: 'xl' }} fontWeight='500'>
+				<VStack justifyContent={'start'} alignItems={'start'} gap={'-2.5'}>
+					<Heading size={{ base: 'lg', md: 'xl' }} fontWeight='500'>
 						Frans Filasta P.
 					</Heading>
-					<Text fontSize={{ base: 'md', md: 'xl' }}>Full-stack developer.</Text>
-					<Text color={useColorModeValue('gray.600', 'gray.400')} fontSize={'0.9em'} mt={{ base: 4, md: 6 }}>
-						I am passionate to help digital transformation process in Indonesia Government Organization.
-					</Text>
-				</chakra.div>
+					<Text fontSize={'lg'}>Full-stack developer.</Text>
+					<MotionDiv {...staggerAnimationProps} display={'flex'} flexDir={'row'} gap={'1'}>
+						<motion.a href={Config.github} {...childAnimationProps}>
+							<Icon as={AiFillGithub} fontSize={'2xl'} />
+						</motion.a>
+						<motion.a href={Config.linkedin} {...childAnimationProps}>
+							<Icon as={AiFillLinkedin} fontSize={'2xl'} />
+						</motion.a>
+						<motion.a href={Config.twitter} {...childAnimationProps}>
+							<Icon as={AiFillTwitterCircle} fontSize={'2xl'} />
+						</motion.a>
+					</MotionDiv>
+				</VStack>
 				<div>
 					<chakra.div
 						overflow={'hidden'}
@@ -59,7 +72,7 @@ function Masthead(): ReactElement {
 						bgClip={'border-box'}
 						width={{ base: '28', md: '40' }}
 						height={{ base: '28', md: '40' }}>
-						<Image src={avatar} placeholder={'blur'} alt={'avatar'} style={{ objectFit: 'contain' }} />
+						<Image src={avatar} placeholder={'blur'} alt={'avatar'} style={{ objectFit: 'contain' }} priority />
 					</chakra.div>
 				</div>
 			</Flex>

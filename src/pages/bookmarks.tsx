@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { GetStaticProps, NextPage } from 'next';
+import { Button, HStack, VStack } from '@chakra-ui/react';
 import { Bookmark } from '@/types';
 import { Layout } from '@/components/Layout';
 import BasicMeta from '@/components/meta/BasicMeta';
@@ -7,11 +8,10 @@ import config from '@/config';
 import OpenGraphMeta from '@/components/meta/OpenGraphMeta';
 import Masthead from '@/components/Masthead';
 import { Container } from '@/components/ContentComponent';
-import { Button, HStack, VStack } from '@chakra-ui/react';
-import bm from '#/bookmarks/index.json';
 import BookmarkCard from '@/components/BookmarkCard';
 import MotionGrid from '@/components/motion/MotionGrid';
 import { childAnimationProps, staggerAnimationProps } from '@/config/constants/animation';
+import fetchBookmarks from '@/lib/bookmark';
 
 interface BookmarkPageProps {
 	bookmarks: Bookmark[];
@@ -79,21 +79,20 @@ const BookmarkPage: NextPage<BookmarkPageProps> = ({ bookmarks, tags }) => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = () => {
-	const bookmarks = bm as Bookmark[];
-	const tags: Record<string, string> = {};
+export const getStaticProps: GetStaticProps = async () => {
+	const bookmarks = await fetchBookmarks();
+	const tagHash: Record<string, string> = {};
 
-	bookmarks.forEach((bookmark) => {
-		bookmark.tags.forEach((tag) => {
-			tags[tag] = tag;
+	bookmarks.forEach((b) => {
+		b.tags.forEach((tag) => {
+			tagHash[tag] = tag;
 		});
 	});
 
 	return {
 		props: {
 			bookmarks,
-			// eslint-disable-next-line no-unused-vars
-			tags: Object.entries(tags).map(([, v]) => v)
+			tags: Object.entries(tagHash).map(([, v]) => v)
 		}
 	};
 };

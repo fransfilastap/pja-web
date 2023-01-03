@@ -1,4 +1,4 @@
-import { ContentMetadata, Hash, ParsedContent, PostList, PostMetadata } from '@/types';
+import { MatterContentMetadata, Hash, ParsedContent, PostList, PostMetadata, ResponsiveImage } from '@/types';
 import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
@@ -14,6 +14,8 @@ import matter from 'gray-matter';
 import yaml from 'js-yaml';
 import fs from 'fs/promises';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { getPlaiceholder } from 'plaiceholder';
+import cloudinary from '@/lib/cloudinary';
 
 const rootDir = path.join(process.cwd(), 'content');
 const postsDir = path.join(rootDir, 'posts');
@@ -68,9 +70,19 @@ export async function getAllPostMeta(): Promise<PostList> {
  */
 export async function getPostContentMeta(fileContent: string): Promise<PostMetadata> {
 	const metadata = await getContentMetadata(fileContent);
+	const { cover, ...rest } = metadata;
+	const { original } = cloudinary(cover);
+	const { base64 } = await getPlaiceholder(original);
+	const responsiveCover: ResponsiveImage = {
+		original: {
+			placeholder: base64,
+			source: original
+		}
+	};
 	return {
-		...metadata,
-		readingTime: readingTime(fileContent)
+		cover: responsiveCover,
+		readingTime: readingTime(fileContent),
+		...rest
 	} as PostMetadata;
 }
 
@@ -78,9 +90,9 @@ export async function getPostContentMeta(fileContent: string): Promise<PostMetad
  * Get front matter metadata from markdown file
  *
  * @param fileContent file source
- * @return {Promise<ContentMetadata>} - Parsed frontmatter data from markdown
+ * @return {Promise<MatterContentMetadata>} - Parsed frontmatter data from markdown
  */
-export async function getContentMetadata(fileContent: string): Promise<ContentMetadata> {
+export async function getContentMetadata(fileContent: string): Promise<MatterContentMetadata> {
 	const matterResult = matter(fileContent, {
 		engines: {
 			yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object
@@ -88,7 +100,7 @@ export async function getContentMetadata(fileContent: string): Promise<ContentMe
 		excerpt: true
 	});
 
-	return matterResult.data as ContentMetadata;
+	return matterResult.data as MatterContentMetadata;
 }
 
 /**
@@ -110,7 +122,7 @@ export async function parsePostContent(slug: string): Promise<ParsedContent<Post
 	} as ParsedContent<PostMetadata>;
 }
 
-export async function parseContent(slug: string, directory?: string): Promise<ParsedContent<ContentMetadata>> {
+export async function parseContent(slug: string, directory?: string): Promise<ParsedContent<MatterContentMetadata>> {
 	const fileContent = await fs.readFile(
 		`${path.join(directory ? path.join(rootDir, directory) : rootDir, slug)}.mdx`,
 		'utf8'
@@ -121,7 +133,7 @@ export async function parseContent(slug: string, directory?: string): Promise<Pa
 	return {
 		html: result,
 		matter: matterData
-	} as ParsedContent<ContentMetadata>;
+	} as ParsedContent<MatterContentMetadata>;
 }
 
 /**

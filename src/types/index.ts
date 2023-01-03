@@ -1,7 +1,7 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { ReadTimeResults } from 'reading-time';
 
-export type ContentMetadata = {
+export type MatterContentMetadata = {
 	title: string;
 	slug: string;
 	excerpt?: string;
@@ -16,7 +16,7 @@ export type ContentMetadata = {
 };
 
 export type Post = ParsedContent<PostMetadata>;
-export type Content = ParsedContent<ContentMetadata>;
+export type Content = ParsedContent<MatterContentMetadata>;
 
 export interface Hash {
 	[key: string]: any;
@@ -24,14 +24,25 @@ export interface Hash {
 
 export type PostList = PostMetadata[];
 
-export type PostMetadata = ContentMetadata & {
+export type PostMetadata = Omit<MatterContentMetadata, 'cover' | 'images'> & {
+	cover: ResponsiveImage;
+	images?: ResponsiveImage[];
 	fullPath: string;
 	readingTime: ReadTimeResults;
 };
 
-export type ParsedContent<T extends ContentMetadata> = {
+export type ParsedContent<T extends MatterContentMetadata | PostMetadata> = {
 	html: MDXRemoteSerializeResult;
 	matter: T;
+};
+export type ResponsiveImage = {
+	thumbnail?: Image;
+	original: Image;
+};
+
+export type Image = {
+	placeholder: string;
+	source: string;
 };
 
 export type ErrorResponse = {
@@ -42,10 +53,14 @@ export type PostViewResponse = {
 	total: string;
 };
 
-export type Bookmark = {
+export type BookmarkData = {
 	title: string;
 	cover: string;
 	link: string;
 	description: string;
 	tags: string[];
+};
+
+export type Bookmark = Omit<BookmarkData, 'cover'> & {
+	cover: ResponsiveImage;
 };

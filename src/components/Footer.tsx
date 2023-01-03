@@ -79,7 +79,7 @@ const FooterLink: FunctionComponent<FooterLinkProps> = ({ isExternal = false, ..
 			alignItems={'center'}
 			to={to}
 			w={'full'}
-			fontSize='md'
+			fontSize='0.9em'
 			fontWeight='normal'
 			_hover={{ color: 'violet.50' }}>
 			{children}
