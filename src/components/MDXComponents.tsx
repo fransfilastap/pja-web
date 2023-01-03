@@ -2,7 +2,7 @@ import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
 import { Box, chakra, Link as ChakraLink, Table, TableProps, useColorModeValue } from '@chakra-ui/react';
 import { MDXComponents } from 'mdx/types';
-import { defaultPlaceholder } from '@/components/Image';
+import { useState } from 'react';
 
 function CustomLink(props: any) {
 	const { href } = props;
@@ -22,7 +22,18 @@ function CustomLink(props: any) {
 }
 
 function MDXImage(props: ImageProps) {
-	return <Image {...props} className='mdx-image' placeholder='blur' blurDataURL={defaultPlaceholder} alt={props.alt} />;
+	const [imageLoading, setImageLoading] = useState<boolean>(true);
+	return (
+		<Image
+			{...props}
+			className={`mdx-image ${imageLoading ? 'img-blur' : 'unblur'}`}
+			placeholder='blur'
+			alt={props.alt}
+			onLoadingComplete={() => {
+				setImageLoading(false);
+			}}
+		/>
+	);
 }
 
 function CustomTable(props: TableProps) {

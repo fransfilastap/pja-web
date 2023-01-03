@@ -16,6 +16,7 @@ import fs from 'fs/promises';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { getPlaiceholder } from 'plaiceholder';
 import cloudinary from '@/lib/cloudinary';
+import imageMetadata from '@/lib/image-metadata';
 
 const rootDir = path.join(process.cwd(), 'content');
 const postsDir = path.join(rootDir, 'posts');
@@ -160,7 +161,8 @@ export async function parseMarkdown(fileContent: string): Promise<MDXRemoteSeria
 				rehypePrism,
 				rehypePrismPlus,
 				[rehypeImageSize, { dir: 'public' }],
-				[rehypeFigure, { className: ['figure'] }]
+				[rehypeFigure, { className: ['figure'] }],
+				imageMetadata
 			],
 			format: 'mdx'
 		},
