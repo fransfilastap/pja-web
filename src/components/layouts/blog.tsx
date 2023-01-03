@@ -1,4 +1,5 @@
 import { PropsWithChildren } from 'react';
+import Image from 'next/image';
 import { AspectRatio, chakra, Flex, Heading, HStack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import config from '@/config';
 import { format, parseISO } from 'date-fns';
@@ -10,8 +11,6 @@ import ViewCounter from '@/components/ViewCounter';
 import PostAttribute from '@/components/PostAttribute';
 import avatar from '~/avatar.png';
 import { Container, MarkdownContent } from '@/components/ContentComponent';
-import Image from 'next/image';
-import LazyLoadImage from '@/components/Image';
 
 export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedContent<PostMetadata> }>) {
 	const blogTitle = `${config.site_url}/blog/${post.matter.title}`;
@@ -32,7 +31,14 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 					{post.matter.cover && (
 						<chakra.figure mb={10}>
 							<AspectRatio ratio={16 / 9} w={'full'} h={'40vh'} borderRadius='xl' boxShadow={'xl'} overflow={'hidden'}>
-								<LazyLoadImage src={post.matter.cover} alt={post.matter.title} fill sizes={'100vw'} />
+								<Image
+									src={post.matter.cover.original.source}
+									alt={post.matter.title}
+									placeholder={'blur'}
+									blurDataURL={post.matter.cover.original.placeholder}
+									fill
+									sizes={'100vw'}
+								/>
 							</AspectRatio>
 						</chakra.figure>
 					)}

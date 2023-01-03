@@ -1,18 +1,27 @@
 import React, { FunctionComponent } from 'react';
 import { AspectRatio, Heading, Text, useColorModeValue, VStack } from '@chakra-ui/react';
-import { ContentMetadata, PostViewResponse } from '@/types';
 import { MotionProps } from 'framer-motion';
 import Link from 'next/link';
 import useSWR from 'swr';
+import { PostMetadata, PostViewResponse } from '@/types';
 import fetcher from '@/lib/fetcher';
 import MotionDiv from '@/components/motion/MotionDiv';
 import PostAttribute from '@/components/PostAttribute';
-import LazyLoadImage from '@/components/Image';
+import Image from 'next/image';
 
-export type BlogPostItemProps = ContentMetadata & Omit<MotionProps, 'transition'>;
+export type BlogPostItemProps = PostMetadata &
+	Omit<MotionProps, 'transition'> & {
+		forcePriority?: boolean;
+	};
 
-const BlogPostCard: FunctionComponent<BlogPostItemProps> = (props) => {
-	const { title, slug, description, cover, ...rest } = props;
+const BlogPostCard: FunctionComponent<BlogPostItemProps> = ({
+	title,
+	slug,
+	description,
+	cover,
+	forcePriority = false,
+	...rest
+}) => {
 	const { data } = useSWR<PostViewResponse>(`/api/views/${slug}`, fetcher, { suspense: false });
 
 	return (
@@ -29,7 +38,15 @@ const BlogPostCard: FunctionComponent<BlogPostItemProps> = (props) => {
 				overflow={'hidden'}
 				{...rest}>
 				<AspectRatio w={'full'} ratio={16 / 9} borderRadius={'lg'} overflow={'hidden'}>
-					<LazyLoadImage src={cover} alt={`Thumbnail of ${title}`} fill sizes={'100vw'} asThumbnail />
+					<Image
+						src={cover.original.source}
+						alt={`Thumbnail of ${title}`}
+						fill
+						sizes={'100vw'}
+						placeholder={'blur'}
+						blurDataURL={cover.original.placeholder}
+						priority={forcePriority}
+					/>
 				</AspectRatio>
 				<VStack justifyContent={'start'} alignItems={'start'} mt={3}>
 					<Heading fontWeight={'500'} color={useColorModeValue('gray.700', 'gray.100')} fontSize={'1.3em'}>

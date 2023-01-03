@@ -7,7 +7,7 @@ type Index = {
 	readonly site_description: string;
 	readonly email: string;
 	readonly github: string;
-	readonly instagram: string;
+	readonly twitter: string;
 	readonly linkedin: string;
 	readonly site_keywords: { keyword: string }[];
 };

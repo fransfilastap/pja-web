@@ -1,14 +1,14 @@
 import { FunctionComponent, PropsWithChildren } from 'react';
 import { Prose } from '@nikolovlazar/chakra-ui-prose';
 import { MDXRemote } from 'next-mdx-remote';
-import { ContentMetadata, ParsedContent } from '@/types';
+import { MatterContentMetadata, ParsedContent, PostMetadata } from '@/types';
 import MDXComponents from '@/components/MDXComponents';
 import { Container as ChakraContainer, ContainerProps } from '@chakra-ui/react';
 
-export type ContentParserProps<T extends ContentMetadata> = {
+export type ContentParserProps<T extends MatterContentMetadata | PostMetadata> = {
 	content: ParsedContent<T>;
 };
-export const MarkdownContent: FunctionComponent<ContentParserProps<ContentMetadata>> = (props) => {
+export const MarkdownContent: FunctionComponent<ContentParserProps<MatterContentMetadata | PostMetadata>> = (props) => {
 	const { html } = props.content;
 
 	return (
