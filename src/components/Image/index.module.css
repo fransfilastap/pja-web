@@ -1,20 +1,9 @@
 .img-blur{
-    position: relative;
     filter: blur(20px);
 }
 
-.img-blur:after{
-    position: absolute;
-    width: 10rem;
-    height: 10rem;
-    border: 2px;
-    border-color: white;
-    border-radius: 50%;
-    z-index: 5;
-}
-
 .unblur {
-    animation: unblur 0.3s linear;
+    animation: unblur 10s linear;
 }
 
 @keyframes unblur {
