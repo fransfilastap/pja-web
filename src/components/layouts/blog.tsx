@@ -27,7 +27,12 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 				url={`${config.site_url}/blog/${post.matter.slug}`}
 				keywords={post.matter.keywords}
 			/>
-			<OpenGraphMeta description={post.matter.description} title={post.matter.title} url={blogTitle} />
+			<OpenGraphMeta
+				description={post.matter.description}
+				image={post.matter.cover.original.source}
+				title={post.matter.title}
+				url={blogTitle}
+			/>
 			<Container maxW={'container.md'}>
 				<chakra.article my={{ base: '4', md: '8' }}>
 					{post.matter.cover && (
