@@ -16,6 +16,7 @@ import SmoothTransitionImage from '@/components/Image';
 export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedContent<PostMetadata> }>) {
 	const blogTitle = `${config.site_url}/blog/${post.matter.title}`;
 	const color = useColorModeValue('gray.700', 'gray.500');
+	const descColor = useColorModeValue('gray.600', 'gray.500');
 
 	return (
 		<Layout>
@@ -45,6 +46,9 @@ export default function BlogLayout({ post }: PropsWithChildren<{ post: ParsedCon
 					)}
 					<Heading as={'h1'} size={{ base: 'xl', md: '2xl' }} mb={4} fontWeight='bold'>
 						{post.matter.title}
+					</Heading>
+					<Heading as={'h5'} size={{ base: 'md', md: 'md' }} mb={10} color={descColor} fontWeight='medium'>
+						{post.matter.description}
 					</Heading>
 					<Flex flexDir={{ base: 'column', md: 'row' }} justifyContent='space-between' mb={{ base: 6, md: 4 }}>
 						<VStack justifyContent={'flex-start'} alignItems={'start'} gap={0}>

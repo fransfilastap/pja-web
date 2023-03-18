@@ -114,7 +114,7 @@ function ReadAllPosts(): ReactElement {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-	const posts = await getPostLists(1, 3);
+	const posts = await getPostLists(1, 4);
 	return {
 		props: {
 			posts
