@@ -1,96 +1,32 @@
-import { chakra, ChakraProps, Flex, useColorModeValue, VStack } from '@chakra-ui/react';
-import React, { FunctionComponent, PropsWithChildren } from 'react';
-import { Container } from '@/components/ContentComponent';
-import NavLink, { NavLinkProps } from '@/components/NavLink';
+import Link from "next/link";
+import Container from "./container";
 
-type FooterProps = ChakraProps;
-const Footer: React.FunctionComponent<FooterProps> = ({ ...props }: FooterProps): React.ReactElement => {
-	const date = new Date();
-
-	return (
-		<Container maxW='container.md'>
-			<chakra.footer
-				h='14'
-				mt='16'
-				display='flex'
-				flexDir='column'
-				justifyContent='space-between'
-				alignContent='center'
-				alignItems='center'
-				borderTop={'1px'}
-				borderTopColor={useColorModeValue('gray.100', 'gray.800')}
-				{...props}>
-				<Flex w={'full'} direction={'row'} gap={2} py={8} justifyContent={{ md: 'space-between', base: 'flex-start' }}>
-					<VStack flex={1} alignItems={'flex-start'}>
-						<FooterLink to={'/'}>Home</FooterLink>
-						<FooterLink to={'/blog'}>Blog</FooterLink>
-						<FooterLink to={'/about'}>About</FooterLink>
-						<FooterLink to={'/colophon'}>Colophon</FooterLink>
-					</VStack>
-					<VStack flex={1} alignItems={'flex-start'}>
-						<FooterLink isExternal={true} to={'https://github.com/fransfilastap'}>
-							Github
-						</FooterLink>
-						<FooterLink isExternal={true} to={'https://linkedin.com/in/fransfilastapratama'}>
-							LinkedIn
-						</FooterLink>
-						<FooterLink isExternal={true} to={'https://poly.me/fransfilasta_pra'}>
-							Polywork
-						</FooterLink>
-					</VStack>
-				</Flex>
-				<Flex
-					h='full'
-					w='full'
-					py={6}
-					direction='row'
-					justifyContent={{ base: 'center', md: 'space-between' }}
-					alignContent='center'
-					alignItems='center'>
-					<chakra.span color={useColorModeValue('gray.600', 'gray.500')} fontSize='sm'>
-						&copy; {`${date.getFullYear()} Frans Filasta Pratama. All rights reserved`}
-					</chakra.span>
-				</Flex>
-			</chakra.footer>
-		</Container>
-	);
-};
-
-type FooterLinkProps = PropsWithChildren<Omit<NavLinkProps, 'hasActiveState'>> & {
-	isExternal?: boolean;
-};
-
-const FooterLink: FunctionComponent<FooterLinkProps> = ({ isExternal = false, ...props }: FooterLinkProps) => {
-	const { to, children, ...rest } = props;
-	return (
-		<NavLink
-			{...rest}
-			hasActiveState={false}
-			color={'gray.300'}
-			display={'flex'}
-			flexDir={'row'}
-			gap={1}
-			alignItems={'center'}
-			to={to}
-			w={'full'}
-			fontSize='md'
-			fontWeight='normal'
-			_hover={{ color: 'violet.50' }}>
-			{children}
-			{isExternal && (
-				<chakra.svg
-					xmlns='http://www.w3.org/2000/svg'
-					fill='none'
-					viewBox='0 0 24 24'
-					strokeWidth={1.5}
-					stroke='currentColor'
-					h={5}
-					w={5}>
-					<path strokeLinecap='round' strokeLinejoin='round' d='M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25' />
-				</chakra.svg>
-			)}
-		</NavLink>
-	);
-};
-
-export { Footer, FooterLink };
+export default function Footer() {
+    return (
+        <footer className="bg-black border-t border-t-[#171717]">
+            <Container className="flex flex-row justify-between w-full px-10 py-10">
+                <div className="flex flex-col gap-2">
+                    <h5 className="font-thin text-white uppercase font-xs text-[13px] font-body">Navigate</h5>
+                    <nav className="flex flex-col gap-0">
+                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Home</Link>
+                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">About</Link>
+                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Works</Link>
+                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Colophon</Link>
+                    </nav>
+                </div>
+                <div className="flex flex-col gap-2">
+                    <h5 className="font-thin text-white uppercase font-xs text-[13px] font-body">Contact</h5>
+                    <nav className="flex flex-col gap-0">
+                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Email</Link>
+                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">LinkedIn</Link>
+                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Twitter</Link>
+                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Github</Link>
+                    </nav>
+                </div>
+            </Container>
+            <Container className="w-full px-10 py-10 text-xs font-thin text-white">
+                &copy; {`${new Date().getFullYear()}`} All Rights reserverd.
+            </Container>
+        </footer>
+    )
+}
