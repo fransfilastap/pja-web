@@ -1,9 +1,8 @@
-import Container from '@/components/container'
 import './globals.css'
 import localFont from 'next/font/local'
 import { Inter } from 'next/font/google'
 import Navigation from '@/components/navigation'
-import Footer from '@/components/footer'
+import Footer from '@/components/Footer'
 
 const instrumentSans = localFont({
   src: "../fonts/instrument-sans/InstrumentSans[wdth,wght].woff2",

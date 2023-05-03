@@ -1,4 +1,4 @@
-import { ContentMetadata, Hash, ParsedContent, PostList, PostMetadata } from 'old/src/types';
+import { ContentMetadata, Hash, ParsedContent, PostList, PostMetadata } from '@/types';
 import path from 'path';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
@@ -35,7 +35,7 @@ export async function getPostLists(page: number, limit: number, tag?: string): P
 			}
 			return -1;
 		})
-		.filter((it) => !tag || (it.tags && it.tags.includes(tag)))
+		.filter((it: { tags: string | string[]; }) => !tag || (it.tags && it.tags.includes(tag)))
 		.slice((page - 1) * limit, page * limit);
 }
 
