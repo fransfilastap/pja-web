@@ -25,7 +25,7 @@ export default async function Page() {
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 {posts.map((post,i)=>
-                    <BlogPost
+                    <BlogPost key={i}
                         post={post} />)}
             </div>
         </Container>
