@@ -31,7 +31,9 @@ const Masthead = () =>{
 const HeroVideo = () => {
   return (
     <section className="flex flex-col justify-end items-start px-10 h-[60vh] w-full object-cover relative overflow-clip">
-      <video src={require('../../public/hero-video.mp4')} className="absolute top-0 left-0" autoPlay muted loop />
+      <video className="absolute top-0 left-0" autoPlay muted loop playsInline>
+        <source src={"https://res.cloudinary.com/dyduzvx5b/video/upload/v1683124958/fransfp.dev/videos/hero-video_felfeh.mp4"} type="video/mp4"/>
+      </video>
       <h2 className="absolute z-30 font-serif text-transparent bg-white/40 bg-clip-text text-9xl">Hello.</h2>
     </section>
   )

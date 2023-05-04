@@ -1,11 +1,10 @@
-
-const withVideos = require('next-videos')
+const { withContentlayer } = require('next-contentlayer')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    appDir: true,
-  },
+    appDir: true
+  }
 }
 
-module.exports = withVideos(nextConfig)
+module.exports = withContentlayer(nextConfig)
