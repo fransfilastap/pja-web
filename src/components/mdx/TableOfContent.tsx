@@ -11,6 +11,8 @@ const TableOfContent: FunctionComponent<TableOfContentProps> = ({
   className,
   ...rest
 }) => {
+  if (headings.length <= 0) return <div></div>;
+
   return (
     <div>
       <nav
