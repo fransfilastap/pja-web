@@ -4,6 +4,55 @@
 
 @layer base{
   :root{
+    --primary-color: #5941A9;
+    --secondary-color: #FFE66D;
+    --tertiary-color: #6D72C3;
+    --code-bg: #E5D4ED;
     @apply scroll-smooth
+    
   }
+}
+
+
+@layer base{
+  pre {
+    @apply divide-y divide-emerald-600
+  }
+}
+
+@layer components{
+
+  .toc{
+    @apply lg:sticky z-20 block p-5 border rounded-lg bg-gray-100/30  lg:top-[10vh] 
+  }
+
+  .toc li{
+    @apply relative
+  }
+
+  .toc .toc--head{
+    @apply flex items-center justify-between text-sm font-bold
+  }
+
+  .toc .toc--list{
+    @apply flex flex-col
+  }
+
+  .toc .toc--list .toc--link{
+    @apply font-heading text-[var(--primary-color)] text-[0.9em] hover:text-black transition duration-75 ease-in-out font-semibold
+  }
+
+  .toc .toc--list .toc--link__depth-3{
+    @apply ml-4 font-light text-sm
+  }
+
+
+  .mdx-code {
+    @apply relative mt-4 mb-8 overflow-hidden border rounded-xl bg-slate-50;
+  }
+
+  .mdx-code__content{
+    @apply bg-white
+  }
+
 }

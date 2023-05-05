@@ -25,7 +25,7 @@ The idea is to leverage Git hooks (pre-commit) to check our code before the code
 
 In this article, we'll automate the linting process using linter (ESLint), code formatter (Prettier), Git Hooks (Husky), and Lint-stagged to make sure the code is formatted and fixed before being pushed to a repository.
 
-### Required packages installation
+## Required packages installation
 
 We'll install the listed packages below:
 
@@ -46,7 +46,7 @@ if your are using **npm**, run this command:
 npm install --save-dev eslint prettier lint-staged husky
 ```
 
-### ESLint Configuration
+## ESLint Configuration
 
 Let's start setup some configurations for the packages. I'll start with ESLint first. To begin ESLint you can run this command:
 
@@ -112,7 +112,7 @@ Here is an example of `eslintrc.json`
 }
 ```
 
-#### The `.eslintignore` File
+### The eslintignore File
 
 You can tell ESLint to ignore specific files and directories by creating a .eslintignore file in your project’s root directory.
 
@@ -124,7 +124,7 @@ dist
 .next
 ```
 
-### Prettier Configuration
+## Prettier Configuration
 
 Create an empty file named `.prettierrc.json`.
 
@@ -155,7 +155,7 @@ coverage
 *.html
 ```
 
-### Lint-Staged Configuration
+## Lint-Staged Configuration
 
 There are several ways to configure `lint-staged` in your project:
 
@@ -177,7 +177,7 @@ Here is an example `lint-staged` configuration using an object in `package.json`
 
 By default, lint-staged will run configured tasks concurrently. This means that for every glob, all the commands will be started at the same time. With the above config, both eslint and prettier will run at the same time.
 
-### Configure Husky
+## Configure Husky
 
 In this section, we'll configure git hooks using Husky.
 
@@ -230,7 +230,7 @@ git commit -m "first init"
 
 If there is a linting error in your code, your commit will be automatically aborted. Fix the code informed by ESLint and try again until you're successfully committed a clean code to your repository.
 
-### Further resources
+## Further resources
 
 Here are some references to improve the understanding regarding DX (Developer Experience)
 

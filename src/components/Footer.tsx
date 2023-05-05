@@ -1,5 +1,6 @@
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import Container from "./container";
+import { ComponentPropsWithoutRef, FunctionComponent } from "react";
 
 export default function Footer() {
     return (
@@ -8,19 +9,18 @@ export default function Footer() {
                 <div className="flex flex-col gap-2">
                     <h5 className="font-thin text-white uppercase font-xs text-[13px] font-body">Navigate</h5>
                     <nav className="flex flex-col gap-0">
-                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Home</Link>
-                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">About</Link>
-                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Works</Link>
-                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Colophon</Link>
+                        <FooterLink href={"/"}>Home</FooterLink>
+                        <FooterLink href={"/about"}>About</FooterLink>
+                        <FooterLink href={"/colophon"}>Colophon</FooterLink>
                     </nav>
                 </div>
                 <div className="flex flex-col gap-2">
                     <h5 className="font-thin text-white uppercase font-xs text-[13px] font-body">Contact</h5>
                     <nav className="flex flex-col gap-0">
-                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Email</Link>
-                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">LinkedIn</Link>
-                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Twitter</Link>
-                        <Link href={"/"} className="text-white text-[13px] font-bold uppercase font-body">Github</Link>
+                        <FooterLink href={"mailto:mail@fransfp.dev"}>Email</FooterLink>
+                        <FooterLink href={"https://linkedin.com/"}>LinkedIn</FooterLink>
+                        <FooterLink href={"/colophon"}>Twitter</FooterLink>
+                        <FooterLink href={"/colophon"}>Github</FooterLink>
                     </nav>
                 </div>
             </Container>
@@ -28,5 +28,20 @@ export default function Footer() {
                 &copy; {`${new Date().getFullYear()}`} All Rights reserverd.
             </Container>
         </footer>
+    )
+}
+
+
+
+type FooterLinkProps = ComponentPropsWithoutRef<"a"> & LinkProps
+const FooterLink:FunctionComponent<FooterLinkProps> = ({href,children, ...rest}) => {
+    return (
+        <Link
+            href={href}
+            className="text-white text-[13px] font-bold uppercase font-body"
+            {...rest}
+        >
+            {children}
+        </Link>
     )
 }
