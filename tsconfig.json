@@ -21,6 +21,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@/media": ["./public/media"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },

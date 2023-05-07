@@ -27,13 +27,13 @@ export default function BlogPostLayout({
 
   return (
     <Container className="p-10 mt-20">
-      <h1 className="text-4xl py-3 text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75% lg:text-6xl mb-10 tracking-normal font-heading font-[800] text-black">
+      <h1 className="text-4xl py-3 text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75% lg:text-6xl mb-10 tracking-normal font-body font-[700] text-black">
         {post.title}
       </h1>
-      <p className={"text-xl font-body font-[400] text-gray-400 mb-8"}>
+      <p className={"text-base font-body font-[400] text-gray-500 mb-8"}>
         {post.description}
       </p>
-      <div className="flex flex-col-reverse gap-3 lg:flex-row">
+      <div className="flex flex-col-reverse justify-between gap-3 lg:flex-row">
         <MDXComponent code={post.body.code} />
         <TableOfContent headings={post.headings} />
       </div>

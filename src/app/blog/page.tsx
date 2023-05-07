@@ -27,13 +27,7 @@ export default async function Page() {
           My Thought, experiments, and tutorial
         </p>
       </div>
-      <Suspense
-        fallback={
-          <p className="font-[500] w-full h-[500px] border border-gray-50">
-            Loading....
-          </p>
-        }
-      >
+      <Suspense fallback={<Skeleton />}>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {blogs.map((blog, i) => (
             <BlogPost key={i} blog={blog} />
@@ -41,5 +35,13 @@ export default async function Page() {
         </div>
       </Suspense>
     </Container>
+  );
+}
+
+function Skeleton() {
+  return (
+    <p className="font-[500] w-full h-[500px] border border-gray-50">
+      Loading....
+    </p>
   );
 }

@@ -1,6 +1,9 @@
 import Container from "@/components/container"
 import PortfolioCard from "@/components/portfolio"
-import cover from "../../public/media/cover-portofolio.jpg"
+import goldenSite from "../../public/media/works/golden-site.png"
+import partisipasiku from "../../public/media/works/partisipasiku.png"
+import geol from "../../public/media/works/geol.png"
+import emonev from "../../public/media/works/e-monev.png"
 
 export default function Home() {
   return (
@@ -21,7 +24,7 @@ export default function Home() {
 
 const Masthead = () =>{
   return (
-    <h1 className="mt-28 mb-10 font-[400] md:font-[500] font-body leading-tight tracking-normal text-5xl md:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75%">
+    <h1 className="mt-28 mb-10 font-[500] font-body leading-tight tracking-normal text-5xl md:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75%">
       Empowering Innovation and Efficiency through Code.
     </h1>
   )
@@ -52,22 +55,42 @@ const Intro = () => {
 
 const PortfolioItems = ()=> {
   return (
-    <section className="bg-[#FFE66D] px-10 py-24 rounded-b-xl">
+    <section className="bg-[#FFE66D] px-10 py-24 rounded-b-xl min-h-[100vh]">
       <Container className="flex flex-row">
         <div className="flex flex-col">
-          <h3 className="text-3xl font-extrabold font-body">Featured Works.</h3>
-          <h4 className="font-body font-[300] text-xl">Taking on issues that matter.</h4>
+          <h3 className="text-6xl font-extrabold font-body">Featured Works.</h3>
+          <h4 className="font-body font-[300] text-xl">Selected projects and experiments</h4>
         </div>
       </Container>
-      <Container className="grid grid-flow-row grid-cols-1 gap-4 my-8 md:grid-flow-col md:grid-cols-2">
-        <PortfolioCard
-          coverUrl={cover}
-          name="GEOL"
-          type="Telecommunication, Web" />
-        <PortfolioCard
-          coverUrl={cover}
-          name="Golden Site TDC"
-          type="Telecommunication, Web" />
+      <Container className="grid grid-flow-row grid-cols-1 gap-4 my-8 md:grid-cols-2">
+          <PortfolioCard
+              coverUrl={goldenSite}
+              year={2015}
+              url={"#"}
+              name="Golden Site Monitoring"
+              description={"A web application that collect, display, and visualize alarm data from 'golden' of BTS. Used by Telco Company in Denmark."}
+              type="Telecommunication" />
+          <PortfolioCard
+              coverUrl={geol}
+              year={2015}
+              url={"#"}
+              name="Geographic Online Alarm (GeOL)"
+              description={"A web application that collect, display, and visualize alarm data from all BTS from a big Telco Company in Indonesia. "}
+              type="Telecommunication" />
+          <PortfolioCard
+              coverUrl={partisipasiku}
+              year={2018}
+              url={"https://partisipasiku.bphn.go.id"}
+              name="Partisipasiku!"
+              description={"A Platform to promote the substance of legislative drafting in Indonesia."}
+              type="e-Government" />
+          <PortfolioCard
+              coverUrl={emonev}
+              year={2020}
+              url={"#"}
+              type={"e-Government"}
+              name="e-Monev Legislasi"
+              description={"a comprehensive information system for reporting and evaluating the legislative drafting process in Indonesia. The system is integrated with Partisipasiku"} />
       </Container>
     </section>
   )

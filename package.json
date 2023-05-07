@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@jsdevtools/rehype-toc": "^3.0.2",
@@ -21,12 +22,11 @@
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "github-slugger": "^2.0.0",
-    "gray-matter": "^4.0.3",
     "mdx-bundler": "^9.2.1",
-    "next": "13.3.1",
+    "next": "13.4.1",
     "next-contentlayer": "^0.3.2",
     "next-mdx-remote": "^4.4.1",
-    "next-videos": "1.4.1",
+    "next-sitemap": "^4.0.9",
     "plaiceholder": "^2.5.0",
     "postcss": "8.4.23",
     "react": "18.2.0",
