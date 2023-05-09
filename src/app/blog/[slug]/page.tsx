@@ -2,13 +2,12 @@ import Container from "@/components/container";
 import { allBlogs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import MDXComponent from "@/components/mdx/MDXComponent";
-import clsxm from "@/helpers/clsxm";
 import TableOfContent from "@/components/mdx/TableOfContent";
-import { format } from "date-fns";
 import ContentDate from "@/components/content-date";
 import Title from "@/components/content-title";
 import ContentIntro from "@/components/content-intro";
 import ContentReadingTime from "@/components/content-reading-time";
+import Disqus from "@/components/disqus";
 
 export const generateStaticParams = async () =>
   allBlogs.map((post: any) => ({ slug: post._raw.flattenedPath }));
@@ -42,6 +41,7 @@ export default function BlogPostLayout({
         <MDXComponent code={post.body.code} />
         <TableOfContent headings={post.headings} />
       </div>
+      <Disqus title={post.title} identifier={post.slug} locale={"en_EN"} />
     </Container>
   );
 }
