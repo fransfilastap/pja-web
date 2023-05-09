@@ -2,9 +2,9 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/config/env";
+import Footer from "@/components/footer";
 
 const instrumentSans = localFont({
   src: "../fonts/instrument-sans/InstrumentSans[wdth,wght].woff2",
