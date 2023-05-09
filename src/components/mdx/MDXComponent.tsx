@@ -2,12 +2,21 @@ import { useMDXComponent } from "next-contentlayer/hooks";
 import RoundedImage from "./RoundedImage";
 import CustomLink from "./CustomLink";
 import { ComponentType } from "react";
-import Code from "./Code";
+import Pre from "./Pre";
+import Code from "@/components/mdx/Code";
+import { H1, H2, H3, H4, H5, H6 } from "./headings";
 
-const embededComponent = {
+const embeddedComponent = {
   a: CustomLink,
   Image: RoundedImage,
-  pre: Code,
+  h1: H1,
+  h2: H2,
+  h3: H3,
+  h4: H4,
+  h5: H5,
+  h6: H6,
+  pre: Pre,
+  code: Code,
 };
 
 interface MdxProps {
@@ -17,8 +26,8 @@ interface MdxProps {
 export default function MDXComponent({ code, components }: MdxProps) {
   const Component = useMDXComponent(code);
   return (
-    <article className="leading-loose tracking-normal prose prose-lg font-body">
-      <Component components={{ ...embededComponent, ...components }} />
+    <article className="leading-loose tracking-normal prose font-body">
+      <Component components={{ ...embeddedComponent, ...components }} />
     </article>
   );
 }

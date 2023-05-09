@@ -66,7 +66,7 @@ You'll be prompted with some questions, answer according to your project specifi
 
 The configuration file would look something like the below:
 
-```json:eslintrc.json
+```json title="eslintrc.json" showLineNumbers
 {
   "env": {
     "browser": true,
@@ -89,26 +89,26 @@ To override the code style enforcement you need to insert your style in the `rul
 
 Here is an example of `eslintrc.json`
 
-```json:eslintrc.json
+```json showLineNumbers title="eslintrc.json"
 {
- "env": {
-   "browser": true,
-   "es2021": true
- },
- "extends": ["plugin:react/recommended", "airbnb"],
- "overrides": [],
- "parserOptions": {
-   "ecmaVersion": "latest",
-   "sourceType": "module"
- },
- "plugins": ["react"],
- "rules": {
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
     "no-unused-vars": "warn",
     "no-console": "error",
     "indent": ["warn", "tab"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"]
- }
+  }
 }
 ```
 
@@ -118,7 +118,7 @@ You can tell ESLint to ignore specific files and directories by creating a .esli
 
 for example, the following omit linting on node_modules, dist, and .next directory.
 
-```text:.eslintignore
+```text title=".eslintignore"
 node_modules
 dist
 .next
@@ -132,7 +132,7 @@ There are various rules for the prettier configuration files. Take a look at [Pr
 
 Here is an example of the configuration.
 
-```json:.prettierrc
+```json title=".prettierrc"
 {
   "trailingComma": "es5",
   "tabWidth": 4,
@@ -145,7 +145,7 @@ You can ignore some files to be formatted by prettier by creating an empty file 
 
 Here is an example of prettier ignore configuration:
 
-```text:.prettierignore
+```text title=".prettierignore"
 # Ignore artifacts:
 build
 coverage
@@ -165,7 +165,7 @@ There are several ways to configure `lint-staged` in your project:
 
 Here is an example `lint-staged` configuration using an object in `package.json`
 
-```json:package.json
+```json title="package.json"
 {
 ...
 "lint-staged":{
@@ -195,7 +195,7 @@ npx husky install
 
 2. Optional, add prepare script in package.json to automatically enable husky after install
 
-```json:package.json
+```json title="package.json"
 {
 ...
 "scripts":{
@@ -213,7 +213,7 @@ yarn husky add .husky/pre-commit "yarn lint-staged"
 
 It'll generate file in `.husky/pre-commit` with below content:
 
-```bash
+```bash title=".huskty/pre-commit"
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 

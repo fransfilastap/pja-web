@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import MDXComponent from "@/components/mdx/MDXComponent";
 import clsxm from "@/helpers/clsxm";
 import TableOfContent from "@/components/mdx/TableOfContent";
+import { format } from "date-fns";
+import ContentDate from "@/components/content-date";
+import Title from "@/components/content-title";
+import ContentIntro from "@/components/content-intro";
 
 export const generateStaticParams = async () =>
   allBlogs.map((post: any) => ({ slug: post._raw.flattenedPath }));
@@ -27,12 +31,11 @@ export default function BlogPostLayout({
 
   return (
     <Container className="p-10 mt-20">
-      <h1 className="text-4xl py-3 text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75% lg:text-6xl mb-10 tracking-normal font-body font-[700] text-black">
-        {post.title}
-      </h1>
-      <p className={"text-base font-body font-[400] text-gray-500 mb-8"}>
-        {post.description}
-      </p>
+      <div className="flex flex-col">
+        <Title>{post.title}</Title>
+        <ContentDate date={post.date} />
+      </div>
+      <ContentIntro className="mt-4">{post.description}</ContentIntro>
       <div className="flex flex-col-reverse justify-between gap-3 lg:flex-row">
         <MDXComponent code={post.body.code} />
         <TableOfContent headings={post.headings} />

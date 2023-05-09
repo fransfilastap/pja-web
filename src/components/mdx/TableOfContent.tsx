@@ -21,7 +21,7 @@ const TableOfContent: FunctionComponent<TableOfContentProps> = ({
         {...rest}
       >
         <div className={clsxm("toc--head")}>
-          <h2 className="font-[600] text-lg font-serif ">Table of Content</h2>
+          <h2 className="font-[600] text-lg font-heading ">Table of Content</h2>
         </div>
         <ol className="toc--list">
           {headings.map((heading, i) => (
@@ -60,7 +60,6 @@ function TableOfContentsLink({
       })}
       href={`#${slug}`}
     >
-      
       <span>{title}</span>
     </a>
   );

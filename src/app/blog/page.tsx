@@ -40,8 +40,10 @@ export default async function Page() {
 
 function Skeleton() {
   return (
-    <p className="font-[500] w-full h-[500px] border border-gray-50">
-      Loading....
-    </p>
+      <div className={"flex flex-col justify-center items-center w-full h-[100vh] border border-gray-50"}>
+          <p className="font-[500]">
+              Loading....
+          </p>
+      </div>
   );
 }

@@ -8,7 +8,7 @@ import { Blog } from './src/contentlayer/document/Blog'
 
 const rehypePrettyCodeoptions = {
   // Use one of Shiki's packaged themes
-  theme: 'light-plus',
+  theme: 'github-light',
   // Set to true to keep the background color
   keepBackground: true,
   onVisitLine (node) {
@@ -28,9 +28,9 @@ const mdxOptions = {
   remarkPlugins: [remarkGfm],
   rehypePlugins: [
     rehypeSlug,
-    [rehypeAutolinkHeadings, { properties: { className: ['anchor'] } }],
     [rehypeImgSize, { dir: 'public' }],
-    [rehypePrettyCode, rehypePrettyCodeoptions]
+    [rehypePrettyCode, rehypePrettyCodeoptions],
+    [rehypeAutolinkHeadings, { properties: { className: ['anchor'] } }]
   ]
 }
 
