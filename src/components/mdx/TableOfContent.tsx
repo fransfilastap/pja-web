@@ -1,6 +1,6 @@
+import { FunctionComponent, ComponentPropsWithoutRef } from "react";
 import { BlogHeading } from "@/contentlayer/document/Blog";
 import clsxm from "@/helpers/clsxm";
-import { FunctionComponent, ComponentPropsWithoutRef } from "react";
 
 export type TableOfContentProps = ComponentPropsWithoutRef<"nav"> & {
   headings: BlogHeading[];
