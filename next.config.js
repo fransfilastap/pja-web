@@ -4,9 +4,6 @@ const { withContentlayer } = require('next-contentlayer')
 const nextConfig = {
   images: {
     domains: ['images.unsplash.com', 'res.cloudinary.com']
-  },
-  experimental: {
-    appDir: true
   }
 }
 
