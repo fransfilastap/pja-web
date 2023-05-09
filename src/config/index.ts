@@ -1,4 +1,4 @@
-import config from 'config.json';
+import config from '../../config.json';
 
 type Index = {
 	readonly author: string;

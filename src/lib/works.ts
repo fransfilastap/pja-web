@@ -1,4 +1,4 @@
-import works from '#/works/index.json';
+import works from '../../works.json';
 
 export type Work = {
 	readonly name: string;
