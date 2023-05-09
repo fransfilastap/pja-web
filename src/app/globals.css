@@ -2,54 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-  :root{
-    --primary-color: #5941A9;
-    --secondary-color: #FFE66D;
-    --tertiary-color: #6D72C3;
-    --code-bg: #E5D4ED;
-    @apply scroll-smooth selection:bg-[var(--secondary-color)] selection:text-black
+@layer base {
+  :root {
+    --primary-color: #5941a9;
+    --secondary-color: #ffe66d;
+    --tertiary-color: #6d72c3;
+    --code-bg: #e5d4ed;
+    @apply scroll-smooth selection:bg-[var(--secondary-color)] selection:text-black;
   }
-
-
 }
 
-@layer components{
-
-  .toc{
-    @apply sticky z-20 block p-5 border rounded-lg top-[10vh]  w-full
+@layer components {
+  .toc {
+    @apply sticky z-20 block p-5 border rounded-lg top-[10vh]  w-full;
   }
 
-  .toc li{
-    @apply relative
+  .toc li {
+    @apply relative;
   }
 
-  .toc .toc--head{
-    @apply flex items-center justify-between text-sm font-bold
+  .toc .toc--head {
+    @apply flex items-center justify-between text-sm font-bold;
   }
 
-  .toc .toc--list{
-    @apply flex flex-col
+  .toc .toc--list {
+    @apply flex flex-col;
   }
 
-  .toc .toc--list .toc--link{
-    @apply font-body text-slate-700 text-[0.9em] hover:text-[var(--primary-color)] transition duration-75 ease-in-out font-[400]
+  .toc .toc--list .toc--link {
+    @apply font-body text-slate-700 text-[0.9em] hover:text-[var(--primary-color)] transition duration-75 ease-in-out font-[400];
   }
 
-  .toc .toc--list .toc--link__depth-3{
-    @apply ml-4 font-light text-sm block
+  .toc .toc--list .toc--link__depth-3 {
+    @apply ml-4 font-light text-sm block;
   }
 
-  div[data-rehype-pretty-code-fragment]{
-    @apply border border-gray-200 rounded-lg overflow-hidden bg-white shadow shadow-slate-50
+  div[data-rehype-pretty-code-fragment] {
+    @apply border border-gray-200 rounded-lg overflow-hidden bg-white shadow shadow-slate-50 my-8;
   }
 
   div[data-rehype-pretty-code-title] {
-    @apply font-heading text-sm text-slate-900 font-[500] w-full h-full bg-slate-200 px-5 py-2
+    @apply font-heading text-sm text-slate-900 font-[500] w-full h-full bg-slate-200 px-5 py-2;
   }
 
-  .mdx-code{
-    @apply  rounded-none m-0 bg-slate-100
+  .mdx-code {
+    @apply rounded-none m-0 bg-slate-100 grid grid-flow-row gap-0 w-full py-1 px-0;
+  }
+
+  .mdx-code code > .line {
+    @apply inline-flex w-full px-5;
+  }
+
+  .mdx-code .highlighted {
+    @apply bg-pink-200/30;
   }
 
   .mdx-code code[data-line-numbers] {
@@ -59,7 +64,7 @@
   .mdx-code code[data-line-numbers] > .line::before {
     counter-increment: line;
     content: counter(line);
-    @apply inline-block w-[1rem] mr-[1rem] text-gray-400
+    @apply inline-block w-[1rem] mr-[1rem] text-gray-400;
   }
 
   code[data-line-numbers-max-digits="2"] > .line::before {
@@ -70,12 +75,12 @@
     width: 3rem;
   }
 
-  .anchor{
-    @apply block w-full h-full bg-slate-200
+  .anchor {
+    @apply block w-full h-full bg-slate-200;
   }
 
-  .prose > p > code, .prose li > code   {
-    @apply p-1 bg-slate-100 rounded-md before:content-none after:content-none border border-slate-200 font-[600]
+  .prose > p > code,
+  .prose li > code {
+    @apply p-1 bg-slate-100 rounded-md before:content-none after:content-none border border-slate-200 font-[600];
   }
-
 }

@@ -10,7 +10,7 @@ tags:
   - sso
   - wso2
   - idenity server
-keywords: 'laravel, SSO, SAML'
+keywords: "laravel, SSO, SAML"
 lastmod: 2022-12-08
 ---
 
@@ -53,13 +53,13 @@ The command will add the files `app/config/saml2_settings.php` & `app/config/sam
 
 4. Define names of all the IDPs you want to configure in `app/config/saml2_settings.php` . The name of the IDP will show up in the URL used by the Saml2 routes the library makes, as well as internally in the filename for each IDP's config.
 
-```php
+```php title="app/config/saml2_settings.php"
 'idpNames' => ['wso2is'],
 ```
 
 5. Set `$this_idp_env_id = 'WSO2IS'` or any value, then you can set ENV vars starting with `SAML2_WSO2IS_`  respectively.
 
-```php
+```php title=".env"
 SAML2_WSO2IS_IDP_ENTITYID=localhost
 SAML2_WSO2IS_IDP_HOST=https://localhost:9443/samlsso
 SAML2_WSO2IS_IDP_SSO_URL=https://localhost:9443/samlsso
@@ -71,7 +71,7 @@ WSO2IS_USERSTORENAME=PRIMARY
 
 6. In order to make single logout work properly, I need to extend Saml2Controller which provided by the library.
 
-```php
+```php title="app\Http\Controllers\Wso2Saml2Controller.php"
 <?php
 
 namespace App\Http\Controllers;
@@ -216,7 +216,7 @@ Fill some field in User Profile
 
 Create Event Listener to catch “logged in” event from WSO2 IS. Add this code to app\Providers\EventServiceProvider.php
 
-```php
+```php title="app\Providers\EventServiceProvider.php"
 <?php
 
 namespace App\Providers;
@@ -272,7 +272,7 @@ class EventServiceProvider extends ServiceProvider
 
 - Create an action class to “synchronize” laravel user with WSO2 IS user. Create class in **app/actions** folder.
 
-```php
+```php title="app/actions/SyncUserFromWSO2.php"
 <?php
 
 namespace App\Actions;
@@ -370,7 +370,7 @@ class SyncUserFromWSO2
 }
 ```
 
-```php
+```php title="app/Actions/WSO2ISClaims.php"
 <?php
 
 namespace App\Actions;
@@ -475,15 +475,14 @@ These classes will synchronize laravel user data with WSO2 IS user data every ti
 
 At this state, your laravel application should connected to WSO2 IS. BUT, we need some additional configuration to make laravel save authenticated session correctly by using “laravel way”. Edit saml2_config.php file and define “routesMiddleware”.
 
-```php
+```php title="saml2_config.php" showLineNumbers {2}
 <?php
-
 "routesMiddleware" => ["saml"],
 ```
 
 - Then create new middleware entry at app\Http\Kernel.php
 
-```php
+```php title="app\Http\Kernel.php" {5,6,7,8,9}
 <?php
 
 protected $middlewareGroups = [

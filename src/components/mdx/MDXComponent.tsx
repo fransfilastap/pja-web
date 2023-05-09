@@ -26,7 +26,7 @@ interface MdxProps {
 export default function MDXComponent({ code, components }: MdxProps) {
   const Component = useMDXComponent(code);
   return (
-    <article className="leading-loose tracking-normal prose font-body prose-blockquote:before:content-none prose-blockquote:after:content-none">
+    <article className="w-full leading-loose tracking-normal prose lg:w-2/3 font-body prose-blockquote:before:content-none prose-blockquote:after:content-none">
       <Component components={{ ...embeddedComponent, ...components }} />
     </article>
   );
