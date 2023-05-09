@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import ContentDate from "@/components/content-date";
 import Title from "@/components/content-title";
 import ContentIntro from "@/components/content-intro";
+import ContentReadingTime from "@/components/content-reading-time";
 
 export const generateStaticParams = async () =>
   allBlogs.map((post: any) => ({ slug: post._raw.flattenedPath }));
@@ -31,12 +32,13 @@ export default function BlogPostLayout({
 
   return (
     <Container className="p-10 mt-20">
-      <div className="flex flex-col">
-        <Title>{post.title}</Title>
+      <div className="inline-flex gap-4 mb-2">
         <ContentDate date={post.date} />
+        <ContentReadingTime>{post.timeToRead}</ContentReadingTime>
       </div>
-      <ContentIntro className="mt-4">{post.description}</ContentIntro>
-      <div className="flex flex-col-reverse justify-between gap-3 lg:flex-row">
+      <Title>{post.title}</Title>
+      <ContentIntro className="my-10">{post.description}</ContentIntro>
+      <div className="flex flex-col-reverse justify-between w-full gap-3 lg:flex-row">
         <MDXComponent code={post.body.code} />
         <TableOfContent headings={post.headings} />
       </div>

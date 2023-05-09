@@ -8,10 +8,7 @@ export default function ContentIntro({
 }: ComponentProps<"p">) {
   return (
     <p
-      className={clsxm(
-        "text-lg font-body font-[300] text-gray-500 mb-8",
-        className
-      )}
+      className={clsxm("text-lg font-body font-[300] text-gray-500", className)}
       {...rest}
     >
       {children}
