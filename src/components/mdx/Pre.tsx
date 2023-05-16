@@ -21,7 +21,7 @@ export default function Pre({ children, className, style, ...rest }: PreProps) {
     : false;
   const withTitle = rest["data-title"]?.replace(/['"]+/g, "");
   const withCopy = rest["data-copy"] ? parseBoolean(rest["data-copy"]) : false;
-  const rawCode = rest["data-copy"] ?? "";
+  const rawCode = rest["data-raw"] || "";
 
   return (
     <div className="overflow-hidden bg-white border rounded-lg border-zinc-100">
