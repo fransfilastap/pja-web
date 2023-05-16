@@ -2,6 +2,7 @@ import { makeSource } from 'contentlayer/source-files'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeImgSize from 'rehype-img-size'
+import { visit } from 'unist-util-visit'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { Blog } from './src/contentlayer/document/Blog'
@@ -29,7 +30,44 @@ const mdxOptions = {
   rehypePlugins: [
     rehypeSlug,
     [rehypeImgSize, { dir: 'public' }],
+    () => (tree) => {
+      visit(tree, (node) => {
+        if (node?.type === 'element' && node?.tagName === 'pre') {
+          const [codeEl] = node.children
+          if (codeEl.tagName !== 'code') return
+          node.raw = codeEl.children?.[0].value
+          const meta = codeEl.data?.meta || ''
+          console.log(meta)
+          const metas = meta.match(/[^{}]+(?=})/g) || []
+          if (metas.length > 0) {
+            node.rawMeta = metas.join('|')
+          }
+        }
+      })
+    },
     [rehypePrettyCode, rehypePrettyCodeoptions],
+    () => (tree) => {
+      visit(tree, (node) => {
+        if (node?.type === 'element' && node?.tagName === 'div') {
+          if (!('data-rehype-pretty-code-fragment' in node.properties)) {
+            return
+          }
+          for (const child of node.children) {
+            if (child.tagName === 'pre') {
+              child.properties['data-raw'] = node.raw
+              if (node.rawMeta) {
+                const metas = node.rawMeta.split('|')
+                metas.forEach(meta => {
+                  const k = meta.split(':')[0]
+                  const v = meta.split(':')[1]
+                  child.properties[`data-${k}`] = v
+                })
+              }
+            }
+          }
+        }
+      })
+    },
     [rehypeAutolinkHeadings, { properties: { className: ['anchor'] } }]
   ]
 }

@@ -3,7 +3,6 @@ import RoundedImage from "./RoundedImage";
 import CustomLink from "./CustomLink";
 import { ComponentType } from "react";
 import Pre from "./Pre";
-import Code from "@/components/mdx/Code";
 import { H1, H2, H3, H4, H5, H6 } from "./headings";
 
 const embeddedComponent = {
@@ -16,7 +15,6 @@ const embeddedComponent = {
   h5: H5,
   h6: H6,
   pre: Pre,
-  code: Code,
 };
 
 interface MdxProps {
