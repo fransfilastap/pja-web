@@ -37,10 +37,10 @@ export default function BlogPostLayout({
       </div>
       <Title>{post.title}</Title>
       <ContentIntro className="my-10">{post.description}</ContentIntro>
-      <div className="flex flex-col-reverse justify-between w-full gap-3 lg:flex-row">
+      <section className="flex flex-col-reverse justify-between w-full gap-x-10 lg:flex-row">
         <MDXComponent code={post.body.code} />
         <TableOfContent headings={post.headings} />
-      </div>
+      </section>
       <Disqus title={post.title} identifier={post.slug} locale={"en_EN"} />
     </Container>
   );

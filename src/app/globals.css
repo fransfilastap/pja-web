@@ -45,19 +45,19 @@
     @apply font-heading text-[.8rem] text-gray-500 font-[300] w-full h-full bg-gray-50 px-5 py-2 rounded-b-none rounded-t-lg;
   }
 
-  /* .mdx-code code > .line {
-    @apply inline-flex w-full px-5;
+  .line {
+    @apply inline-flex w-full px-5 border;
   }
 
-  .mdx-code .highlighted {
+  code .highlighted {
     @apply bg-pink-200/30;
   }
 
-  .mdx-code code[data-line-numbers] {
+  code[data-line-numbers] {
     counter-reset: line;
   }
 
-  .mdx-code code[data-line-numbers] > .line::before {
+  code[data-line-numbers] > .line::before {
     counter-increment: line;
     content: counter(line);
     @apply inline-block w-[1rem] mr-[1rem] text-gray-400;
@@ -69,7 +69,7 @@
 
   code[data-line-numbers-max-digits="3"] > .line::before {
     width: 3rem;
-  } */
+  }
 
   .anchor {
     @apply block w-full h-full bg-slate-200;
@@ -78,5 +78,13 @@
   .prose > p > code,
   .prose li > code {
     @apply p-1 bg-slate-100 rounded-md before:content-none after:content-none border border-slate-200 font-[600];
+  }
+
+  table,
+  tr,
+  td,
+  th,
+  thead {
+    @apply px-2 py-1;
   }
 }
