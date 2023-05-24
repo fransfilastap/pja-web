@@ -25,8 +25,9 @@ const valverde = localFont({
 });
 
 export const metadata = {
-  title: "Frans FP",
-  description: "Personal",
+  title: "Paralegal Justice Awards",
+  description:
+    "Paralegal Justice Awards 2023 - Apresiasi Non Litigation Peacemaker",
 };
 
 export default function RootLayout({

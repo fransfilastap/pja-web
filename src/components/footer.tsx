@@ -8,29 +8,35 @@ export default function Footer() {
       <Container className="flex flex-row justify-between w-full px-10 py-10">
         <div className="flex flex-col w-full gap-2">
           <h5 className="font-thin text-white uppercase font-xs text-[13px] font-body">
-            Navigate
+            Navigasi
           </h5>
           <nav className="flex flex-col gap-0">
-            <FooterLink href={"/"}>Home</FooterLink>
-            <FooterLink href={"/about"}>About</FooterLink>
-            <FooterLink href={"#"}>Colophon</FooterLink>
+            <FooterLink href={"/"}>Beranda</FooterLink>
+            <FooterLink href={"/about"}>Tentang</FooterLink>
+            <FooterLink href={"/blog"}>Berita</FooterLink>
           </nav>
         </div>
         <div className="flex flex-col w-full gap-2">
           <h5 className="font-thin text-white uppercase font-xs text-[13px] font-body">
-            Contact
+            Kontak
           </h5>
           <nav className="flex flex-col gap-0">
-            <FooterLink href={"mailto:mail@fransfp.dev"}>Email</FooterLink>
-            <FooterLink href={"https://linkedin.com/"}>LinkedIn</FooterLink>
-            <FooterLink href={"/colophon"}>Twitter</FooterLink>
-            <FooterLink href={"/colophon"}>Github</FooterLink>
+            <FooterLink href={"tel:0821-6817-8530"}>Dorma</FooterLink>
+            <FooterLink href={"tel:0822-2022-5605"}>Susan</FooterLink>
           </nav>
         </div>
       </Container>
-      <Container className="w-full px-10 py-10 text-xs font-thin text-white">
-        &copy; {`${new Date().getFullYear()}`} Frans Filasta Pratama. All Rights
-        reserverd.
+      <Container className="flex flex-col items-center justify-between w-full px-10 py-10 text-xs font-thin text-white lg:flex-row">
+        <p>
+          {" "}
+          &copy; {`${new Date().getFullYear()}`} BPHN. All Rights reserverd.
+        </p>
+        <p>
+          Forked from{" "}
+          <Link className="font-bold text-amber-500" href="https://fransfp.dev">
+            fransfp.dev
+          </Link>
+        </p>
       </Container>
     </footer>
   );

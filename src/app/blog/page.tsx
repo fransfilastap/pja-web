@@ -8,8 +8,8 @@ import { compareDesc, format } from "date-fns";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Read my thoughts on software development, design, and more.",
+  title: "Berita - Paralegal Justice Awards",
+  description: "Berita terkait event paralegal justice awards",
 };
 
 export default async function Page() {
@@ -21,10 +21,10 @@ export default async function Page() {
     <Container className="p-6 my-20">
       <div className="flex flex-col items-start justify-between mb-10">
         <h2 className="font-[600] py-5 text-7xl font-heading text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75%">
-          Blog
+          Berita
         </h2>
         <p className="text-lg font-light">
-          My Thought, experiments, and tutorial
+          Berita terkait Paralegal Justice Awards
         </p>
       </div>
       <Suspense fallback={<Skeleton />}>
@@ -40,10 +40,12 @@ export default async function Page() {
 
 function Skeleton() {
   return (
-      <div className={"flex flex-col justify-center items-center w-full h-[100vh] border border-gray-50"}>
-          <p className="font-[500]">
-              Loading....
-          </p>
-      </div>
+    <div
+      className={
+        "flex flex-col justify-center items-center w-full h-[100vh] border border-gray-50"
+      }
+    >
+      <p className="font-[500]">Loading....</p>
+    </div>
   );
 }
