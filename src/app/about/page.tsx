@@ -13,7 +13,7 @@ export default function Home() {
         Tentang
       </h3>
       <h1 className="text-4xl text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75% lg:text-6xl mb-10 tracking-normal font-body font-[500] text-black">
-        Sebuah Apresiasi {'"Non Litigation Peacemaker"'}
+        Sebuah Apresiasi "Non Litigation Peacemaker"
       </h1>
       <article className="prose prose-lg font-body">
         <p>
