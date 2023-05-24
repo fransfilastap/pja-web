@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "deploy:local": "next build && pm2 startOrRestart ecosystem.config.js --env local",
+    "deploy:dev": "next build && pm2 startOrRestart ecosystem.config.js --env development",
+    "deploy:prod": "next build && pm2 startOrRestart ecosystem.config.js --env production"
   },
   "dependencies": {
     "@fluentui/react-icons": "^2.0.201",
@@ -25,6 +28,7 @@
     "disqus-react": "^1.1.5",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
+    "framer-motion": "^10.12.14",
     "github-slugger": "^2.0.0",
     "mdx-bundler": "^9.2.1",
     "next": "13.4.1",
@@ -50,7 +54,8 @@
     "stagger-text-reveal-animation": "^1.0.0",
     "tailwind-merge": "^1.12.0",
     "tailwindcss": "3.3.1",
-    "unified": "^10.1.2"
+    "unified": "^10.1.2",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",

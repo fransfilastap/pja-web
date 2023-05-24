@@ -1,37 +1,26 @@
 import Container from "@/components/container";
 import { Metadata } from "next";
-import FeaturedPost from "@/components/featured-post";
 import BlogPost from "@/components/blog-post";
-import { allBlogs } from "contentlayer/generated";
-import featureCover from "../../../public/media/featured-post.jpg";
-import { compareDesc, format } from "date-fns";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Berita - Paralegal Justice Awards",
-  description: "Berita terkait event paralegal justice awards",
+  title: "Vote Kandidat - Paralegal Justice Awards",
+  description: "Kandidat Non Litigation Peacemaker",
 };
 
 export default async function Page() {
-  const blogs = allBlogs.sort((a, b) =>
-    compareDesc(new Date(a.date as string), new Date(b.date as string))
-  );
-
   return (
     <Container className="p-6 my-20">
       <div className="flex flex-col items-start justify-between mb-10">
         <h2 className="font-[600] py-5 text-4xl font-heading text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75%">
-          Berita
+          Vote Kades/Lurah Terfavorit.
         </h2>
-        <p className="text-lg font-light">
-          Berita terkait Paralegal Justice Awards
-        </p>
       </div>
       <Suspense fallback={<Skeleton />}>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          {blogs.map((blog, i) => (
-            <BlogPost key={i} blog={blog} />
-          ))}
+        <div className="h-[30vh]">
+          <h5 className="text-xl font-[500] font-heading">
+            Voting dimulai tanggal 26/05/2023. Stay tuned!
+          </h5>
         </div>
       </Suspense>
     </Container>

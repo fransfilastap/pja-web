@@ -119,7 +119,7 @@ const CTA = () => {
           <span className="text-amber-500">✺</span>STAY TUNED
         </span>
         <span className="my-2 text-2xl font-[600] uppercase font-heading text-[#FFE66D]">
-          Voting akan segera dibuka 🔥
+          Voting dimulai 26/05/2023
         </span>
       </p>
     </Container>
