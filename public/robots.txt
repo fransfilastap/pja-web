@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://fransfp.dev
+Host: https://pja.bphn.go.id
 
 # Sitemaps
-Sitemap: https://fransfp.dev/sitemap.xml
+Sitemap: https://pja.bphn.go.id/sitemap.xml
