@@ -1,4 +1,4 @@
 module.exports = {
-    siteUrl: process.env.SITE_URL || 'https://fransfp.dev',
+    siteUrl: process.env.SITE_URL || 'https://pja.bphn.go.id',
     generateRobotsTxt: true
 };
