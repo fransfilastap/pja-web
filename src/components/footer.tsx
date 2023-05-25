@@ -29,7 +29,13 @@ export default function Footer() {
       <Container className="flex flex-col items-center justify-between w-full px-10 py-10 text-xs font-thin text-white lg:flex-row">
         <p>
           {" "}
-          &copy; {`${new Date().getFullYear()}`} BPHN. All Rights reserverd.
+          &copy; {`${new Date().getFullYear()}`} BPHN. All Rights reserverd. |{" "}
+          <FooterLink
+            className="normal-case underline font-[400]"
+            href={"/privacy"}
+          >
+            Kebijakan Privasi
+          </FooterLink>
         </p>
         <p>
           Forked from{" "}

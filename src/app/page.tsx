@@ -116,7 +116,7 @@ const Schedule = () => {
               </td>
               <td className="hidden py-6 lg:grid">
                 <p className="pl-10 text-xl lg:text-3xl font-[200] font-heading">
-                  Mei Pembukaan Paralegal Justice Academy dan Paralegal Justice
+                  Pembukaan Paralegal Justice Academy dan Paralegal Justice
                   Award
                 </p>
               </td>
