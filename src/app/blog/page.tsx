@@ -11,9 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const blogs = allBlogs.sort((a, b) =>
-    compareDesc(new Date(a.date as string), new Date(b.date as string))
-  );
+  const blogs = allBlogs
+    .filter((blog) => blog.tags?.includes("news"))
+    .sort((a, b) =>
+      compareDesc(new Date(a.date as string), new Date(b.date as string))
+    );
 
   return (
     <Container className="p-6 my-20">

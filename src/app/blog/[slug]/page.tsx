@@ -10,7 +10,9 @@ import ContentReadingTime from "@/components/content-reading-time";
 import Disqus from "@/components/disqus";
 
 export const generateStaticParams = async () =>
-  allBlogs.map((post: any) => ({ slug: post._raw.flattenedPath }));
+  allBlogs
+    .filter((blog) => blog.tags?.includes("news"))
+    .map((post: any) => ({ slug: post._raw.flattenedPath }));
 export const generateMetadata = ({ params }: any) => {
   const post = allBlogs.find(
     (post: any) => post._raw.flattenedPath === params.slug
@@ -25,7 +27,9 @@ export default function BlogPostLayout({
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const post = allBlogs.find((post) => post._raw.flattenedPath === params.slug);
+  const post = allBlogs.find((post) => {
+    return post._raw.flattenedPath === params.slug;
+  });
 
   if (!post) notFound();
 

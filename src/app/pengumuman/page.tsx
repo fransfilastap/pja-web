@@ -1,7 +1,7 @@
 import Container from "@/components/container";
 import { Metadata } from "next";
 import BlogPost from "@/components/blog-post";
-import { allAnnouncements } from "contentlayer/generated";
+import { allBlogs } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
 import { Suspense } from "react";
 
@@ -11,9 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const blogs = allAnnouncements.sort((a, b) =>
-    compareDesc(new Date(a.date as string), new Date(b.date as string))
-  );
+  const blogs = allBlogs
+    .filter((blog) => blog.tags?.includes("announcement"))
+    .sort((a, b) =>
+      compareDesc(new Date(a.date as string), new Date(b.date as string))
+    );
 
   return (
     <Container className="p-6 my-20">

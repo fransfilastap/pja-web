@@ -11,7 +11,7 @@ export type BlogHeading = { level: 1 | 2 | 3; title: string, slug: string }
 
 export const Blog = defineDocumentType(() => ({
     name: 'Blog',
-    filePathPattern: '**/*_news.mdx',
+    filePathPattern: '**/*.mdx',
     contentType: 'mdx',
     fields: {
         title: {

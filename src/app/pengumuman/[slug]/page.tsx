@@ -1,5 +1,5 @@
 import Container from "@/components/container";
-import { allAnnouncements } from "contentlayer/generated";
+import { allBlogs } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import MDXComponent from "@/components/mdx/MDXComponent";
 import TableOfContent from "@/components/mdx/TableOfContent";
@@ -9,11 +9,13 @@ import ContentIntro from "@/components/content-intro";
 import ContentReadingTime from "@/components/content-reading-time";
 
 export const generateStaticParams = async () =>
-  allAnnouncements.map((post: any) => ({ slug: post._raw.flattenedPath }));
+  allBlogs
+    .filter((e) => e.tags?.includes("announcement"))
+    .map((post: any) => ({ slug: post._raw.flattenedPath }));
 export const generateMetadata = ({ params }: any) => {
-  const post = allAnnouncements.find(
-    (post: any) => post._raw.flattenedPath === params.slug
-  );
+  const post = allBlogs
+    .filter((e) => e.tags?.includes("announcement"))
+    .find((post: any) => post._raw.flattenedPath === params.slug);
   return { title: post?.title, description: post?.description };
 };
 
@@ -24,9 +26,7 @@ export default function AnnouncementPostLayout({
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const post = allAnnouncements.find(
-    (post) => post._raw.flattenedPath === params.slug
-  );
+  const post = allBlogs.find((post) => post._raw.flattenedPath === params.slug);
 
   if (!post) notFound();
 
