@@ -45,7 +45,7 @@ export default function VoteButton({
       if (voted) {
         await vote(candidateCode);
       } else {
-        alert("sudah voting");
+        alert("Maaf satu email hanya dapat digunakan satu kali voting.");
       }
       setIsSubmiting(false);
     }

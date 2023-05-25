@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: "Kandidat Non Litigation Peacemaker",
 };
 
+export const dynamic = "force-dynamic";
+
 async function getCandidates() {
   return await prisma.candidates.findMany({
     orderBy: {

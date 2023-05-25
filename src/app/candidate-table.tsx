@@ -6,9 +6,11 @@ import { Candidates } from "@prisma/client";
 import VoteButton from "@/components/button/vote.button";
 import Container from "@/components/container";
 import clsxm from "@/helpers/clsxm";
-import { isValid } from "date-fns";
+import Image from "next/image";
 
 const MAX_ROW = 9;
+const DEFAULT_PLACEHOLDER =
+  "https://res.cloudinary.com/dyduzvx5b/image/upload/v1684995330/Portrait_Placeholder_ptfg7z.png";
 
 export default function CandidateTable({
   candidates,
@@ -67,6 +69,19 @@ export default function CandidateTable({
                   <span className="text-xl text-center lg:text-2xl font-heading pr-6 font-[800] text-slate-950 block w-full h-full items-center justify-center">
                     {i + 1}
                   </span>
+                </td>
+                <td className="place-content-center">
+                  <Image
+                    className="border"
+                    src={
+                      candidate.photo !== null
+                        ? candidate.photo
+                        : DEFAULT_PLACEHOLDER
+                    }
+                    width={100}
+                    height={200}
+                    alt={`photo ${candidate.name}`}
+                  />
                 </td>
                 <td className="border-black border-y">
                   <p className="text-xl lg:text-2xl font-heading pr-6 font-[800] text-slate-950">
