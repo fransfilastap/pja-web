@@ -6,6 +6,7 @@ import { visit } from 'unist-util-visit'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { Blog } from './src/contentlayer/document/Blog'
+import { Announcement } from './src/contentlayer/document/Announcement'
 
 const rehypePrettyCodeoptions = {
   // Use one of Shiki's packaged themes
@@ -73,7 +74,7 @@ const mdxOptions = {
 }
 
 export default makeSource({
-  contentDirPath: 'content/blog',
-  documentTypes: [Blog],
+  contentDirPath: 'content',
+  documentTypes: [Blog, Announcement],
   mdx: mdxOptions
 })

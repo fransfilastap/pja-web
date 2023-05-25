@@ -1,17 +1,17 @@
 import Container from "@/components/container";
 import { Metadata } from "next";
 import BlogPost from "@/components/blog-post";
-import { allBlogs } from "contentlayer/generated";
+import { allAnnouncements } from "contentlayer/generated";
 import { compareDesc, format } from "date-fns";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Berita - Paralegal Justice Awards",
+  title: "Pengumuman - Paralegal Justice Awards",
   description: "Berita terkait event paralegal justice awards",
 };
 
 export default async function Page() {
-  const blogs = allBlogs.sort((a, b) =>
+  const blogs = allAnnouncements.sort((a, b) =>
     compareDesc(new Date(a.date as string), new Date(b.date as string))
   );
 
@@ -19,10 +19,10 @@ export default async function Page() {
     <Container className="p-6 my-20">
       <div className="flex flex-col items-start justify-between mb-10">
         <h2 className="font-[600] py-5 text-4xl font-heading text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75%">
-          Berita
+          Pengumuman
         </h2>
         <p className="text-lg font-light">
-          Berita terkait Paralegal Justice Awards
+          Pengumuman terkait Paralegal Justice Awards
         </p>
       </div>
       <Suspense fallback={<Skeleton />}>

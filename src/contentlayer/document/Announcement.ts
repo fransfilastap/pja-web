@@ -7,11 +7,11 @@ import { bundleMDX } from 'mdx-bundler'
 import { slug } from 'github-slugger'
 
 
-export type BlogHeading = { level: 1 | 2 | 3; title: string, slug: string }
+export type AnnouncementHeading = { level: 1 | 2 | 3; title: string, slug: string }
 
-export const Blog = defineDocumentType(() => ({
-    name: 'Blog',
-    filePathPattern: '**/*_news.mdx',
+export const Announcement = defineDocumentType(() => ({
+    name: 'Announcement',
+    filePathPattern: '**/*_announcement.mdx',
     contentType: 'mdx',
     fields: {
         title: {
@@ -61,7 +61,7 @@ export const Blog = defineDocumentType(() => ({
     computedFields: {
         url: {
             type: 'string',
-            resolve: (doc) => `/blog/${doc._raw.sourceFileName.split('.').slice(0, -1).join('.')}`
+            resolve: (doc) => `/announcement/${doc._raw.sourceFileName.split('.').slice(0, -1).join('.')}`
         },
         timeToRead: {
             type: 'string',
@@ -72,7 +72,7 @@ export const Blog = defineDocumentType(() => ({
 headings: {
       type: 'json',
       resolve: async (doc) => {
-        const headings: BlogHeading[] = []
+        const headings: AnnouncementHeading[] = []
 
         await bundleMDX({
           source: doc.body.raw,
@@ -91,7 +91,7 @@ headings: {
 
 
 const tocPlugin =
-  (headings: BlogHeading[]): unified.Plugin =>
+  (headings: AnnouncementHeading[]): unified.Plugin =>
     () => {
       return (node: any) => {
         for (const element of node.children.filter((_: any) => _.type === 'heading' || _.name === 'OptionsTable')) {

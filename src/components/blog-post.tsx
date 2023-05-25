@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { ComponentPropsWithoutRef, FunctionComponent } from "react";
-import { Blog } from "contentlayer/generated";
+import { Announcement, Blog } from "contentlayer/generated";
 import { format, parseISO } from "date-fns";
 import clsxm from "@/helpers/clsxm";
 
 export interface BlogPostProps extends ComponentPropsWithoutRef<"a"> {
-  blog: Blog;
+  blog: Blog | Announcement;
 }
 const BlogPost: FunctionComponent<BlogPostProps> = ({
   blog,

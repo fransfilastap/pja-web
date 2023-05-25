@@ -1,6 +1,7 @@
 import Container from "@/components/container";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import { Prisma, Jabatan } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import CandidateTable from "../candidate-table";
 
@@ -11,8 +12,33 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-async function getCandidates() {
-  return await prisma.candidates.findMany({
+async function getCandidates(): Promise<
+  {
+    _count: Prisma.CandidatesCountOutputType;
+    id: bigint;
+    name: string;
+    jabatan: Jabatan;
+    desa_kelurahan: string;
+    kecamatan: string;
+    kabupaten_kota: string;
+    provinsi: string;
+    photo: string | null;
+    code: string;
+  }[]
+> {
+  const result = await prisma.candidates.findMany({
+    select: {
+      _count: true,
+      name: true,
+      id: true,
+      photo: true,
+      desa_kelurahan: true,
+      code: true,
+      jabatan: true,
+      kabupaten_kota: true,
+      provinsi: true,
+      kecamatan: true,
+    },
     orderBy: [
       {
         Votes: {
@@ -30,6 +56,8 @@ async function getCandidates() {
       },
     ],
   });
+
+  return result;
 }
 
 async function isVotingStart() {

@@ -35,6 +35,7 @@ export default function Navigation() {
         <nav className="hidden gap-8 lg:inline-flex">
           <NavigationMenuItem url="/kandidat">Kandidat</NavigationMenuItem>
           <NavigationMenuItem url="/blog">Berita</NavigationMenuItem>
+          <NavigationMenuItem url="/pengumuman">Pengumuman</NavigationMenuItem>
           <NavigationMenuItem url="/about">Tentang</NavigationMenuItem>
         </nav>
         {!session?.user ? (
