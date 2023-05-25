@@ -1,9 +1,10 @@
 import Container from "@/components/container";
+import PJAStory from "./story";
 
 export default function Home() {
   return (
     <>
-      <Container className="px-8 py-0">
+      <Container className="px-8 py-0 overflow-clip">
         <Masthead />
         <HeroVideo />
         <Intro />
@@ -45,7 +46,7 @@ const HeroVideo = () => {
 
 const Intro = () => {
   return (
-    <div className="flex flex-row items-center justify-center min-h-[100vh]">
+    <div className="flex flex-col lg:flex-row items-center justify-center min-h-[100vh] my-20">
       <p className="block mx-auto my-20 text-3xl md:text-4xl lg:text-5xl font-[400] text-black font-body w-full md:w-[600px] lg:w-[778px]">
         Apresiasi{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75%">
@@ -54,6 +55,7 @@ const Intro = () => {
         Kepada Lurah atau Kepala Desa yang telah berdedikasi sebagai aktor
         penting dalam mewujudkan perdamaian masyarakat di wilayahnya
       </p>
+      <PJAStory />
     </div>
   );
 };
