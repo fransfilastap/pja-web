@@ -73,6 +73,7 @@ export default function CandidateTable({
                 </td>
                 <td className="hidden lg:table-cell">
                   <Image
+                    key={`lg-${candidate.photo}`}
                     src={
                       candidate.photo !== null
                         ? candidate.photo
@@ -96,6 +97,7 @@ export default function CandidateTable({
                       width={100}
                       height={200}
                       blurDataURL={DEFAULT_BLUR}
+                      key={candidate.photo}
                       alt={`photo ${candidate.name}`}
                     />
                     <p className="text-sm lg:text-2xl font-heading pr-6 font-[800] text-slate-950">
