@@ -38,9 +38,13 @@ export default function Navigation() {
           <NavigationMenuItem url="/about">Tentang</NavigationMenuItem>
         </nav>
         {!session?.user ? (
-          <Button onClick={() => signIn()}>Login</Button>
+          <Button className="hidden lg:block" onClick={() => signIn()}>
+            Login
+          </Button>
         ) : (
-          <button onClick={() => signOut()}>Logout</button>
+          <button className="hidden lg:block" onClick={() => signOut()}>
+            Logout
+          </button>
         )}
         <MobileMenuButton
           whileTap={{ scale: 0.8 }}
@@ -79,6 +83,11 @@ export default function Navigation() {
                       Tentang
                     </MobileNavigationMenuItem>
                   </nav>
+                  {!session?.user ? (
+                    <Button onClick={() => signIn()}>Login</Button>
+                  ) : (
+                    <button onClick={() => signOut()}>Logout</button>
+                  )}
                 </motion.div>
               </motion.div>
             </>
@@ -132,7 +141,7 @@ function MobileNavigationMenuItem({
     <span
       onClick={clickHandler}
       className={clsxm(
-        "text-black font-display hover:text-[#5941A9] transition-colors duration-100 ease-in uppercase text-sm font-[500]",
+        "text-black font-display hover:text-[#5941A9] transition-colors duration-100 ease-in uppercase text-xl font-[500]",
         className
       )}
     >

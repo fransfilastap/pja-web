@@ -43,6 +43,13 @@ model Votes {
   @@index([id, email, candidate_id])
 }
 
+model AppConfig {
+  key   String  @id
+  value Boolean @default(false)
+
+  @@map("Config")
+}
+
 enum Sex {
   L
   P
