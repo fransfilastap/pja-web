@@ -5,7 +5,11 @@ import { motion } from "framer-motion";
 
 const stories: any[] = [
   {
-    url: "https://res.cloudinary.com/dyduzvx5b/video/upload/v1685032806/Download_keaiuz.mp4",
+    url: "https://res.cloudinary.com/dyduzvx5b/video/upload/v1685054136/Download_2_rjso9z.mp4",
+    type: "video",
+  },
+  {
+    url: "https://res.cloudinary.com/dyduzvx5b/video/upload/v1685032805/Download_1_hmt6ry.mp4",
     type: "video",
   },
   {
@@ -29,7 +33,7 @@ export default function PJAStory() {
         stories={stories}
         loop={true}
         width={320}
-        height={480}
+        height={620}
       />
     </motion.div>
   );

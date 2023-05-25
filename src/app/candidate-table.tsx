@@ -77,14 +77,16 @@ export default function CandidateTable({
   return (
     <Container className="mt-10">
       {!isVotingDone && (
-        <input
-          ref={searchRef}
-          onChange={handleChange}
-          type="text"
-          name="filter-nama"
-          className="block w-full px-3 py-2 border border-black placeholder:text-gray-500 placeholder:font-body placeholder:normal-case placeholder:font-[300]"
-          placeholder="Cari Kades/Lurah Favoritmu. Ketikan nama kades/lurah, nama provinsi, atau nama desa"
-        />
+        <div className="sticky w-full p-5 bg-white border border-black shadow top-40">
+          <input
+            ref={searchRef}
+            onChange={handleChange}
+            type="text"
+            name="filter-nama"
+            className="block w-full px-3 py-2 border border-black placeholder:text-gray-500 placeholder:font-body placeholder:normal-case placeholder:font-[300]"
+            placeholder="Cari Kades/Lurah Favoritmu. Ketikan nama kades/lurah, nama provinsi, atau nama desa"
+          />
+        </div>
       )}
       <table className="table w-full mt-5">
         <tbody>
@@ -123,11 +125,7 @@ export default function CandidateTable({
                   <td className="hidden lg:table-cell">
                     <Image
                       key={`lg-${candidate.photo}`}
-                      src={
-                        candidate.photo !== null
-                          ? candidate.photo
-                          : DEFAULT_PLACEHOLDER
-                      }
+                      src={candidate.photo ?? DEFAULT_PLACEHOLDER}
                       width={100}
                       height={200}
                       blurDataURL={DEFAULT_BLUR}
@@ -138,11 +136,7 @@ export default function CandidateTable({
                     <div className="flex flex-col gap-1">
                       <Image
                         className="lg:hidden"
-                        src={
-                          candidate.photo !== null
-                            ? candidate.photo
-                            : DEFAULT_PLACEHOLDER
-                        }
+                        src={candidate.photo ?? DEFAULT_PLACEHOLDER}
                         width={100}
                         height={200}
                         blurDataURL={DEFAULT_BLUR}

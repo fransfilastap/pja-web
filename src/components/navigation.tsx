@@ -80,6 +80,9 @@ export default function Navigation() {
                     <MobileNavigationMenuItem url="/blog">
                       Berita
                     </MobileNavigationMenuItem>
+                    <MobileNavigationMenuItem url="/pengumuman">
+                      Pengumuman
+                    </MobileNavigationMenuItem>
                     <MobileNavigationMenuItem url="/about">
                       Tentang
                     </MobileNavigationMenuItem>
