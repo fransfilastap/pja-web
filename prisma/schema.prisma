@@ -10,7 +10,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model PostViews{
-  slug String @id
-  views BigInt @default(1)
+model Candidates {
+  id             BigInt    @id @default(autoincrement())
+  name           String
+  sex            Sex
+  jabatan        Jabatan
+  desa_kelurahan String
+  kecamatan      String
+  kabupaten_kota String
+  provinsi       String
+  photo          String?
+  code           String
+  created_at     DateTime  @default(now())
+  updated_at     DateTime?
+  deleted_at     DateTime?
+  Votes          Votes[]
+
+  @@unique([code])
+  @@index([id])
+}
+
+model Votes {
+  id           BigInt     @id @default(autoincrement())
+  email        String
+  candidate    Candidates @relation(fields: [candidate_id], references: [id])
+  candidate_id BigInt
+  created_at   DateTime   @default(now())
+  updated_at   DateTime?
+  deleted_at   DateTime?
+
+  @@unique([email])
+  @@index([id, email, candidate_id])
+}
+
+enum Sex {
+  L
+  P
+}
+
+enum Jabatan {
+  LURAH
+  KADES
 }

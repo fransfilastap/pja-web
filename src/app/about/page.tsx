@@ -13,15 +13,21 @@ export default function Home() {
         Tentang
       </h3>
       <h1 className="text-4xl text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75% lg:text-6xl mb-10 tracking-normal font-body font-[500] text-black">
-        Sebuah Apresiasi "Non Litigation Peacemaker"
+        Sebuah Apresiasi Kepada "Non Litigation Peacemaker"
       </h1>
       <article className="prose prose-lg font-body">
         <p>
-          Paralegal Justice Award merupakan apresiasi yang diberikan Kementerian
-          Hukum dan HAM RI bekerja sama dengan Mahkamah Agung kepada
-          lurah/kepala.desa yang telah berdedikasi sebagai aktor penting dalam
-          mewujudkan perdamaian masyarakat di wilayahnya melalui penghargaan
-          "Non Litigation Peacemaker".
+          Paralegal Justice Award adalah sebuah anugerah yang ditujukan kepada
+          Kepala Desa atau Lurah yang telah memberikan pengabdian tinggi dengan
+          bertindak sebagai Non Litigation Peacemaker (Juru Damai Desa).
+        </p>
+        <p>
+          Paralegal Justice Award ini merupakan gotong royong kolaboratif antara
+          Kementerian Hukum dan Hak Asasi Manusia (Kemenkumham) melalui BPHN,
+          Mahkamah Agung (MA) dan Badan Pembinaan Ideologi Pancasila (BPIP)
+          serta didukung oleh Kementerian Desa, Pembangunan Daerah Tertinggal,
+          dan Transmigrasi (Kemendes PDTT) dan Kementerian Dalam Negeri
+          (Kemendagri).
         </p>
       </article>
     </Container>

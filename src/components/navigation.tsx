@@ -11,9 +11,12 @@ import Portal from "./portal";
 import { useOnClickOutside } from "@/hooks";
 import clsxm from "@/helpers/clsxm";
 import { useRouter } from "next/navigation";
+import Button from "./button/button";
+import { useSession, signOut, signIn } from "next-auth/react";
 
 export default function Navigation() {
   const { toggleMenu, menuOpen } = useGlobalState();
+  const { data: session } = useSession();
   const menuRef = useRef<HTMLDivElement>(null);
   const closeMenuHandler = () => {
     toggleMenu(false);
@@ -34,6 +37,11 @@ export default function Navigation() {
           <NavigationMenuItem url="/blog">Berita</NavigationMenuItem>
           <NavigationMenuItem url="/about">Tentang</NavigationMenuItem>
         </nav>
+        {!session?.user ? (
+          <Button onClick={() => signIn()}>Login</Button>
+        ) : (
+          <button onClick={() => signOut()}>Logout</button>
+        )}
         <MobileMenuButton
           whileTap={{ scale: 0.8 }}
           onClick={() => toggleMenu()}

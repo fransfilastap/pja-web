@@ -5,6 +5,7 @@ import Navigation from "@/components/navigation";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/config/env";
 import Footer from "@/components/footer";
+import { NextAuthProvider } from "./provider";
 
 const instrumentSans = localFont({
   src: "../fonts/instrument-sans/InstrumentSans[wdth,wght].woff2",
@@ -122,9 +123,11 @@ export default function RootLayout({
       <body
         className={`${instrumentSans.variable} ${inter.variable} ${valverde.variable}`}
       >
-        <Navigation />
-        <main>{children}</main>
-        <Footer />
+        <NextAuthProvider>
+          <Navigation />
+          <main>{children}</main>
+          <Footer />
+        </NextAuthProvider>
       </body>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}

@@ -71,36 +71,83 @@ const Schedule = () => {
         <table className="table w-full">
           <tbody>
             <tr className="border-y border-y-black ">
-              <td className="w-1/3 py-6">
+              <td className="py-6">
                 <p className="text-xl lg:text-3xl font-heading pr-6 font-[800] text-slate-950">
-                  31/05/2023
+                  08 Feb 2023
                 </p>
                 <p className="lg:hidden mt-3 text-xl font-[300] font-heading">
-                  Malam Penganugrahan
+                  Pembukaan Pendaftaran{" "}
+                  <i className="italic">Paralegal Justice Award</i> dan{" "}
+                  <i className="italic">Anubhawa Sasana Desa Jagaddhita</i>
                 </p>
               </td>
               <td className="hidden py-6 lg:grid">
                 <p className="pl-10 text-xl lg:text-3xl font-[200] font-heading">
-                  Malam Penganugrahan
+                  Pembukaan Pendaftaran{" "}
+                  <i className="italic">Paralegal Justice Award</i> dan{" "}
+                  <i className="italic">Anubhawa Sasana Desa Jagaddhita</i>
                 </p>
               </td>
             </tr>
             <tr className="border-y border-y-black ">
-              <td className="py-6">
+              <td className="w-1/3 py-6">
                 <p className="text-xl lg:text-3xl font-heading pr-6 font-[800] text-slate-950">
-                  08/02/2023
+                  26 Mei - 1 Juni 2023
                 </p>
                 <p className="lg:hidden mt-3 text-xl font-[300] font-heading">
-                  Pembukaan Pendaftaran{" "}
-                  <i className="italic">Paralegal Justice Award</i> dan{" "}
-                  <i className="italic">Anubhawa Sasana Desa Jagaddhita</i>
+                  Voting Top Ten Favorit Publik Paralegal Justice Award
                 </p>
               </td>
               <td className="hidden py-6 lg:grid">
                 <p className="pl-10 text-xl lg:text-3xl font-[200] font-heading">
-                  Pembukaan Pendaftaran{" "}
-                  <i className="italic">Paralegal Justice Award</i> dan{" "}
-                  <i className="italic">Anubhawa Sasana Desa Jagaddhita</i>
+                  Voting Top Ten Favorit Publik Paralegal Justice Award
+                </p>
+              </td>
+            </tr>
+            <tr className="border-y border-y-black ">
+              <td className="w-1/3 py-6">
+                <p className="text-xl lg:text-3xl font-heading pr-6 font-[800] text-slate-950">
+                  29 Mei 2023
+                </p>
+                <p className="lg:hidden mt-3 text-xl font-[300] font-heading">
+                  Mei Pembukaan Paralegal Justice Academy dan Paralegal Justice
+                  Award
+                </p>
+              </td>
+              <td className="hidden py-6 lg:grid">
+                <p className="pl-10 text-xl lg:text-3xl font-[200] font-heading">
+                  Mei Pembukaan Paralegal Justice Academy dan Paralegal Justice
+                  Award
+                </p>
+              </td>
+            </tr>
+            <tr className="border-y border-y-black ">
+              <td className="w-1/3 py-6">
+                <p className="text-xl lg:text-3xl font-heading pr-6 font-[800] text-slate-950">
+                  30 - 31 Mei 2023
+                </p>
+                <p className="lg:hidden mt-3 text-xl font-[300] font-heading">
+                  Paralegal Academy
+                </p>
+              </td>
+              <td className="hidden py-6 lg:grid">
+                <p className="pl-10 text-xl lg:text-3xl font-[200] font-heading">
+                  Paralegal Academy
+                </p>
+              </td>
+            </tr>
+            <tr className="border-y border-y-black ">
+              <td className="w-1/3 py-6">
+                <p className="text-xl lg:text-3xl font-heading pr-6 font-[800] text-slate-950">
+                  1 Juni 2023
+                </p>
+                <p className="lg:hidden mt-3 text-xl font-[300] font-heading">
+                  Malam Penganugerahan Paralegal Justice Award
+                </p>
+              </td>
+              <td className="hidden py-6 lg:grid">
+                <p className="pl-10 text-xl lg:text-3xl font-[200] font-heading">
+                  Malam Penganugerahan Paralegal Justice Award
                 </p>
               </td>
             </tr>
@@ -116,10 +163,8 @@ const CTA = () => {
     <Container className="px-10 py-10 bg-black">
       <p className="flex font-body flex-col text-4xl lg:text-9xl text-white font-[500] leading-tight">
         <span className="tracking-tight uppercase">
-          <span className="text-amber-500">✺</span>STAY TUNED
-        </span>
-        <span className="my-2 text-2xl font-[600] uppercase font-heading text-[#FFE66D]">
-          Voting dimulai 26/05/2023
+          <span className="text-amber-500">✺</span>NON LITIGATION PEACEMAKER
+          <span className="text-amber-500">✺</span>
         </span>
       </p>
     </Container>
