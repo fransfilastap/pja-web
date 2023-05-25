@@ -13,11 +13,22 @@ export const dynamic = "force-dynamic";
 
 async function getCandidates() {
   return await prisma.candidates.findMany({
-    orderBy: {
-      Votes: {
-        _count: "desc",
+    orderBy: [
+      {
+        Votes: {
+          _count: "desc",
+        },
       },
-    },
+      {
+        provinsi: "asc",
+      },
+      {
+        desa_kelurahan: "asc",
+      },
+      {
+        provinsi: "asc",
+      },
+    ],
   });
 }
 
