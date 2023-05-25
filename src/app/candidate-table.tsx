@@ -197,11 +197,10 @@ export default function CandidateTable({
         </tbody>
       </table>
       <ReactPaginate
-        className="inline-flex items-center justify-center w-full gap-3 my-5"
+        className="inline-flex items-center justify-center w-full gap-2 my-5 overflow-x-auto"
         pageLinkClassName="block px-3 py-1 rounded-md bg-gray-100 text-black hover:bg-amber-500 text-black transition-color duration-100 ease-in-out"
         activeLinkClassName="bg-amber-500 hover:bg-amber-700 text-black"
         onPageChange={pageChangeHandler}
-        pageRangeDisplayed={10}
         breakLabel="..."
         pageCount={pageCount}
       />
