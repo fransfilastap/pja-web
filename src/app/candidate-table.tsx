@@ -17,9 +17,11 @@ const DEFAULT_PLACEHOLDER =
 export default function CandidateTable({
   candidates,
   isVotingDone = false,
+  isVotingStart = false,
 }: {
   candidates: Candidates[];
   isVotingDone: boolean;
+  isVotingStart: boolean;
 }) {
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [keyword, setKeyword] = useState<string>("");
@@ -110,7 +112,7 @@ export default function CandidateTable({
                       <span>{`${candidate.kabupaten_kota} - ${candidate.provinsi}`}</span>
                     </p>
                     <div className="lg:hidden">
-                      {!isVotingDone && (
+                      {!isVotingDone && isVotingStart && (
                         <VoteButton
                           key={`mob-${candidate.code}`}
                           candidateCode={candidate.code}
@@ -120,7 +122,7 @@ export default function CandidateTable({
                   </div>
                 </td>
                 <td className="hidden lg:table-cell">
-                  {!isVotingDone && (
+                  {!isVotingDone && isVotingStart && (
                     <VoteButton
                       key={`lg-${candidate.code}`}
                       candidateCode={candidate.code}

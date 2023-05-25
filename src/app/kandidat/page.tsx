@@ -57,19 +57,6 @@ export default async function Page() {
   const votingDone = await isVotingDone();
   const votingStart = await isVotingStart();
 
-  if (!votingStart) {
-    return (
-      <Container className="p-6 my-20">
-        <div className="flex flex-col items-start justify-between mb-10">
-          <h2 className="font-[600] py-5 text-4xl font-heading text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75%">
-            Nominee
-          </h2>
-          <p>Voting belum dimulai</p>
-        </div>
-      </Container>
-    );
-  }
-
   return (
     <Container className="p-6 my-20">
       <div className="flex flex-col items-start justify-between mb-10">
@@ -80,6 +67,7 @@ export default async function Page() {
 
       <Suspense fallback={<Skeleton />}>
         <CandidateTable
+          isVotingStart={votingStart ?? false}
           isVotingDone={votingDone ?? false}
           candidates={candidates}
         />
