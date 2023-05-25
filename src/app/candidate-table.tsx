@@ -8,6 +8,8 @@ import Container from "@/components/container";
 import clsxm from "@/helpers/clsxm";
 import Image from "next/image";
 
+export const DEFAULT_BLUR =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
 const MAX_ROW = 9;
 const DEFAULT_PLACEHOLDER =
   "https://res.cloudinary.com/dyduzvx5b/image/upload/v1684995330/Portrait_Placeholder_ptfg7z.png";
@@ -48,8 +50,8 @@ export default function CandidateTable({
           onChange={handleChange}
           type="text"
           name="filter-nama"
-          className="block w-full px-1 py-2 border border-black placeholder:text-gray-500 placeholder:font-body placeholder:uppercase placeholder:font-[300]"
-          placeholder="Cari nominee"
+          className="block w-full px-3 py-2 border border-black placeholder:text-gray-500 placeholder:font-body placeholder:normal-case placeholder:font-[300]"
+          placeholder="Cari Kades/Lurah Favoritmu"
         />
       )}
       <table className="table w-full mt-5">
@@ -58,21 +60,17 @@ export default function CandidateTable({
             return (
               <tr
                 key={candidate.code}
-                className={clsxm(
-                  "border-y border-y-black hover:bg-[var(--secondary-color)] cursor-pointer",
-                  {
-                    "bg-[var(--secondary-color)]": isVotingDone && i <= MAX_ROW,
-                  }
-                )}
+                className={clsxm("border-y border-y-black hover:bg-amber-200", {
+                  "bg-[var(--secondary-color)]": isVotingDone && i <= MAX_ROW,
+                })}
               >
-                <td className="place-content-center">
+                <td>
                   <span className="text-xl text-center lg:text-2xl font-heading pr-6 font-[800] text-slate-950 block w-full h-full items-center justify-center">
                     {i + 1}
                   </span>
                 </td>
-                <td className="place-content-center">
+                <td className="hidden lg:table-cell">
                   <Image
-                    className="border"
                     src={
                       candidate.photo !== null
                         ? candidate.photo
@@ -80,34 +78,48 @@ export default function CandidateTable({
                     }
                     width={100}
                     height={200}
+                    blurDataURL={DEFAULT_BLUR}
                     alt={`photo ${candidate.name}`}
                   />
                 </td>
-                <td className="border-black border-y">
-                  <p className="text-xl lg:text-2xl font-heading pr-6 font-[800] text-slate-950">
-                    {candidate.name}
-                  </p>
-                  <p className="flex flex-col text-sm text-gray-700">
-                    <span className="text-[var(--primary-color)] font-body">
-                      {" "}
-                      {`${candidate.jabatan} ${candidate.desa_kelurahan}`}
-                    </span>
-                  </p>
-                  <p className="flex flex-col gap-0 mt-1 text-sm">
-                    <span>{candidate.kecamatan}</span>
-                    <span>{`${candidate.kabupaten_kota} - ${candidate.provinsi}`}</span>
-                  </p>
-                  <div className="lg:hidden">
-                    {!isVotingDone && (
-                      <VoteButton
-                        key={`mob-${candidate.code}`}
-                        candidateCode={candidate.code}
-                      />
-                    )}
+                <td className="table-cell">
+                  <div className="flex flex-col gap-1">
+                    <Image
+                      className="lg:hidden"
+                      src={
+                        candidate.photo !== null
+                          ? candidate.photo
+                          : DEFAULT_PLACEHOLDER
+                      }
+                      width={100}
+                      height={200}
+                      blurDataURL={DEFAULT_BLUR}
+                      alt={`photo ${candidate.name}`}
+                    />
+                    <p className="text-sm lg:text-2xl font-heading pr-6 font-[800] text-slate-950">
+                      {candidate.name}
+                    </p>
+                    <p className="flex flex-col text-xs text-gray-700">
+                      <span className="text-[var(--primary-color)] font-body">
+                        {" "}
+                        {`${candidate.jabatan} ${candidate.desa_kelurahan}`}
+                      </span>
+                    </p>
+                    <p className="flex flex-col gap-0 mt-1 text-sm">
+                      <span>{candidate.kecamatan}</span>
+                      <span>{`${candidate.kabupaten_kota} - ${candidate.provinsi}`}</span>
+                    </p>
+                    <div className="lg:hidden">
+                      {!isVotingDone && (
+                        <VoteButton
+                          key={`mob-${candidate.code}`}
+                          candidateCode={candidate.code}
+                        />
+                      )}
+                    </div>
                   </div>
                 </td>
-                <td className="py-6"></td>
-                <td className="hidden lg:grid">
+                <td className="hidden lg:table-cell">
                   {!isVotingDone && (
                     <VoteButton
                       key={`lg-${candidate.code}`}
