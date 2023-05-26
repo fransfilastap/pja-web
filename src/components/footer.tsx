@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef, FunctionComponent } from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-t-[#171717]">
+    <footer className="bg-black border-t-2 border-t-white">
       <Container className="flex flex-row justify-between w-full px-10 py-10">
         <div className="flex flex-col w-full gap-2">
           <h5 className="font-thin text-white uppercase font-xs text-[13px] font-body">

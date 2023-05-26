@@ -1,5 +1,8 @@
 import Container from "@/components/container";
 import PJAStory from "./story";
+import CTA from "./cta";
+import Intro from "./intro";
+import ParallaxText from "@/components/parallax-text";
 
 export default function Home() {
   return (
@@ -9,10 +12,14 @@ export default function Home() {
         <HeroVideo />
         <Intro />
       </Container>
+      <ParallaxText baseVelocity={-3}>NON LITIGATION PEACEMAKER</ParallaxText>
+
       <div className="bg-black">
         <Schedule />
-        <CTA />
       </div>
+      <ParallaxText baseVelocity={3}>
+        Anubhawa Sasana Desa/Kelurahan Jagaddhita
+      </ParallaxText>
     </>
   );
 }
@@ -23,7 +30,7 @@ const Masthead = () => {
       <h1 className="flex flex-col mt-28 mb-10 font-[500] font-body leading-none tracking-normal text-6xl md:text-7xl lg:text-9xl text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75%">
         <span>Paralegal</span>
         <span>Justice</span>
-        <span>Awards 2023.</span>
+        <span>Award 2023.</span>
       </h1>
     </div>
   );
@@ -41,22 +48,6 @@ const HeroVideo = () => {
         />
       </video>
     </section>
-  );
-};
-
-const Intro = () => {
-  return (
-    <div className="flex flex-col lg:flex-row items-center justify-center min-h-[100vh] my-20">
-      <p className="block mx-auto my-20 text-3xl md:text-4xl lg:text-5xl font-[400] text-black font-body w-full md:w-[600px] lg:w-[778px]">
-        Apresiasi{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#FCAA43] from-5% via-[#943C30] via-20% to-[#5941A9] to-75%">
-          "Non Litigation Peacemaker"
-        </span>{" "}
-        Kepada Lurah atau Kepala Desa yang telah berdedikasi sebagai aktor
-        penting dalam mewujudkan perdamaian masyarakat di wilayahnya
-      </p>
-      <PJAStory />
-    </div>
   );
 };
 
@@ -157,18 +148,5 @@ const Schedule = () => {
         </table>
       </Container>
     </section>
-  );
-};
-
-const CTA = () => {
-  return (
-    <Container className="px-10 py-10 bg-black">
-      <p className="flex font-body flex-col text-4xl lg:text-9xl text-white font-[500] leading-tight">
-        <span className="tracking-tight uppercase">
-          <span className="text-amber-500">✺</span>NON LITIGATION PEACEMAKER
-          <span className="text-amber-500">✺</span>
-        </span>
-      </p>
-    </Container>
   );
 };
