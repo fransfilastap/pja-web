@@ -39,10 +39,7 @@ export default function Footer() {
           </FooterLink>
         </p>
         <p>
-          Forked from{" "}
-          <Link className="font-bold text-amber-500" href="https://fransfp.dev">
-            fransfp.dev
-          </Link>
+          Crafted with <Link href="https://fransfp.dev">❤️</Link>
         </p>
       </Container>
     </footer>
