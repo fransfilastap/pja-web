@@ -5,7 +5,7 @@ import logo from "./logo-pja.png";
 export default function Logo() {
   return (
     <Link href={"/"} className="flex flex-row gap-1">
-      <Image src={logo} width={38} height={38} alt="logo" />
+      <Image src={logo} className="aspect-square" width={40} alt="logo" />
       <svg
         className="w-10 h-10"
         viewBox="0 0 162 97"
