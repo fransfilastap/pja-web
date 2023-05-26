@@ -29,6 +29,19 @@ export default function Home() {
           dan Transmigrasi (Kemendes PDTT) dan Kementerian Dalam Negeri
           (Kemendagri).
         </p>
+        <h3>Definisi</h3>
+        <p>
+          Paralegal merupakan salah satu komponen yang sangat penting dalam
+          pencapaian akses terhadap keadilan, terutama dalam memberikan bantuan
+          hukum dan pemberdayaan hukum kepada masyarakat.
+        </p>
+        <h3>Anubhawa Sasana Desa/Kelurahan Jagaddhita</h3>
+        <p>
+          Desa/kelurahan yang turut andil menyukseskan program prioritas
+          pemerintah terkait pemulihan ekonomi nasional dengan fokus terhadap
+          kemudahan berinvestasi, peningkatan sektor pariwisata dan pembukaan
+          lapangan kerja.
+        </p>
       </article>
     </Container>
   );
