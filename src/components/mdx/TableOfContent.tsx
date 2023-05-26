@@ -14,7 +14,7 @@ const TableOfContent: FunctionComponent<TableOfContentProps> = ({
   if (headings.length <= 0) return <div></div>;
 
   return (
-    <div>
+    <div className="w-full lg:w-1/3">
       <nav
         aria-label="Table of contents"
         className={clsxm("toc", className)}

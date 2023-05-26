@@ -14,7 +14,7 @@
 
 @layer components {
   .toc {
-    @apply sticky z-20 block p-5 border rounded-lg top-[10vh]  w-full;
+    @apply sticky z-20 block p-5 border rounded-lg top-[10vh]  w-full max-h-max;
   }
 
   .toc li {
