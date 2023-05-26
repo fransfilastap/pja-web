@@ -1,5 +1,7 @@
 import Container from "@/components/container";
 import { Metadata } from "next";
+import Image from "next/image";
+import cover from "../../../public/media/pja-cover.jpeg";
 
 export const metadata: Metadata = {
   title: "Tentang",
@@ -42,6 +44,8 @@ export default function Home() {
           kemudahan berinvestasi, peningkatan sektor pariwisata dan pembukaan
           lapangan kerja.
         </p>
+        <h3>Logo</h3>
+        <Image src={cover} alt="PJA LOGO" />
       </article>
     </Container>
   );

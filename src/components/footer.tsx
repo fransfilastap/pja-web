@@ -14,6 +14,7 @@ export default function Footer() {
             <FooterLink href={"/"}>Beranda</FooterLink>
             <FooterLink href={"/about"}>Tentang</FooterLink>
             <FooterLink href={"/blog"}>Berita</FooterLink>
+            <FooterLink href={"/pengumuman"}>Pengumuman</FooterLink>
           </nav>
         </div>
         <div className="flex flex-col w-full gap-2">
