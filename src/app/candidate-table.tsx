@@ -8,6 +8,7 @@ import Container from "@/components/container";
 import clsxm from "@/helpers/clsxm";
 import Image from "next/image";
 import ReactPaginate from "react-paginate";
+import cloudinary from "@/lib/cloudinary";
 
 export const DEFAULT_BLUR =
   "data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
@@ -137,6 +138,7 @@ export default function CandidateTable({
                   </td>
                   <td className="hidden lg:table-cell">
                     <Image
+                      loader={cloudinary}
                       key={`lg-${candidate.photo}`}
                       src={candidate.photo ?? DEFAULT_PLACEHOLDER}
                       width={100}
@@ -149,6 +151,7 @@ export default function CandidateTable({
                     <div className="flex flex-col gap-1">
                       <Image
                         className="lg:hidden"
+                        loader={cloudinary}
                         src={candidate.photo ?? DEFAULT_PLACEHOLDER}
                         width={100}
                         height={200}
