@@ -49,6 +49,10 @@
     @apply inline-flex w-full px-5 border;
   }
 
+  .page-active {
+    @apply bg-amber-500 hover:bg-amber-700 text-black;
+  }
+
   code .highlighted {
     @apply bg-pink-200/30;
   }
