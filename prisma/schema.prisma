@@ -1,8 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
 }
 
 datasource db {
@@ -19,28 +17,27 @@ model Candidates {
   kecamatan      String
   kabupaten_kota String
   provinsi       String
-  photo          String?
-  code           String
   created_at     DateTime  @default(now())
   updated_at     DateTime?
   deleted_at     DateTime?
+  photo          String?
+  code           String    @unique
   Votes          Votes[]
 
-  @@unique([code])
   @@index([id])
 }
 
 model Votes {
   id           BigInt     @id @default(autoincrement())
-  email        String
-  candidate    Candidates @relation(fields: [candidate_id], references: [id])
+  email        String     @unique
   candidate_id BigInt
   created_at   DateTime   @default(now())
   updated_at   DateTime?
   deleted_at   DateTime?
+  candidate    Candidates @relation(fields: [candidate_id], references: [id])
 
-  @@unique([email])
   @@index([id, email, candidate_id])
+  @@index([candidate_id], map: "Votes_candidate_id_fkey")
 }
 
 model AppConfig {
@@ -50,12 +47,31 @@ model AppConfig {
   @@map("Config")
 }
 
+view CandidateVotes {
+  id             BigInt                 @id @default(0)
+  name           String
+  code           String
+  jabatan        CandidateVotes_jabatan
+  desa_kelurahan String
+  kecamatan      String
+  kabupaten_kota String
+  provinsi       String
+  photo          String?
+  votes          BigInt?                @default(0)
+  created_at     DateTime               @default(now())
+}
+
 enum Sex {
   L
   P
 }
 
 enum Jabatan {
+  LURAH
+  KADES
+}
+
+enum CandidateVotes_jabatan {
   LURAH
   KADES
 }

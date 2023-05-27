@@ -39,7 +39,7 @@ export default function Footer() {
           </FooterLink>
         </p>
         <p>
-          Crafted with <Link href="https://fransfp.dev">❤️</Link>
+          Crafted with ❤️ by<Link href="https://fransfp.dev"> Achernar</Link>
         </p>
       </Container>
     </footer>

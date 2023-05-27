@@ -2,7 +2,7 @@
 
 import { useRef, useState, useMemo } from "react";
 import { debounce } from "lodash";
-import { Prisma, Jabatan } from "@prisma/client";
+import { Prisma, Jabatan, CandidateVotes } from "@prisma/client";
 import VoteButton from "@/components/button/vote.button";
 import Container from "@/components/container";
 import clsxm from "@/helpers/clsxm";
@@ -21,18 +21,7 @@ export default function CandidateTable({
   isVotingDone = false,
   isVotingStart = false,
 }: {
-  candidates: {
-    _count: Prisma.CandidatesCountOutputType;
-    id: bigint;
-    name: string;
-    jabatan: Jabatan;
-    desa_kelurahan: string;
-    kecamatan: string;
-    kabupaten_kota: string;
-    provinsi: string;
-    photo: string | null;
-    code: string;
-  }[];
+  candidates: CandidateVotes[];
   isVotingDone: boolean;
   isVotingStart: boolean;
 }) {
@@ -50,28 +39,15 @@ export default function CandidateTable({
   }
 
   const filteredCandidates = useMemo(() => {
-    return candidates.filter(
-      (candidate: {
-        _count: Prisma.CandidatesCountOutputType;
-        id: bigint;
-        name: string;
-        jabatan: Jabatan;
-        desa_kelurahan: string;
-        kecamatan: string;
-        kabupaten_kota: string;
-        provinsi: string;
-        photo: string | null;
-        code: string;
-      }) => {
-        if (keyword === null) return true;
-        const lKeyword = keyword.toLowerCase();
-        return (
-          candidate.name.toLowerCase().includes(lKeyword) ||
-          candidate.desa_kelurahan.toLowerCase().includes(lKeyword) ||
-          candidate.provinsi.toLowerCase().includes(lKeyword)
-        );
-      }
-    );
+    return candidates.filter((candidate: CandidateVotes) => {
+      if (keyword === null) return true;
+      const lKeyword = keyword.toLowerCase();
+      return (
+        candidate.name.toLowerCase().includes(lKeyword) ||
+        candidate.desa_kelurahan.toLowerCase().includes(lKeyword) ||
+        candidate.provinsi.toLowerCase().includes(lKeyword)
+      );
+    });
   }, [candidates, keyword]);
 
   if (candidates.length <= 0) {
@@ -81,7 +57,7 @@ export default function CandidateTable({
   const itemsPerPage = 10;
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = filteredCandidates.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(candidates.length / itemsPerPage);
+  const pageCount = Math.ceil(filteredCandidates.length / itemsPerPage);
   const pageChangeHandler = (selectedItem: { selected: number }) => {
     const newOffset: number =
       (selectedItem.selected * itemsPerPage) % candidates.length;
@@ -104,99 +80,84 @@ export default function CandidateTable({
       )}
       <table className="table w-full mt-5">
         <tbody>
-          {currentItems.map(
-            (
-              candidate: {
-                _count: Prisma.CandidatesCountOutputType;
-                id: bigint;
-                name: string;
-                jabatan: Jabatan;
-                desa_kelurahan: string;
-                kecamatan: string;
-                kabupaten_kota: string;
-                provinsi: string;
-                photo: string | null;
-                code: string;
-              },
-              i: number
-            ) => {
-              return (
-                <tr
-                  key={candidate.code}
-                  className={clsxm(
-                    "border-y border-y-black hover:bg-amber-200",
-                    {
-                      "bg-[var(--secondary-color)]":
-                        isVotingDone && i <= MAX_ROW,
-                    }
-                  )}
-                >
-                  <td>
-                    <span className="text-xl text-center lg:text-2xl font-heading pr-6 font-[800] text-slate-950 block w-full h-full items-center justify-center">
-                      {i + 1}
-                    </span>
-                  </td>
-                  <td className="hidden lg:table-cell">
+          {currentItems.map((candidate: CandidateVotes, i: number) => {
+            return (
+              <tr
+                key={candidate.code}
+                className={clsxm(
+                  "border-y border-y-black hover:bg-amber-200 transition duration-150 ease-out",
+                  {
+                    "bg-[var(--secondary-color)]": isVotingDone && i <= MAX_ROW,
+                  }
+                )}
+              >
+                <td>
+                  <span className="text-xl text-center lg:text-2xl font-heading pr-6 font-[800] text-slate-950 block w-full h-full items-center justify-center">
+                    {i + 1}
+                  </span>
+                </td>
+                <td className="hidden lg:table-cell">
+                  <Image
+                    loader={cloudinary}
+                    key={`lg-${candidate.photo}`}
+                    src={candidate.photo ?? DEFAULT_PLACEHOLDER}
+                    width={100}
+                    height={200}
+                    blurDataURL={DEFAULT_BLUR}
+                    alt={`photo ${candidate.name}`}
+                  />
+                </td>
+                <td className="table-cell">
+                  <div className="flex flex-col gap-1">
                     <Image
+                      className="lg:hidden"
                       loader={cloudinary}
-                      key={`lg-${candidate.photo}`}
                       src={candidate.photo ?? DEFAULT_PLACEHOLDER}
                       width={100}
                       height={200}
                       blurDataURL={DEFAULT_BLUR}
+                      key={candidate.photo}
                       alt={`photo ${candidate.name}`}
                     />
-                  </td>
-                  <td className="table-cell">
-                    <div className="flex flex-col gap-1">
-                      <Image
-                        className="lg:hidden"
-                        loader={cloudinary}
-                        src={candidate.photo ?? DEFAULT_PLACEHOLDER}
-                        width={100}
-                        height={200}
-                        blurDataURL={DEFAULT_BLUR}
-                        key={candidate.photo}
-                        alt={`photo ${candidate.name}`}
-                      />
-                      <p className="text-sm lg:text-2xl font-heading pr-6 font-[800] text-slate-950">
-                        {candidate.name}
-                      </p>
-                      <p className="flex flex-col text-xs text-gray-700">
-                        <span className="text-[var(--primary-color)] font-body">
-                          {" "}
-                          {`${candidate.jabatan} ${candidate.desa_kelurahan}`}
-                        </span>
-                      </p>
-                      <p className="flex flex-col gap-0 mt-1 text-sm">
-                        <span>{candidate.kecamatan}</span>
-                        <span>{`${candidate.kabupaten_kota} - ${candidate.provinsi}`}</span>
-                      </p>
-                      <div className="lg:hidden">
-                        {!isVotingDone && isVotingStart && (
-                          <VoteButton
-                            key={`mob-${candidate.code}`}
-                            candidateCode={candidate.code}
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <VoteIcon count={candidate._count.Votes} />
-                  </td>
-                  <td className="hidden lg:table-cell">
+                    <p className="text-sm lg:text-2xl font-body pr-6 font-[700] text-slate-950">
+                      {candidate.name}
+                    </p>
+                    <p className="flex flex-col text-xs text-gray-700">
+                      <span className="text-[var(--primary-color)] font-body">
+                        {" "}
+                        {`${candidate.jabatan} ${candidate.desa_kelurahan}`}
+                      </span>
+                    </p>
+                    <p className="flex flex-col gap-0 mt-1 text-sm">
+                      <span>{candidate.kecamatan}</span>
+                      <span>{`${candidate.kabupaten_kota} - ${candidate.provinsi}`}</span>
+                    </p>
+                  </div>
+                </td>
+                <td>
+                  <VoteIcon
+                    count={new Number(candidate.votes ?? 0).valueOf()}
+                  />
+                  <div className="flex items-center justify-center w-full mt-2 lg:hidden">
                     {!isVotingDone && isVotingStart && (
                       <VoteButton
-                        key={`lg-${candidate.code}`}
+                        key={`mob-${candidate.code}`}
                         candidateCode={candidate.code}
                       />
                     )}
-                  </td>
-                </tr>
-              );
-            }
-          )}
+                  </div>
+                </td>
+                <td className="hidden lg:table-cell">
+                  {!isVotingDone && isVotingStart && (
+                    <VoteButton
+                      key={`lg-${candidate.code}`}
+                      candidateCode={candidate.code}
+                    />
+                  )}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <ReactPaginate
@@ -213,14 +174,14 @@ export default function CandidateTable({
 
 function VoteIcon({ count }: { count: number }) {
   return (
-    <div className="flex flex-row gap-2 items-center justify-center min-w-[100px]">
+    <div className="flex flex-row gap-2 items-center justify-center min-w-[100px] border py-5 rounded bg-gray-100">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-6 h-6 text-amber-500"
+        className="w-6 h-6 "
       >
         <path
           strokeLinecap="round"
