@@ -38,9 +38,7 @@ export default function Footer() {
             Kebijakan Privasi
           </FooterLink>
         </p>
-        <p>
-          Crafted with ❤️ by<Link href="https://fransfp.dev"> Achernar</Link>
-        </p>
+        <p>Bagian Rumah Tangga - BPHN</p>
       </Container>
     </footer>
   );
