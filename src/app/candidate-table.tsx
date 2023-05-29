@@ -45,6 +45,8 @@ export default function CandidateTable({
       return (
         candidate.name.toLowerCase().includes(lKeyword) ||
         candidate.desa_kelurahan.toLowerCase().includes(lKeyword) ||
+        candidate.kabupaten_kota.toLowerCase().includes(lKeyword) ||
+        candidate.kecamatan.toLowerCase().includes(lKeyword) ||
         candidate.provinsi.toLowerCase().includes(lKeyword)
       );
     });
