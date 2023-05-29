@@ -21,8 +21,6 @@ export async function POST(req: NextRequest) {
 
     const turnstileResData = await turnstileRes.json()
 
-    console.log(turnstileResData)
-
     if (!turnstileResData.success) {
         return NextResponse.json({
             status: "verification failed",
@@ -30,7 +28,6 @@ export async function POST(req: NextRequest) {
             status:400
         })
     }
-
 
     const isVotingDone = await prisma.appConfig.findFirst({
         where: {
