@@ -442,6 +442,11 @@
     refractor "^3.4.0"
     unist-util-visit "^2.0.3"
 
+"@marsidev/react-turnstile@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@marsidev/react-turnstile/-/react-turnstile-0.2.1.tgz#7e284207c8ee4ca00cb0e6a095c4f6d7ec87ae4a"
+  integrity sha512-W/jxe6nn55wvbAwCOAtrm+tIg90/1oqBlbWwWaWJ2zuo3pmEBoaz3cnkU5PO5Hhi7NL51H46qL1syrkq/5CN0Q==
+
 "@mdx-js/esbuild@^2.0.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@mdx-js/esbuild/-/esbuild-2.3.0.tgz#97f2f1b854d904c50bcd0a219b3664657f4fe8c3"

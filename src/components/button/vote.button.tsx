@@ -4,12 +4,17 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Button, { ButtonProps } from "./button";
 import clsxm from "@/helpers/clsxm";
 import { useState } from "react";
+import { TurnstileInstance } from "@marsidev/react-turnstile";
 
 export default function VoteButton({
   candidateCode,
   className,
+  turnstile,
   ...rest
-}: { candidateCode: string } & ButtonProps) {
+}: {
+  candidateCode: string;
+  turnstile: TurnstileInstance | null;
+} & ButtonProps) {
   const [isSubmiting, setIsSubmiting] = useState<boolean>(false);
   const { data: session } = useSession();
 
@@ -22,11 +27,15 @@ export default function VoteButton({
       body: JSON.stringify({
         code: candidate,
         email: session?.user?.email,
+        turnsitle_response: turnstile!.getResponse(),
       }),
     });
 
     if (res.status === 200) {
       alert("Terima kasih!");
+    } else {
+      const data = await res.json();
+      alert(data.status);
     }
   };
 

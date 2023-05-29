@@ -2,8 +2,35 @@ import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server"
 import { authOptions } from "@/lib/auth";
+import { TURNSTILE_SECRET } from "@/config/env";
+
+const verifyEndpoint = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
 
 export async function POST(req: NextRequest) {
+    
+    const body = await req.json();     
+
+    //verify bot
+    const turnstileRes = await fetch(verifyEndpoint, {
+        method: 'POST',
+        body: `secret=${encodeURIComponent(`${TURNSTILE_SECRET}`)}&response=${encodeURIComponent(body.turnsitle_response)}`,
+        headers: {
+            'content-type': 'application/x-www-form-urlencoded'
+        }
+    })
+
+    const turnstileResData = await turnstileRes.json()
+
+    console.log(turnstileResData)
+
+    if (!turnstileResData.success) {
+        return NextResponse.json({
+            status: "verification failed",
+        }, {
+            status:400
+        })
+    }
+
 
     const isVotingDone = await prisma.appConfig.findFirst({
         where: {
@@ -35,7 +62,7 @@ export async function POST(req: NextRequest) {
 
     const session = await getServerSession(authOptions)
     if (session) {
-        const body = await req.json();     
+        
         await prisma.votes.create({
             data: {
                 email: body.email,
