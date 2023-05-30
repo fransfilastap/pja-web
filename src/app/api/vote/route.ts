@@ -63,20 +63,20 @@ export async function POST(req: NextRequest) {
     if (session?.user?.email !== undefined || session?.user?.email !== null) {
 
             //check domain
-            BLACKLIST_DOMAINS.map((domain) => {
-                if (session?.user?.email!.includes(domain)) {
-                    return NextResponse.json({
-                        status: "blocked",
-                        }, {
-                            status: 400
-                        }
-                    )
-                }
-            })
+        BLACKLIST_DOMAINS.map((domain) => {
+            if (session?.user?.email!.includes(domain)) {
+                return NextResponse.json({
+                    status: "blocked",
+                    }, {
+                        status: 400
+                    }
+                )
+            }
+        })
         
         await prisma.votes.create({
             data: {
-                email: body.email,
+                email: session?.user?.email!,
                 candidate: {
                     connect: {
                         code: body.code
