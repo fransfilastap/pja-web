@@ -5,7 +5,7 @@ import { authOptions } from "@/lib/auth";
 import { TURNSTILE_SECRET } from "@/config/env";
 
 const verifyEndpoint = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
-const BLACKLIST_DOMAINS = ['@semart77.com','@oneweek2.com','@casvaro1.com','@netnot.site','@yahoo.co.id','@vevaw.com','@vleeeew.site','@dunepo.com','@hotmail.com','@yahoo.co.id','@ymail.com','@yyyegdf.top','@outlook.co.id'];
+const BLACKLIST_DOMAINS = ['@semart77.com','','@oneweek2.com','@casvaro1.com','@netnot.site','@yahoo.co.id','@vevaw.com','@vleeeew.site','@dunepo.com','@hotmail.com','@yahoo.co.id','@ymail.com','@yyyegdf.top','@outlook.co.id'];
 
 export async function POST(req: NextRequest) {
     
@@ -29,19 +29,6 @@ export async function POST(req: NextRequest) {
             status:400
         })
     }
-
-
-    //check domain
-    BLACKLIST_DOMAINS.map((domain) => {
-        if (body.email.includes(domain)) {
-            return NextResponse.json({
-                status: "blocked",
-                }, {
-                    status: 400
-            }
-            )
-        }
-    })
 
     const isVotingDone = await prisma.appConfig.findFirst({
         where: {
@@ -73,7 +60,19 @@ export async function POST(req: NextRequest) {
 
     const session = await getServerSession(authOptions)
 
-    if (session?.user?.email) {
+    if (session?.user?.email !== undefined || session?.user?.email !== null) {
+
+            //check domain
+            BLACKLIST_DOMAINS.map((domain) => {
+                if (session?.user?.email!.includes(domain)) {
+                    return NextResponse.json({
+                        status: "blocked",
+                        }, {
+                            status: 400
+                        }
+                    )
+                }
+            })
         
         await prisma.votes.create({
             data: {
