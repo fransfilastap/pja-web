@@ -144,7 +144,9 @@ export default function CandidateTable({
                           alt={`photo ${candidate.name}`}
                         />
                         <p className="text-sm lg:text-2xl font-body pr-6 font-[700] text-slate-950">
-                          {isWinner && <span className="mx-2">🏆</span>}
+                          {isVotingDone && isWinner && (
+                            <span className="mx-2">🏆</span>
+                          )}
                           {candidate.name}
                         </p>
                         <p className="flex flex-col text-xs text-gray-700">
