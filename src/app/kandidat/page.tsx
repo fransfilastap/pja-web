@@ -1,7 +1,8 @@
 import Container from "@/components/container";
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import { Suspense } from "react";
-import { Prisma, Jabatan, CandidateVotes } from "@prisma/client";
+import { CandidateVotes } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import CandidateTable from "../candidate-table";
 
@@ -39,6 +40,7 @@ async function isVotingDone() {
 }
 
 export default async function Page() {
+  const csrfToken = headers().get("X-CSRF-Token") || "missing";
   const candidates = await getCandidates();
   const votingDone = await isVotingDone();
   const votingStart = await isVotingStart();
@@ -53,6 +55,7 @@ export default async function Page() {
 
       <Suspense fallback={<Skeleton />}>
         <CandidateTable
+          csrfToken={csrfToken}
           isVotingStart={votingStart ?? false}
           isVotingDone={votingDone ?? false}
           candidates={candidates}

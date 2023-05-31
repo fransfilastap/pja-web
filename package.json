@@ -13,6 +13,7 @@
     "deploy:prod": "next build && pm2 startOrRestart ecosystem.config.js --env production"
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs-pro-react": "^2.3.3",
     "@fluentui/react-icons": "^2.0.201",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@mapbox/rehype-prism": "^0.8.0",
@@ -28,6 +29,7 @@
     "contentlayer": "^0.3.2",
     "date-fns": "^2.30.0",
     "disqus-react": "^1.1.5",
+    "edge-csrf": "^1.0.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "framer-motion": "^10.12.14",

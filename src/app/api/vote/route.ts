@@ -6,7 +6,7 @@ import { TURNSTILE_SECRET } from "@/config/env";
 import { trim } from "lodash";
 
 const verifyEndpoint = 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
-const BLACKLIST_DOMAINS = ['@semart77.com','@oneweek2.com','@casvaro1.com','@netnot.site','@yahoo.co.id','@vevaw.com','@vleeeew.site','@dunepo.com','@hotmail.com','@yahoo.co.id','@ymail.com','@yyyegdf.top','@outlook.co.id'];
+const BLACKLIST_DOMAINS = ['@semart77.com','@oneweek2.com','@casvaro1.com','@netnot.site','@yahoo.co.id','@vevaw.com','@vleeeew.site','@dunepo.com','@hotmail.com','@yahoo.co.id','@ymail.com','@yyyegdf.top','@outlook.co.id','@butyusa.com','@vanilla95.com'];
 
 export async function POST(req: NextRequest) {
     
@@ -69,7 +69,6 @@ export async function POST(req: NextRequest) {
         for (let index = 0; index < BLACKLIST_DOMAINS.length; index++) {
             const domain = BLACKLIST_DOMAINS[index];
             if (trim(session?.user?.email!).includes(domain)) {
-                console.log(domain)
                 found=true
             }        
         }

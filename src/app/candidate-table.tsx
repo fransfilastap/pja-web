@@ -23,10 +23,12 @@ export default function CandidateTable({
   candidates,
   isVotingDone = false,
   isVotingStart = false,
+  csrfToken,
 }: {
   candidates: CandidateVotes[];
   isVotingDone: boolean;
   isVotingStart: boolean;
+  csrfToken: string;
 }) {
   //turnstile
   const [token, setToken] = useState<string>();
@@ -163,6 +165,7 @@ export default function CandidateTable({
                             key={`mob-${candidate.code}`}
                             candidateCode={candidate.code}
                             turnstile={ref.current}
+                            csrfToken={csrfToken}
                           />
                         )}
                       </div>
@@ -173,6 +176,7 @@ export default function CandidateTable({
                           key={`lg-${candidate.code}`}
                           candidateCode={candidate.code}
                           turnstile={ref.current}
+                          csrfToken={csrfToken}
                         />
                       )}
                     </td>

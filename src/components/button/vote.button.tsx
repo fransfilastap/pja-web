@@ -5,15 +5,18 @@ import Button, { ButtonProps } from "./button";
 import clsxm from "@/helpers/clsxm";
 import { useEffect, useState } from "react";
 import { TurnstileInstance } from "@marsidev/react-turnstile";
+import { headers } from "next/headers";
 
 export default function VoteButton({
   candidateCode,
   className,
   turnstile,
+  csrfToken,
   ...rest
 }: {
   candidateCode: string;
   turnstile: TurnstileInstance | null;
+  csrfToken: string;
 } & ButtonProps) {
   const [isSubmiting, setIsSubmiting] = useState<boolean>(false);
   const { data: session } = useSession();
@@ -35,8 +38,11 @@ export default function VoteButton({
         code: candidate,
         email: session?.user?.email,
         turnsitle_response: turnstileResponse,
+        csrf_token: csrfToken,
       }),
     });
+
+    console.log(csrfToken);
 
     if (res.status === 200) {
       alert("Terima kasih!");
