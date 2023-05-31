@@ -11,11 +11,10 @@ import ReactPaginate from "react-paginate";
 import cloudinary from "@/lib/cloudinary";
 import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 import { TURNSTILE_KEY } from "@/config/env";
-import { AnimatePresence } from "framer-motion";
 
 export const DEFAULT_BLUR =
   "data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
-const MAX_ROW = 9;
+const MAX_ROW = 10;
 const DEFAULT_PLACEHOLDER =
   "https://res.cloudinary.com/dyduzvx5b/image/upload/v1684995330/Portrait_Placeholder_ptfg7z.png";
 
@@ -101,24 +100,26 @@ export default function CandidateTable({
           <table className="table w-full mt-5">
             <tbody>
               {currentItems.map((candidate: CandidateVotes, i: number) => {
+                const rank = i + 1 + itemOffset;
+                const isWinner = rank <= MAX_ROW;
                 return (
                   <tr
                     key={candidate.code}
                     className={clsxm(
                       "border-y border-y-black hover:bg-amber-200 transition duration-150 ease-out",
                       {
-                        "bg-[var(--secondary-color)]":
-                          isVotingDone && i <= MAX_ROW,
+                        "bg-amber-100": isVotingDone && rank <= MAX_ROW,
                       }
                     )}
                   >
                     <td>
                       <span className="text-xl text-center lg:text-2xl font-heading pr-6 font-[800] text-slate-950 block w-full h-full items-center justify-center">
-                        {i + 1 + itemOffset}
+                        {rank}
                       </span>
                     </td>
                     <td className="hidden lg:table-cell">
                       <Image
+                        className="rounded-md"
                         loader={cloudinary}
                         key={`lg-${candidate.photo}`}
                         src={candidate.photo ?? DEFAULT_PLACEHOLDER}
@@ -131,7 +132,7 @@ export default function CandidateTable({
                     <td className="table-cell">
                       <div className="flex flex-col gap-1">
                         <Image
-                          className="lg:hidden"
+                          className="rounded-md lg:hidden"
                           loader={cloudinary}
                           src={candidate.photo ?? DEFAULT_PLACEHOLDER}
                           width={100}
@@ -141,6 +142,7 @@ export default function CandidateTable({
                           alt={`photo ${candidate.name}`}
                         />
                         <p className="text-sm lg:text-2xl font-body pr-6 font-[700] text-slate-950">
+                          {isWinner && <span className="mx-2">🏆</span>}
                           {candidate.name}
                         </p>
                         <p className="flex flex-col text-xs text-gray-700">
@@ -204,21 +206,7 @@ export default function CandidateTable({
 function VoteIcon({ count }: { count: number }) {
   return (
     <div className="flex flex-row gap-2 items-center justify-center min-w-[100px] border py-5 rounded bg-gray-100">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-6 h-6 "
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"
-        />
-      </svg>
-
+      <span>❤️</span>
       <span className="font-[500] text-xl font-heading">{count}</span>
     </div>
   );
