@@ -63,18 +63,13 @@ export async function POST(req: NextRequest) {
 
     if (session?.user?.email !== undefined || session?.user?.email !== null) {
 
-            //check domain
-        let found = false
-        
-        for (let index = 0; index < BLACKLIST_DOMAINS.length; index++) {
-            const domain = BLACKLIST_DOMAINS[index];
-            if (trim(session?.user?.email!).includes(domain)) {
-                found=true
-            }        
-        }
-
-        if (found) {
-            return NextResponse.json({},{status:400})
+        //check domain
+        if (!session?.user?.email?.includes('@gmail.com')) {
+            return NextResponse.json({
+                status: 'invalid email',
+            }, {
+                status: 400
+            })
         }
         
         await prisma.votes.create({
