@@ -95,7 +95,7 @@ export default function CandidateTable({
                 type="text"
                 name="filter-nama"
                 className="block w-full px-3 py-2 border border-black placeholder:text-gray-500 placeholder:font-body placeholder:normal-case placeholder:font-[300]"
-                placeholder="Cari Kades/Lurah Favoritmu. Ketikan nama kades/lurah, nama provinsi, atau nama desa"
+                placeholder="Cari Kades/Lurah Favoritmu. Ketikan nama kades/lurah,kecamatan, kabupaten/kota, nama provinsi, atau nama desa"
               />
             </div>
           )}
