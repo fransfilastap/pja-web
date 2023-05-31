@@ -114,7 +114,7 @@ export default function CandidateTable({
                   >
                     <td>
                       <span className="text-xl text-center lg:text-2xl font-heading pr-6 font-[800] text-slate-950 block w-full h-full items-center justify-center">
-                        {i + 1}
+                        {i + 1 + itemOffset}
                       </span>
                     </td>
                     <td className="hidden lg:table-cell">

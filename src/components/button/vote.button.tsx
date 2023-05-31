@@ -42,8 +42,6 @@ export default function VoteButton({
       }),
     });
 
-    console.log(csrfToken);
-
     if (res.status === 200) {
       alert("Terima kasih!");
     } else {
