@@ -38,7 +38,7 @@ export default function Footer() {
             Kebijakan Privasi
           </FooterLink>
         </p>
-        <p>Bagian Rumah Tangga - BPHN</p>
+        <p className={"font-[500] text-white"}>Bagian BMN dan Umum - BPHN</p>
       </Container>
     </footer>
   );
