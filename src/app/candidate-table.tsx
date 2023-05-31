@@ -1,16 +1,18 @@
 "use client";
 
 import { useRef, useState, useMemo } from "react";
-import { debounce } from "lodash";
+import { debounce, toNumber } from "lodash";
 import { CandidateVotes } from "@prisma/client";
 import VoteButton from "@/components/button/vote.button";
 import Container from "@/components/container";
 import clsxm from "@/helpers/clsxm";
 import Image from "next/image";
+import useSWR from "swr";
 import ReactPaginate from "react-paginate";
 import cloudinary from "@/lib/cloudinary";
 import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 import { TURNSTILE_KEY } from "@/config/env";
+import fetcher from "@/lib/fetcher";
 
 export const DEFAULT_BLUR =
   "data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
@@ -158,9 +160,7 @@ export default function CandidateTable({
                       </div>
                     </td>
                     <td>
-                      <VoteIcon
-                        count={new Number(candidate.votes ?? 0).valueOf()}
-                      />
+                      <VoteIcon candidateId={Number(candidate.id)} />
                       <div className="flex items-center justify-center w-full mt-2 lg:hidden">
                         {!isVotingDone && isVotingStart && (
                           <VoteButton
@@ -203,11 +203,28 @@ export default function CandidateTable({
   );
 }
 
-function VoteIcon({ count }: { count: number }) {
+function VoteIcon({ candidateId }: { candidateId: number }) {
+  const { data, error, isLoading } = useSWR<{ votes: number }>(
+    `/api/vote/count?c=${candidateId}`,
+    fetcher
+  );
+
+  if (isLoading) {
+    return (
+      <div role="status" className="animate-pulse">
+        <div className="min-w-[100px] border py-5 rounded bg-gray-100"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <p>Opps. </p>;
+  }
+
   return (
     <div className="flex flex-row gap-2 items-center justify-center min-w-[100px] border py-5 rounded bg-gray-100">
       <span>❤️</span>
-      <span className="font-[500] text-xl font-heading">{count}</span>
+      <span className="font-[500] text-xl font-heading">{data?.votes}</span>
     </div>
   );
 }
