@@ -15,6 +15,7 @@ import { TURNSTILE_KEY } from "@/config/env";
 import fetcher from "@/lib/fetcher";
 import { load } from "@fingerprintjs/botd";
 import Botd from "@/lib/botd/script";
+import PJAConfetti from "@/components/confetti";
 
 export const DEFAULT_BLUR =
   "data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
@@ -80,6 +81,7 @@ export default function CandidateTable({
 
   return (
     <Botd>
+      {isVotingDone && token && <PJAConfetti />}
       <Container className="mt-10">
         <Turnstile
           className="my-4"
