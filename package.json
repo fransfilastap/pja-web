@@ -13,7 +13,7 @@
     "deploy:prod": "next build && pm2 startOrRestart ecosystem.config.js --env production"
   },
   "dependencies": {
-    "@fingerprintjs/fingerprintjs-pro-react": "^2.3.3",
+    "@fingerprintjs/botd": "^1.5.0",
     "@fluentui/react-icons": "^2.0.201",
     "@jsdevtools/rehype-toc": "^3.0.2",
     "@mapbox/rehype-prism": "^0.8.0",
