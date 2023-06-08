@@ -1,6 +1,4 @@
-This is a Next.js Project for *Paralegal Justice Award* Event. 
-
-This project categorized as a 'CSR' project for such a big government event.
+This is a Next.js Project for *Paralegal Justice Award* Event. The project categorized as a 'CSR' project.
 
 Design and coded all by me.
 
